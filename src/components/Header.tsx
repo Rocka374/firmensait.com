@@ -24,29 +24,21 @@ export default function Header() {
       scrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"
     )}>
       <div className="container mx-auto px-4 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative w-10 h-10 md:w-12 md:h-12 flex items-center justify-center">
-            {/* Logo Image - hidden if not found or while loading */}
+        <Link href="/" className="flex items-center group">
+          <div className="relative h-10 w-auto md:h-12 flex items-center justify-center">
             <Image 
               src="/logo.webp" 
               alt={siteConfig.name}
-              width={48}
+              width={160}
               height={48}
-              className="object-contain"
+              className="h-full w-auto object-contain"
               priority
               onError={(e) => {
-                // If logo is missing, we could hide the container or handle it
                 (e.target as any).style.display = 'none';
               }}
             />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-xl md:text-2xl font-bold text-primary tracking-tight leading-none">
-              {siteConfig.name}
-            </span>
-            <span className="text-[10px] uppercase tracking-wider text-secondary hidden sm:block mt-1">
-              Професионални сайтове за малък бизнес
-            </span>
+            {/* Hidden text for SEO purposes only */}
+            <span className="sr-only">{siteConfig.name}</span>
           </div>
         </Link>
 
