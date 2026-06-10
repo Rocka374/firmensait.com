@@ -1,4 +1,3 @@
-import React from 'react';
 import { cn } from '@/lib/utils';
 
 interface SectionHeaderProps {
@@ -8,14 +7,14 @@ interface SectionHeaderProps {
   className?: string;
 }
 
-const SectionHeader = ({ title, subtitle, align = 'center', className }: SectionHeaderProps) => {
+export default function SectionHeader({ title, subtitle, align = 'center', className }: SectionHeaderProps) {
   return (
     <div className={cn(
       "mb-12 md:mb-16",
       align === 'center' ? "text-center mx-auto max-w-3xl" : "text-left",
       className
     )}>
-      <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight">
         {title}
       </h2>
       {subtitle && (
@@ -25,6 +24,4 @@ const SectionHeader = ({ title, subtitle, align = 'center', className }: Section
       )}
     </div>
   );
-};
-
-export default SectionHeader;
+}

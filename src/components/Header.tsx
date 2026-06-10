@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+"use client";
+
+import { useState, useEffect } from 'react';
 import { navigationLinks, headerCTA } from '@/content/navigation';
 import { siteConfig } from '@/content/site';
 import { Menu, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
-const Header = () => {
+export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -18,19 +20,18 @@ const Header = () => {
   return (
     <header className={cn(
       "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-      scrolled ? "bg-white/80 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"
+      scrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"
     )}>
       <div className="container mx-auto px-4 flex items-center justify-between">
-        <div className="flex flex-col">
-          <a href="/" className="text-xl font-bold text-primary tracking-tight">
+        <Link href="/" className="flex flex-col group">
+          <span className="text-xl md:text-2xl font-bold text-primary tracking-tight">
             {siteConfig.name}
-          </a>
+          </span>
           <span className="text-[10px] uppercase tracking-wider text-secondary hidden sm:block">
             Професионални сайтове за малък бизнес
           </span>
-        </div>
+        </Link>
 
-        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center space-x-8">
           {navigationLinks.map((link) => (
             <a 
@@ -41,40 +42,42 @@ const Header = () => {
               {link.title}
             </a>
           ))}
-          <Button asChild className="bg-primary hover:bg-primary-dark text-white rounded-full px-6">
-            <a href={headerCTA.href}>{headerCTA.title}</a>
-          </Button>
+          <Link 
+            href={headerCTA.href}
+            className="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-full transition-all shadow-md"
+          >
+            {headerCTA.title}
+          </Link>
         </nav>
 
-        {/* Mobile Toggle */}
-        <button className="md:hidden text-foreground" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        <button className="md:hidden text-foreground p-2" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Drawer */}
       <div className={cn(
-        "fixed inset-0 top-[60px] bg-white z-40 md:hidden transition-transform duration-300 ease-in-out",
+        "fixed inset-0 top-[68px] bg-white z-40 md:hidden flex flex-col p-6 space-y-6 transition-transform duration-300",
         isOpen ? "translate-x-0" : "translate-x-full"
       )}>
-        <nav className="flex flex-col p-6 space-y-6">
-          {navigationLinks.map((link) => (
-            <a 
-              key={link.title} 
-              href={link.href} 
-              className="text-lg font-medium border-b border-border pb-2"
-              onClick={() => setIsOpen(false)}
-            >
-              {link.title}
-            </a>
-          ))}
-          <Button asChild className="bg-primary hover:bg-primary-dark text-white w-full py-6 text-lg">
-            <a href={headerCTA.href}>{headerCTA.title}</a>
-          </Button>
-        </nav>
+        {navigationLinks.map((link) => (
+          <a 
+            key={link.title} 
+            href={link.href} 
+            className="text-xl font-bold border-b border-border pb-4"
+            onClick={() => setIsOpen(false)}
+          >
+            {link.title}
+          </a>
+        ))}
+        <Link 
+          href={headerCTA.href}
+          className="bg-primary text-white text-center font-bold py-5 rounded-full text-xl"
+          onClick={() => setIsOpen(false)}
+        >
+          {headerCTA.title}
+        </Link>
       </div>
     </header>
   );
-};
-
-export default Header;
+}
