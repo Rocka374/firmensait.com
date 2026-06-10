@@ -3,12 +3,10 @@ import type { Config } from "tailwindcss";
 export default {
   darkMode: ["class"],
   content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/content/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  prefix: "",
   theme: {
     container: {
       center: true,
@@ -35,10 +33,6 @@ export default {
           foreground: "#FFFFFF",
           light: "#F7F2EA",
         },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
         muted: {
           DEFAULT: "#F7F2EA",
           foreground: "#5F5A52",
@@ -60,9 +54,6 @@ export default {
         lg: "1rem",
         md: "0.75rem",
         sm: "0.5rem",
-      },
-      fontFamily: {
-        sans: ['Inter', 'sans-serif'],
       },
     },
   },

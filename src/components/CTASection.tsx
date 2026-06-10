@@ -1,4 +1,5 @@
 import { homeContent } from "@/content/home";
+import { siteConfig } from "@/content/site";
 import Button from "./Button";
 
 export default function CTASection() {
@@ -8,7 +9,12 @@ export default function CTASection() {
       <div className="container mx-auto px-4 relative z-10">
         <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">{cta.title}</h2>
         <p className="text-xl md:text-2xl opacity-90 mb-12 max-w-2xl mx-auto leading-relaxed">{cta.description}</p>
-        <Button variant="secondary" size="xl" href="#kontakti" className="bg-white hover:bg-white/90">
+        <Button 
+          variant="secondary" 
+          size="xl" 
+          href={`mailto:${siteConfig.links.email}`} 
+          className="bg-white hover:bg-white/90"
+        >
           {cta.button}
         </Button>
       </div>

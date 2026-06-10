@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -37,6 +35,17 @@ export default function Button({
   const combinedClasses = cn(baseStyles, variants[variant], sizes[size], className);
 
   if (href) {
+    const isExternal = href.startsWith('mailto:') || href.startsWith('tel:');
+    const isAnchor = href.startsWith('#');
+
+    if (isExternal || isAnchor) {
+      return (
+        <a href={href} className={combinedClasses} onClick={onClick}>
+          {children}
+        </a>
+      );
+    }
+
     return (
       <Link href={href} className={combinedClasses}>
         {children}
