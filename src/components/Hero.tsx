@@ -80,6 +80,23 @@ export default function Hero() {
     { label: "Достъп до хостинга", icon: ShieldCheck },
   ];
 
+  // Logic to highlight the price in H1
+  const renderTitle = () => {
+    const priceText = "350 евро";
+    const parts = hero.title.split(priceText);
+    
+    return (
+      <>
+        {parts[0]}
+        <span className="text-primary relative inline-block whitespace-nowrap">
+          {priceText}
+          <span className="absolute -bottom-1 left-0 w-full h-1 bg-primary/10 rounded-full blur-[2px]" />
+        </span>
+        {parts[1]}
+      </>
+    );
+  };
+
   return (
     <section className="relative pt-24 pb-20 md:pt-48 md:pb-40 overflow-hidden bg-background">
       {/* Background Gradients */}
@@ -92,9 +109,9 @@ export default function Hero() {
           {/* Left Content */}
           <div className="flex-1 lg:flex-[0.9] text-center lg:text-left relative z-20">
             <h1 className="text-4xl md:text-6xl lg:text-[5rem] font-bold text-foreground leading-[1.05] mb-8 tracking-tight">
-              {hero.title}
+              {renderTitle()}
             </h1>
-            <p className="text-lg md:text-xl lg:text-2xl text-secondary/80 mb-10 md:mb-12 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium">
+            <p className="text-lg md:text-xl lg:text-2xl text-secondary/80 mb-10 md:mb-12 leading-relaxed max-w-3xl mx-auto lg:mx-0 font-medium">
               {hero.subtitle}
             </p>
             
@@ -113,7 +130,7 @@ export default function Hero() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(184,145,79,0.12)_0%,_transparent_70%)] pointer-events-none transform scale-150" />
 
             <div className="relative z-10 w-full aspect-[16/11]">
-              {/* Desktop Floating Badges (Hidden on mobile) */}
+              {/* Desktop Floating Badges */}
               <FloatingBadge icon={Tag} className="top-[5%] right-[-2%]" delay={0.2}>
                 Цена 350 евро
               </FloatingBadge>
@@ -141,7 +158,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Mobile View: Shows all 7 badges (primary + secondary) in 1 column */}
+        {/* Mobile View Badge Grid */}
         <div className="flex flex-col md:hidden gap-4 mb-8">
           {[...primaryBadges, ...secondaryBadges].map((badge, idx) => (
             <HeroBadge key={idx} icon={badge.icon}>
@@ -150,7 +167,7 @@ export default function Hero() {
           ))}
         </div>
 
-        {/* Desktop View: Shows only the 4 secondary badges in a grid (floating ones are handled above) */}
+        {/* Desktop View Secondary Badges Grid */}
         <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6">
           {secondaryBadges.map((badge, idx) => (
             <HeroBadge key={idx} icon={badge.icon}>
