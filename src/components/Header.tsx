@@ -6,6 +6,7 @@ import { siteConfig } from '@/content/site';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,13 +24,30 @@ export default function Header() {
       scrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"
     )}>
       <div className="container mx-auto px-4 flex items-center justify-between">
-        <Link href="/" className="flex flex-col group">
-          <span className="text-xl md:text-2xl font-bold text-primary tracking-tight">
-            {siteConfig.name}
-          </span>
-          <span className="text-[10px] uppercase tracking-wider text-secondary hidden sm:block">
-            Професионални сайтове за малък бизнес
-          </span>
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="relative w-10 h-10 md:w-12 md:h-12 flex items-center justify-center">
+            {/* Logo Image - hidden if not found or while loading */}
+            <Image 
+              src="/logo.webp" 
+              alt={siteConfig.name}
+              width={48}
+              height={48}
+              className="object-contain"
+              priority
+              onError={(e) => {
+                // If logo is missing, we could hide the container or handle it
+                (e.target as any).style.display = 'none';
+              }}
+            />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-xl md:text-2xl font-bold text-primary tracking-tight leading-none">
+              {siteConfig.name}
+            </span>
+            <span className="text-[10px] uppercase tracking-wider text-secondary hidden sm:block mt-1">
+              Професионални сайтове за малък бизнес
+            </span>
+          </div>
         </Link>
 
         <nav className="hidden md:flex items-center space-x-8">
