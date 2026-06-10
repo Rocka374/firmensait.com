@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import SectionHeader from './SectionHeader';
 import { homeContent } from '@/content/home';
