@@ -26,11 +26,11 @@ const HeroBadge = ({
   className?: string; 
 }) => (
   <div className={cn(
-    "bg-white/60 backdrop-blur-sm border border-border/40 px-3 py-2.5 md:px-4 md:py-3 rounded-2xl flex items-center gap-2 md:gap-3 shadow-sm hover:shadow-md transition-all duration-300",
+    "bg-white/60 backdrop-blur-sm border border-border/40 px-3 py-3 md:px-5 md:py-4 rounded-2xl flex items-center gap-3 md:gap-4 shadow-sm hover:shadow-md transition-all duration-300",
     className
   )}>
-    <div className="w-6 h-6 md:w-8 md:h-8 bg-primary/10 rounded-lg flex items-center justify-center text-primary shrink-0">
-      <Icon size={14} className="md:w-4 md:h-4" strokeWidth={2.5} />
+    <div className="w-7 h-7 md:w-9 md:h-9 bg-primary/10 rounded-lg flex items-center justify-center text-primary shrink-0">
+      <Icon size={16} className="md:w-5 md:h-5" strokeWidth={2.5} />
     </div>
     <span className="text-[10px] sm:text-xs md:text-sm font-bold text-secondary whitespace-nowrap">{children}</span>
   </div>
@@ -57,7 +57,7 @@ export default function Hero() {
       <div className="absolute bottom-[5%] left-[-5%] w-[40%] h-[40%] bg-accent/20 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 mb-16 md:mb-24">
           
           {/* Left Content */}
           <motion.div 
@@ -77,7 +77,7 @@ export default function Hero() {
               {hero.subtitle}
             </p>
             
-            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 mb-12">
+            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
               <Button variant="primary" size="lg" href="#kontakti" className="w-full sm:w-auto px-12 py-5 shadow-xl shadow-primary/20">
                 {hero.primaryCTA}
               </Button>
@@ -85,20 +85,6 @@ export default function Hero() {
                 {hero.secondaryCTA}
               </Button>
             </div>
-
-            {/* Badges Grid - Under the buttons */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mt-16 md:mt-20"
-            >
-              {badges.map((badge, idx) => (
-                <HeroBadge key={idx} icon={badge.icon}>
-                  {badge.label}
-                </HeroBadge>
-              ))}
-            </motion.div>
           </motion.div>
 
           {/* Right Visual Showcase */}
@@ -135,6 +121,21 @@ export default function Hero() {
             </div>
           </motion.div>
         </div>
+
+        {/* Full Width Badges Grid */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+        >
+          {badges.map((badge, idx) => (
+            <HeroBadge key={idx} icon={badge.icon}>
+              {badge.label}
+            </HeroBadge>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
