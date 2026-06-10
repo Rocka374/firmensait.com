@@ -5,9 +5,18 @@ import * as RechartsPrimitive from "recharts"
 
 import { cn } from "@/lib/utils"
 
-// Format: { [key: string]: string }
+// Define a more robust config type that includes an optional icon
+export type ChartConfig = Record<
+  string,
+  {
+    label?: React.ReactNode
+    color?: string
+    icon?: React.ComponentType
+  }
+>
+
 const ChartContext = React.createContext<{
-  config: Record<string, { label?: React.ReactNode; color?: string }>
+  config: ChartConfig
 } | null>(null)
 
 function useChart() {
@@ -21,7 +30,7 @@ function useChart() {
 const ChartContainer = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> & {
-    config: Record<string, { label?: React.ReactNode; color?: string }>
+    config: ChartConfig
     children: React.ReactNode
   }
 >(({ id, className, children, config, ...props }, ref) => {
@@ -211,7 +220,6 @@ const ChartTooltipContent = React.forwardRef<
           })}
         </div>
       </div>
-      </div>
     )
   }
 )
@@ -222,7 +230,8 @@ const ChartLegend = RechartsPrimitive.Legend
 const ChartLegendContent = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> &
-    Pick<RechartsPrimitive.LegendProps, "payload" | "verticalAlign"> & {
+    Pick<RechartsPrimitive.LegendProps, "verticalAlign"> & {
+      payload?: any[]
       hideIcon?: boolean
       nameKey?: string
     }
