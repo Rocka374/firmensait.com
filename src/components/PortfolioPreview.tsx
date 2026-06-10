@@ -9,6 +9,10 @@ import { cn } from "@/lib/utils";
 import Button from "./Button";
 import { motion, AnimatePresence } from "framer-motion";
 
+/**
+ * Initial viewport intentionally renders only 3 portfolio images: previous, active and next. 
+ * The remaining projects are not rendered as images until they become adjacent.
+ */
 export default function PortfolioPreview() {
   const { portfolio } = homeContent;
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -89,6 +93,7 @@ export default function PortfolioPreview() {
     return (currentIndex + offset + portfolio.projects.length) % portfolio.projects.length;
   };
 
+  // Data for the 3 visible projects
   const activeProject = portfolio.projects[currentIndex];
   const prevProjectData = portfolio.projects[getProjectIndex(-1)];
   const nextProjectData = portfolio.projects[getProjectIndex(1)];
@@ -107,12 +112,7 @@ export default function PortfolioPreview() {
         {/* Carousel Scene */}
         <div className="perspective-1000 relative h-[280px] sm:h-[400px] md:h-[680px] flex items-center justify-center">
           
-          {/* 
-              Optimization: Only render active, previous and next images to avoid 
-              loading all portfolio screenshots. 
-          */}
-
-          {/* Previous Card (Left) */}
+          {/* Previous Card (Left) - Only rendered when adjacent */}
           <motion.div 
             key={`left-${getProjectIndex(-1)}`}
             initial={{ opacity: 0, x: -100, scale: 0.7 }}
@@ -127,6 +127,7 @@ export default function PortfolioPreview() {
               className="object-cover object-top"
               sizes="800px"
               loading="lazy"
+              priority={false}
             />
           </motion.div>
 
@@ -162,7 +163,7 @@ export default function PortfolioPreview() {
                       width={1200}
                       height={4000}
                       className="w-full h-auto block"
-                      priority={true} // Only active image gets priority
+                      priority={true} // Only the active image gets priority
                     />
                   </div>
                 </div>
@@ -191,7 +192,7 @@ export default function PortfolioPreview() {
             </AnimatePresence>
           </div>
 
-          {/* Next Card (Right) */}
+          {/* Next Card (Right) - Only rendered when adjacent */}
           <motion.div 
             key={`right-${getProjectIndex(1)}`}
             initial={{ opacity: 0, x: 100, scale: 0.7 }}
@@ -206,6 +207,7 @@ export default function PortfolioPreview() {
               className="object-cover object-top"
               sizes="800px"
               loading="lazy"
+              priority={false}
             />
           </motion.div>
         </div>
@@ -243,7 +245,7 @@ export default function PortfolioPreview() {
                   <button onClick={prevProject} className="p-3 rounded-full border border-border hover:bg-white transition-all active:scale-90">
                     <ChevronLeft size={20} className="text-secondary" />
                   </button>
-                  <div className="flex items-center gap-2 font-black text-xs text-primary tracking-widest">
+                  <div className="flex items-center gap-3 font-black text-sm text-primary tracking-widest">
                     <span>{(currentIndex + 1).toString().padStart(2, '0')}</span>
                     <span className="w-6 h-px bg-primary/20" />
                     <span className="text-secondary/30">{portfolio.projects.length.toString().padStart(2, '0')}</span>
