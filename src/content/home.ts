@@ -4,7 +4,7 @@ export const homeContent = {
     subtitle: "Модерен сайт за малък бизнес, готов за 1–2 седмици — с мобилна версия, ясна структура и без месечна такса за хостинг при стандартна употреба.",
     primaryCTA: "Искам сайт",
     secondaryCTA: "Виж примерни дизайни",
-    heroImage: "/images/home/home-hero.jpg",
+    heroImage: "/images/home/home-hero.webp",
     heroImageAlt: "Професионален дизайн на фирмен сайт върху различни устройства",
     trustItems: [
       "350€ начална цена",
