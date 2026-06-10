@@ -16,6 +16,27 @@ import {
 import Button from "./Button";
 import { cn } from "@/lib/utils";
 
+// Reusable Premium Badge Component
+const HeroBadge = ({ 
+  children, 
+  icon: Icon, 
+  className
+}: { 
+  children: React.ReactNode; 
+  icon: any; 
+  className?: string; 
+}) => (
+  <div className={cn(
+    "bg-white/90 backdrop-blur-md border border-white/50 shadow-[0_12px_40px_rgba(184,145,79,0.12)] px-5 py-4 rounded-[1.5rem] flex items-center gap-4 transition-all duration-300 hover:shadow-[0_15px_45px_rgba(184,145,79,0.18)]",
+    className
+  )}>
+    <div className="w-9 h-9 bg-primary/10 rounded-xl flex items-center justify-center text-primary shrink-0">
+      <Icon size={18} strokeWidth={2.5} />
+    </div>
+    <span className="text-sm font-bold text-secondary whitespace-nowrap">{children}</span>
+  </div>
+);
+
 const FloatingBadge = ({ 
   children, 
   icon: Icon, 
@@ -43,32 +64,14 @@ const FloatingBadge = ({
   </motion.div>
 );
 
-const TrustRowItem = ({ icon: Icon, children }: { icon: any, children: React.ReactNode }) => (
-  <div className="flex items-center gap-2.5">
-    <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center text-primary shrink-0">
-      <Icon size={12} strokeWidth={3} />
-    </div>
-    <span className="text-[11px] md:text-[13px] font-bold text-secondary/80 whitespace-nowrap">{children}</span>
-  </div>
-);
-
 export default function Hero() {
   const { hero } = homeContent;
 
-  const desktopTrustRow = [
+  const trustBadges = [
     { label: "SEO структура", icon: Search },
     { label: "Мобилна версия", icon: Smartphone },
     { label: "Достъп до файловете", icon: Code },
     { label: "Достъп до хостинга", icon: ShieldCheck },
-  ];
-
-  const mobileProofGrid = [
-    { label: "Цена 350 евро", icon: Tag },
-    { label: "Готов за 1–2 седмици", icon: Clock },
-    { label: "Без месечен хостинг", icon: CloudOff },
-    { label: "Мобилна версия", icon: Smartphone },
-    { label: "SEO структура", icon: Search },
-    { label: "Достъп до файловете", icon: Code },
   ];
 
   return (
@@ -78,7 +81,7 @@ export default function Hero() {
       <div className="absolute bottom-[5%] left-[-5%] w-[40%] h-[40%] bg-accent/20 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 mb-20 md:mb-28">
           
           {/* Left Content */}
           <div className="flex-1 lg:flex-[0.9] text-center lg:text-left relative z-20">
@@ -89,7 +92,7 @@ export default function Hero() {
               {hero.subtitle}
             </p>
             
-            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 mb-10 md:mb-12">
+            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
               <Button variant="primary" size="lg" href="#kontakti" className="w-full sm:w-auto px-12 py-5 shadow-xl shadow-primary/20">
                 {hero.primaryCTA}
               </Button>
@@ -97,25 +100,10 @@ export default function Hero() {
                 {hero.secondaryCTA}
               </Button>
             </div>
-
-            {/* Desktop Trust Row */}
-            <div className="hidden md:flex flex-wrap items-center justify-center lg:justify-start gap-x-8 gap-y-4 pt-10 border-t border-border/40">
-              {desktopTrustRow.map((item, idx) => (
-                <TrustRowItem key={idx} icon={item.icon}>{item.label}</TrustRowItem>
-              ))}
-            </div>
-
-            {/* Mobile Proof Grid */}
-            <div className="grid grid-cols-2 md:hidden gap-x-4 gap-y-5 pt-8 border-t border-border/40 text-left">
-              {mobileProofGrid.map((item, idx) => (
-                <TrustRowItem key={idx} icon={item.icon}>{item.label}</TrustRowItem>
-              ))}
-            </div>
           </div>
 
           {/* Right Visual Showcase */}
           <div className="flex-1 lg:flex-[1.1] w-full relative max-w-[850px] lg:max-w-none mx-auto py-10 lg:py-0 z-10">
-            {/* Glow Behind Image */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(184,145,79,0.12)_0%,_transparent_70%)] pointer-events-none transform scale-150" />
 
             <div className="relative z-10 w-full aspect-[16/11]">
@@ -146,6 +134,21 @@ export default function Hero() {
             </div>
           </div>
         </div>
+
+        {/* Full Width Trust Badges Grid */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+        >
+          {trustBadges.map((badge, idx) => (
+            <HeroBadge key={idx} icon={badge.icon}>
+              {badge.label}
+            </HeroBadge>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
