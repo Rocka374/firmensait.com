@@ -67,7 +67,13 @@ const FloatingBadge = ({
 export default function Hero() {
   const { hero } = homeContent;
 
-  const trustBadges = [
+  const primaryBadges = [
+    { label: "Цена 350 евро", icon: Tag },
+    { label: "Готов за 1–2 седмици", icon: Clock },
+    { label: "Без месечен хостинг", icon: CloudOff },
+  ];
+
+  const secondaryBadges = [
     { label: "SEO структура", icon: Search },
     { label: "Мобилна версия", icon: Smartphone },
     { label: "Достъп до файловете", icon: Code },
@@ -107,7 +113,7 @@ export default function Hero() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(184,145,79,0.12)_0%,_transparent_70%)] pointer-events-none transform scale-150" />
 
             <div className="relative z-10 w-full aspect-[16/11]">
-              {/* Desktop Floating Badges */}
+              {/* Desktop Floating Badges (Hidden on mobile) */}
               <FloatingBadge icon={Tag} className="top-[5%] right-[-2%]" delay={0.2}>
                 Цена 350 евро
               </FloatingBadge>
@@ -135,20 +141,23 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Full Width Trust Badges Grid */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
-        >
-          {trustBadges.map((badge, idx) => (
+        {/* Mobile View: Shows all 7 badges (primary + secondary) in 1 column */}
+        <div className="flex flex-col md:hidden gap-4 mb-8">
+          {[...primaryBadges, ...secondaryBadges].map((badge, idx) => (
             <HeroBadge key={idx} icon={badge.icon}>
               {badge.label}
             </HeroBadge>
           ))}
-        </motion.div>
+        </div>
+
+        {/* Desktop View: Shows only the 4 secondary badges in a grid (floating ones are handled above) */}
+        <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6">
+          {secondaryBadges.map((badge, idx) => (
+            <HeroBadge key={idx} icon={badge.icon}>
+              {badge.label}
+            </HeroBadge>
+          ))}
+        </div>
       </div>
     </section>
   );
