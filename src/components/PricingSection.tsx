@@ -1,6 +1,7 @@
 import SectionHeader from "./SectionHeader";
 import { homeContent } from "@/content/home";
 import { Check, X } from "lucide-react";
+import Button from "./Button";
 
 export default function PricingSection() {
   const { pricing } = homeContent;
@@ -27,9 +28,9 @@ export default function PricingSection() {
               <span className="block text-xs font-bold uppercase tracking-widest text-secondary mb-4">Еднократно плащане</span>
               <div className="text-7xl font-bold text-primary tracking-tight">{pricing.price}</div>
             </div>
-            <button className="w-full bg-primary hover:bg-primary-dark text-white font-bold py-6 rounded-full text-xl shadow-lg transition-all mb-8">
+            <Button variant="primary" size="lg" className="w-full py-6 shadow-lg mb-8" href="#kontakti">
               {pricing.cta}
-            </button>
+            </Button>
             <div className="text-left">
               <span className="block text-[10px] font-bold uppercase text-secondary/60 mb-4 tracking-widest">Не включва автоматично:</span>
               <ul className="space-y-2">

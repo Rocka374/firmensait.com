@@ -1,6 +1,7 @@
 import Image from "next/image";
 import SectionHeader from "./SectionHeader";
 import { homeContent } from "@/content/home";
+import Card from "./Card";
 
 export default function PortfolioPreview() {
   const { portfolio } = homeContent;
@@ -12,13 +13,13 @@ export default function PortfolioPreview() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {portfolio.projects.map((project, idx) => (
-            <div key={idx} className="group rounded-3xl overflow-hidden border border-border bg-white hover:shadow-2xl transition-all duration-500">
+            <Card key={idx} className="p-0 overflow-hidden">
               <div className="relative aspect-video w-full bg-primary-soft/10">
                 <Image
                   src={project.image}
-                  alt={project.title}
+                  alt={project.imageAlt}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="object-cover hover:scale-105 transition-transform duration-700"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
@@ -30,7 +31,7 @@ export default function PortfolioPreview() {
                   <span className="group-hover/btn:translate-x-1 transition-transform">→</span>
                 </button>
               </div>
-            </div>
+            </Card>
           ))}
         </div>
       </div>

@@ -104,7 +104,7 @@ export const homeContent = {
       { title: "Уточняваме нуждите", description: "Лична консултация за проекта.", icon: "MessageSquare" },
       { title: "Подготвяме структура", description: "Планиране на секциите и съдържанието.", icon: "Layers" },
       { title: "Изработваме сайта", description: "Професионален дизайн и кодиране.", icon: "Code" },
-      { title: "Версия за преглед", description: "Вашата обратна връзка е важна за нас.", icon: "Eye" },
+      { title: "Получавате версия за преглед", description: "Вашата обратна връзка е важна за нас.", icon: "Eye" },
       { title: "Публикуваме онлайн", description: "Вашият нов сайт е вече активен.", icon: "Rocket" },
     ]
   },

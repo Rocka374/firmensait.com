@@ -4,6 +4,7 @@ import Image from "next/image";
 import { homeContent } from "@/content/home";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
+import Button from "./Button";
 
 export default function Hero() {
   const { hero } = homeContent;
@@ -26,12 +27,12 @@ export default function Hero() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
-              <a href="#kontakti" className="bg-primary text-white font-bold py-4 px-10 rounded-full text-center hover:bg-primary-dark transition-all shadow-lg">
+              <Button variant="primary" size="lg" href="#kontakti">
                 {hero.primaryCTA}
-              </a>
-              <a href="#portfolio" className="border-2 border-primary text-foreground font-bold py-4 px-10 rounded-full text-center hover:bg-primary-soft transition-all">
+              </Button>
+              <Button variant="outline" size="lg" href="#portfolio">
                 {hero.secondaryCTA}
-              </a>
+              </Button>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
@@ -53,17 +54,13 @@ export default function Hero() {
             <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-2xl border border-border bg-white p-2">
               <div className="relative w-full h-full rounded-xl overflow-hidden bg-primary-soft/30">
                 <Image
-                  src={hero.image}
-                  alt={hero.alt}
+                  src={hero.heroImage}
+                  alt={hero.heroImageAlt}
                   fill
                   priority
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                {/* Fallback Label if image is not present */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
-                  <span className="text-primary text-2xl font-bold">Firmensait Hero Preview</span>
-                </div>
               </div>
             </div>
           </motion.div>
