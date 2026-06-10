@@ -88,10 +88,7 @@ export default function Hero() {
     return (
       <>
         {parts[0]}
-        <span className="text-primary relative inline-block whitespace-nowrap">
-          {priceText}
-          <span className="absolute -bottom-1 left-0 w-full h-1 bg-primary/10 rounded-full blur-[2px]" />
-        </span>
+        <span className="text-primary">{priceText}</span>
         {parts[1]}
       </>
     );
