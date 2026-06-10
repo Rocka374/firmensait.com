@@ -1,64 +1,178 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import SectionHeader from "./SectionHeader";
 import { homeContent } from "@/content/home";
-import Card from "./Card";
+import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
+import Button from "./Button";
 
 export default function PortfolioPreview() {
   const { portfolio } = homeContent;
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const nextProject = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentIndex((prev) => (prev + 1) % portfolio.projects.length);
+  };
+
+  const prevProject = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentIndex((prev) => (prev - 1 + portfolio.projects.length) % portfolio.projects.length);
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsAnimating(false), 500);
+    return () => clearTimeout(timer);
+  }, [currentIndex]);
+
+  const activeProject = portfolio.projects[currentIndex];
 
   return (
-    <section id="portfolio" className="py-24 md:py-32 bg-white">
+    <section id="portfolio" className="py-24 md:py-36 bg-white overflow-hidden">
       <div className="container mx-auto px-4 max-w-7xl">
         <SectionHeader title={portfolio.title} subtitle={portfolio.subtitle} />
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12">
-          {portfolio.projects.map((project, idx) => (
-            <Card key={idx} className="p-0 overflow-hidden group border-none bg-transparent hover:shadow-none">
-              <div className="relative aspect-[16/10] w-full rounded-[2.5rem] overflow-hidden shadow-2xl border border-border/30 mb-8 bg-secondary-light">
-                {/* CSS Website UI Placeholder */}
-                <div className="absolute inset-0 p-8 flex flex-col gap-4 opacity-20 group-hover:opacity-30 transition-opacity">
-                  <div className="flex justify-between items-center mb-4">
-                    <div className="h-6 w-16 bg-primary rounded-full" />
-                    <div className="flex gap-3">
-                      <div className="h-3 w-10 bg-primary rounded-full" />
-                      <div className="h-3 w-10 bg-primary rounded-full" />
-                    </div>
-                  </div>
-                  <div className="h-32 w-full bg-primary/40 rounded-2xl" />
-                  <div className="h-4 w-3/4 bg-primary/30 rounded-full" />
+        <div className="relative mt-12 lg:mt-20">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
+            
+            {/* 1. Large Screenshot Preview */}
+            <div className="flex-1 w-full relative group">
+              <div className="relative aspect-[16/10] w-full rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-[0_40px_100px_rgba(184,145,79,0.15)] border border-border/40 bg-secondary-light">
+                <div 
+                  className={cn(
+                    "relative w-full h-full transition-all duration-700 ease-out transform",
+                    isAnimating ? "opacity-0 scale-95" : "opacity-100 scale-100"
+                  )}
+                >
+                  <Image
+                    src={activeProject.image}
+                    alt={activeProject.imageAlt}
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    priority
+                  />
+                  {/* Glass Overlay on hover */}
+                  <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
+              </div>
 
-                <div className="absolute top-4 right-4 z-20 bg-white/95 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.15em] text-primary shadow-lg">
-                  {project.title}
-                </div>
+              {/* Navigation Arrows - Desktop Overlaid */}
+              <div className="hidden md:flex absolute -left-6 top-1/2 -translate-y-1/2 z-20">
+                <button 
+                  onClick={prevProject}
+                  className="w-14 h-14 rounded-full bg-white shadow-xl border border-border/50 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all transform hover:scale-110"
+                >
+                  <ChevronLeft size={28} />
+                </button>
+              </div>
+              <div className="hidden md:flex absolute -right-6 top-1/2 -translate-y-1/2 z-20">
+                <button 
+                  onClick={nextProject}
+                  className="w-14 h-14 rounded-full bg-white shadow-xl border border-border/50 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all transform hover:scale-110"
+                >
+                  <ChevronRight size={28} />
+                </button>
+              </div>
+            </div>
+
+            {/* 2. Project Info Sidebar */}
+            <div className="lg:w-[400px] flex flex-col items-center lg:items-start text-center lg:text-left">
+              <div className={cn(
+                "transition-all duration-500",
+                isAnimating ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
+              )}>
+                <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
+                  {activeProject.category || "Проект"}
+                </span>
                 
-                <Image
-                  src={project.image}
-                  alt={project.imageAlt}
-                  fill
-                  className="object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  onError={(e) => { (e.target as any).style.display = 'none'; }}
-                />
-                <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
-              <div className="px-2">
-                <h3 className="text-2xl font-bold mb-4 text-foreground tracking-tight">{project.title}</h3>
-                <p className="text-lg text-secondary/70 mb-8 leading-relaxed line-clamp-2 font-medium">{project.description}</p>
-                <div className="inline-flex items-center gap-3 text-primary font-bold text-base group/link cursor-pointer">
-                  <span className="relative">
-                    Виж проекта
-                    <span className="absolute bottom-0 left-0 w-full h-px bg-primary transform scale-x-0 group-hover/link:scale-x-100 transition-transform origin-left" />
-                  </span>
-                  <span className="transform group-hover/link:translate-x-1.5 transition-transform">→</span>
+                <h3 className="text-3xl md:text-5xl font-bold text-foreground mb-6 tracking-tight leading-tight">
+                  {activeProject.title}
+                </h3>
+                
+                <p className="text-lg md:text-xl text-secondary/70 mb-10 leading-relaxed font-medium">
+                  {activeProject.description}
+                </p>
+
+                <div className="flex flex-col sm:flex-row items-center gap-6">
+                  <Button variant="primary" size="lg" href="#kontakti" className="w-full sm:w-auto px-10 py-5">
+                    Искам такъв сайт
+                  </Button>
+                  
+                  <div className="text-primary font-black text-sm uppercase tracking-widest flex items-center gap-2 group cursor-pointer">
+                    {currentIndex + 1 < 10 ? `0${currentIndex + 1}` : currentIndex + 1} 
+                    <span className="text-secondary/30">/</span> 
+                    {portfolio.projects.length}
+                  </div>
                 </div>
               </div>
-            </Card>
-          ))}
+            </div>
+          </div>
+
+          {/* 3. Mobile Navigation Controls */}
+          <div className="flex md:hidden justify-center items-center gap-8 mt-12">
+            <button 
+              onClick={prevProject}
+              className="w-14 h-14 rounded-full bg-background border border-border flex items-center justify-center text-primary"
+            >
+              <ChevronLeft size={24} />
+            </button>
+            <div className="text-lg font-black text-primary tracking-tighter">
+              {currentIndex + 1} / {portfolio.projects.length}
+            </div>
+            <button 
+              onClick={nextProject}
+              className="w-14 h-14 rounded-full bg-background border border-border flex items-center justify-center text-primary"
+            >
+              <ChevronRight size={24} />
+            </button>
+          </div>
+
+          {/* 4. Thumbnails Scroll Area (Desktop) */}
+          <div className="hidden lg:block mt-24 overflow-hidden">
+            <div 
+              ref={scrollRef}
+              className="flex gap-6 pb-4 overflow-x-auto no-scrollbar"
+              style={{ scrollBehavior: 'smooth' }}
+            >
+              {portfolio.projects.map((project, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentIndex(idx)}
+                  className={cn(
+                    "relative shrink-0 w-44 aspect-[16/10] rounded-2xl overflow-hidden border-2 transition-all duration-300",
+                    currentIndex === idx ? "border-primary scale-105 shadow-lg" : "border-transparent opacity-40 hover:opacity-100"
+                  )}
+                >
+                  <Image
+                    src={project.image}
+                    alt={project.imageAlt}
+                    fill
+                    className="object-cover"
+                    sizes="180px"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
+
+      <style jsx global>{`
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </section>
   );
 }

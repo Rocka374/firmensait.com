@@ -32,11 +32,146 @@ export const homeContent = {
     title: "Примерни сайтове за различни бизнеси",
     subtitle: "Разгледайте примерни визии за различни браншове — от по-достъпни и практични до по-премиум визии за бутикови бизнеси.",
     projects: [
-      { title: "Ресторант", description: "Модерен дизайн с онлайн меню.", image: "/images/home/portfolio-restaurant.jpg", imageAlt: "Дизайн на сайт за ресторант" },
-      { title: "Автосервиз", description: "Ясна структура и бърза връзка.", image: "/images/home/portfolio-autoservice.jpg", imageAlt: "Дизайн на сайт за автосервиз" },
-      { title: "Хотел", description: "Елегантна визия и представяне.", image: "/images/home/portfolio-hotel.jpg", imageAlt: "Дизайн на сайт за хотел" },
-      { title: "Ветеринарна клиника", description: "Доверие за вашите любимци.", image: "/images/home/portfolio-vet.jpg", imageAlt: "Дизайн на сайт за ветеринарна клиника" },
-      { title: "Сватбена агенция", description: "Бутиков дизайн за събития.", image: "/images/home/portfolio-wedding.jpg", imageAlt: "Дизайн на сайт за сватбена агенция" },
+      { 
+        title: "Fit Forma", 
+        category: "Фитнес треньор",
+        description: "Персонален сайт за фитнес треньор с тренировъчни програми и контактна форма.", 
+        image: "/images/portfolio/fit forma готов сайт за фитнес треньор.webp", 
+        imageAlt: "Дизайн на сайт за фитнес треньор" 
+      },
+      { 
+        title: "Pit Stop Auto", 
+        category: "Автосервиз",
+        description: "Професионално представяне на услуги за ремонт и поддръжка на автомобили.", 
+        image: "/images/portfolio/Pit stop auto готов сайт за авто сервиз.webp", 
+        imageAlt: "Дизайн на сайт за автосервиз" 
+      },
+      { 
+        title: "Pine Peak", 
+        category: "Хотел",
+        description: "Елегантен уебсайт за хотел с галерия, представяне на стаи и локация.", 
+        image: "/images/portfolio/pine peak готов сайт за хотел.webp", 
+        imageAlt: "Дизайн на сайт за хотел" 
+      },
+      { 
+        title: "Pine Nest", 
+        category: "Къща за гости",
+        description: "Уютен дизайн за представяне на къща за гости сред природата.", 
+        image: "/images/portfolio/pine nest готов сайт за къща за гости.webp", 
+        imageAlt: "Дизайн на сайт за къща за гости" 
+      },
+      { 
+        title: "Вътрешен Компас", 
+        category: "Психолог",
+        description: "Сайт за психологическа практика, вдъхващ доверие и спокойствие.", 
+        image: "/images/portfolio/вътрешен компас готов сайт за психолог.webp", 
+        imageAlt: "Дизайн на сайт за психолог" 
+      },
+      { 
+        title: "Vetora Care", 
+        category: "Ветеринарна клиника",
+        description: "Всичко за грижата за домашните любимци в един модерен и приветлив сайт.", 
+        image: "/images/portfolio/vetora care готов сайт за ветеринарна клиника.webp", 
+        imageAlt: "Дизайн на сайт за ветеринарна клиника" 
+      },
+      { 
+        title: "Verde Oro", 
+        category: "Ресторант",
+        description: "Апетитна визия с фокус върху менюто и възможност за резервации.", 
+        image: "/images/portfolio/verde oro готов сайт за ресторант.webp", 
+        imageAlt: "Дизайн на сайт за ресторант" 
+      },
+      { 
+        title: "Urban Structure", 
+        category: "Строителна фирма",
+        description: "Стабилно онлайн присъствие за представяне на строителни проекти.", 
+        image: "/images/portfolio/urban structure готов сайт за строителна фирма.webp", 
+        imageAlt: "Дизайн на сайт за строителна фирма" 
+      },
+      { 
+        title: "Urban Key", 
+        category: "Недвижими имоти",
+        description: "Каталог за недвижими имоти с големи снимки и акцент върху обявите.", 
+        image: "/images/portfolio/urban key готов сайт за недвижими имоти.webp", 
+        imageAlt: "Дизайн на сайт за недвижими имоти" 
+      },
+      { 
+        title: "Transline", 
+        category: "Транспортна фирма",
+        description: "Логистичен сайт за транспортна фирма с описание на услугите и автопарка.", 
+        image: "/images/portfolio/transline готов сайт за фирма за транспорт.webp", 
+        imageAlt: "Дизайн на сайт за транспортна фирма" 
+      },
+      { 
+        title: "Studio 7", 
+        category: "Фризьорски салон",
+        description: "Стилен сайт за фризьорски услуги с богата галерия от прически.", 
+        image: "/images/portfolio/studio 7 готов сайт за фризьорски салон.webp", 
+        imageAlt: "Дизайн на сайт за фризьорски салон" 
+      },
+      { 
+        title: "Spotless Pro", 
+        category: "Почистваща фирма",
+        description: "Изчистен и свеж дизайн за фирми, предлагащи професионално почистване.", 
+        image: "/images/portfolio/spotless pro готов сайт за почистваща фирма.webp", 
+        imageAlt: "Дизайн на сайт за почистваща фирма" 
+      },
+      { 
+        title: "Smile Atelier", 
+        category: "Зъболекар",
+        description: "Модерна визия за дентална клиника с акцент върху хигиената и услугите.", 
+        image: "/images/portfolio/smile atelier готов сайт за зъболекар.webp", 
+        imageAlt: "Дизайн на сайт за зъболекар" 
+      },
+      { 
+        title: "Педикеър Център", 
+        category: "Медицински услуги",
+        description: "Професионално представяне на медицински и козметични услуги.", 
+        image: "/images/portfolio/педикеър готов сайт за лекар.webp", 
+        imageAlt: "Дизайн на сайт за лекар" 
+      },
+      { 
+        title: "Ремонтти 24", 
+        category: "Домашни ремонти",
+        description: "Практичен сайт за майстори и строителни услуги за дома.", 
+        image: "/images/portfolio/ремонтти24 готов сайт за ремонти.webp", 
+        imageAlt: "Дизайн на сайт за ремонти" 
+      },
+      { 
+        title: "Иванова Легал", 
+        category: "Адвокат",
+        description: "Авторитетен сайт за адвокатска кантора с описание на правните области.", 
+        image: "/images/portfolio/иванова легал готов сайт за адвокат.webp", 
+        imageAlt: "Дизайн на сайт за адвокат" 
+      },
+      { 
+        title: "Numera", 
+        category: "Счетоводна къща",
+        description: "Структурирана информация за счетоводни услуги и бизнес консултации.", 
+        image: "/images/portfolio/numera готов сайт за счетоводна къща.webp", 
+        imageAlt: "Дизайн на сайт за счетоводна къща" 
+      },
+      { 
+        title: "Ivory Vow", 
+        category: "Сватбена агенция",
+        description: "Приказен и нежен дизайн за организиране на вашите специални събития.", 
+        image: "/images/portfolio/ivory vow готов сайт за сватбена агенция.webp", 
+        imageAlt: "Дизайн на сайт за сватбена агенция" 
+      },
+      { 
+        title: "Nero", 
+        category: "Кафетерия",
+        description: "Уютна визия за кафене или пекарна с акцент върху атмосферата.", 
+        image: "/images/portfolio/nero готов сайт за кафетария.webp", 
+        imageAlt: "Дизайн на сайт за кафетария" 
+      },
+      { 
+        title: "Lumiere House", 
+        category: "Салон за красота",
+        description: "Естетичен сайт за салон за красота и модерни козметични процедури.", 
+        image: "/images/portfolio/lumiere house готов сайт за салон за красота.webp", 
+        imageAlt: "Дизайн на сайт за салон за красота" 
+      }
     ]
   },
   features: {
@@ -91,7 +226,7 @@ export const homeContent = {
       { title: "Подготвяме структура", description: "Планиране на секциите и съдържанието.", icon: "Layers" },
       { title: "Изработваме сайта", description: "Професионален дизайн и кодиране.", icon: "Code" },
       { title: "Получавате версия за преглед", description: "Вашата обратна връзка е важна за нас.", icon: "Eye" },
-      { title: "Публикуваме онлайн", description: "Вашият нов сайт е вече активен.", icon: "Rocket" },
+      { title: "Публикуване онлайн", description: "Вашият нов сайт е вече активен.", icon: "Rocket" },
     ]
   },
   faq: {
