@@ -6,7 +6,6 @@ interface ButtonProps {
   href?: string;
   children: React.ReactNode;
   className?: string;
-  onClick?: () => void;
   size?: "md" | "lg" | "xl";
 }
 
@@ -15,7 +14,6 @@ export default function Button({
   href, 
   children, 
   className, 
-  onClick,
   size = "md" 
 }: ButtonProps) {
   const baseStyles = "inline-flex items-center justify-center font-bold rounded-full transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] shadow-sm cursor-pointer";
@@ -40,7 +38,7 @@ export default function Button({
 
     if (isExternal || isAnchor) {
       return (
-        <a href={href} className={combinedClasses} onClick={onClick}>
+        <a href={href} className={combinedClasses}>
           {children}
         </a>
       );
@@ -54,7 +52,7 @@ export default function Button({
   }
 
   return (
-    <button onClick={onClick} className={combinedClasses}>
+    <button type="button" className={combinedClasses}>
       {children}
     </button>
   );
