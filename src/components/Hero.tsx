@@ -57,20 +57,20 @@ export default function Hero() {
       <div className="absolute bottom-[5%] left-[-5%] w-[40%] h-[40%] bg-accent/20 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 mb-16 md:mb-24">
+        <div className="flex flex-col lg:flex-row items-center mb-16 md:mb-24">
           
-          {/* Left Content */}
+          {/* Left Content - Higher Z-index to stay on top */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex-1 lg:flex-[0.9] text-center lg:text-left"
+            className="flex-1 lg:flex-[0.7] text-center lg:text-left relative z-20"
           >
             <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-8">
               <ShieldCheck size={14} />
               Професионална изработка
             </div>
-            <h1 className="text-4xl md:text-6xl lg:text-[5.2rem] font-bold text-foreground leading-[1.05] mb-8 tracking-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-[5.5rem] font-bold text-foreground leading-[1.02] mb-8 tracking-tight">
               {hero.title}
             </h1>
             <p className="text-lg md:text-xl lg:text-2xl text-secondary/80 mb-10 md:mb-12 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium">
@@ -87,12 +87,12 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Right Visual Showcase */}
+          {/* Right Visual Showcase - Larger scale and negative margin on desktop */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="flex-1 lg:flex-[1.1] w-full relative max-w-[850px] lg:max-w-none mx-auto py-10 lg:py-0"
+            className="flex-1 lg:flex-[1.3] w-full relative max-w-[900px] lg:max-w-none mx-auto py-10 lg:py-0 lg:-ml-32 z-10"
           >
             {/* Subtle Radial Glow Behind Image */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(184,145,79,0.18)_0%,_transparent_70%)] pointer-events-none transform scale-150" />
@@ -110,8 +110,8 @@ export default function Hero() {
                   alt={hero.heroImageAlt}
                   fill
                   priority
-                  className="object-contain lg:object-cover drop-shadow-[0_30px_60px_rgba(0,0,0,0.15)]"
-                  sizes="(max-width: 1024px) 100vw, 75vw"
+                  className="object-contain lg:object-cover drop-shadow-[0_40px_80px_rgba(0,0,0,0.15)]"
+                  sizes="(max-width: 1024px) 100vw, 85vw"
                   onError={(e) => { (e.target as any).style.display = 'none'; }}
                 />
 
