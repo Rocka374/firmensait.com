@@ -12,9 +12,15 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function PortfolioPreview() {
   const { portfolio } = homeContent;
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoScrolling, setIsAutoScrolling] = useState(true);
+  
+  // Refs for scroll logic
   const scrollRef = useRef<HTMLDivElement>(null);
-  const autoScrollTimer = useRef<NodeJS.Timeout | null>(null);
+  const scrollDirection = useRef(1); // 1 for down, -1 for up
+  const isHovered = useRef(false);
+  const userPaused = useRef(false);
+  const isProgrammaticScroll = useRef(false);
+  const resumeTimer = useRef<NodeJS.Timeout | null>(null);
+  const requestRef = useRef<number | null>(null);
 
   const nextProject = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % portfolio.projects.length);
@@ -24,41 +30,67 @@ export default function PortfolioPreview() {
     setCurrentIndex((prev) => (prev - 1 + portfolio.projects.length) % portfolio.projects.length);
   }, [portfolio.projects.length]);
 
-  // Reset scroll position and restart auto-scroll on project change
+  // Clean up timers/animations
+  const clearTimers = () => {
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    if (requestRef.current) cancelAnimationFrame(requestRef.current);
+  };
+
+  const scheduleResume = (delay = 3000) => {
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    resumeTimer.current = setTimeout(() => {
+      userPaused.current = false;
+    }, delay);
+  };
+
+  const pauseForUserInteraction = () => {
+    userPaused.current = true;
+    scheduleResume(5000); // Resume after 5s of inactivity
+  };
+
+  // Main animation loop
+  const animate = useCallback(() => {
+    if (scrollRef.current && !isHovered.current && !userPaused.current) {
+      const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
+      const maxScroll = scrollHeight - clientHeight;
+
+      if (maxScroll > 0) {
+        // Change direction at boundaries (Bounce)
+        if (scrollTop >= maxScroll - 1) {
+          scrollDirection.current = -1;
+        } else if (scrollTop <= 0) {
+          scrollDirection.current = 1;
+        }
+
+        const speed = 0.6; // Very slow and smooth
+        const newScrollTop = scrollTop + (speed * scrollDirection.current);
+
+        isProgrammaticScroll.current = true;
+        scrollRef.current.scrollTop = newScrollTop;
+        
+        // Reset the flag after the browser has a chance to process the scroll event
+        requestAnimationFrame(() => {
+          isProgrammaticScroll.current = false;
+        });
+      }
+    }
+    requestRef.current = requestAnimationFrame(animate);
+  }, []);
+
+  // Initialize/Reset scroll state on project change
   useEffect(() => {
+    clearTimers();
     if (scrollRef.current) {
       scrollRef.current.scrollTop = 0;
     }
-    setIsAutoScrolling(true);
-  }, [currentIndex]);
-
-  // Auto-scroll logic (Interval based for maximum control)
-  useEffect(() => {
-    if (!isAutoScrolling || !scrollRef.current) return;
-
-    const interval = setInterval(() => {
-      if (scrollRef.current) {
-        const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
-        // If reached bottom, reset to top
-        if (scrollTop + clientHeight >= scrollHeight - 2) {
-          scrollRef.current.scrollTop = 0;
-        } else {
-          scrollRef.current.scrollTop += 0.8; // Smooth slow scroll
-        }
-      }
-    }, 30);
-
-    return () => clearInterval(interval);
-  }, [isAutoScrolling, currentIndex]);
-
-  // Handle manual interaction to pause auto-scroll
-  const handleInteraction = () => {
-    setIsAutoScrolling(false);
-    if (autoScrollTimer.current) clearTimeout(autoScrollTimer.current);
-    autoScrollTimer.current = setTimeout(() => {
-      setIsAutoScrolling(true);
-    }, 5000); // Resume auto-scroll after 5s of inactivity
-  };
+    scrollDirection.current = 1;
+    userPaused.current = false;
+    
+    // Start animation
+    requestRef.current = requestAnimationFrame(animate);
+    
+    return () => clearTimers();
+  }, [currentIndex, animate]);
 
   const getProjectIndex = (offset: number) => {
     return (currentIndex + offset + portfolio.projects.length) % portfolio.projects.length;
@@ -80,7 +112,7 @@ export default function PortfolioPreview() {
         {/* Carousel Scene */}
         <div className="perspective-1000 relative h-[280px] sm:h-[400px] md:h-[680px] flex items-center justify-center">
           
-          {/* Previous Card (Desktop Only) */}
+          {/* Previous Card (Left) */}
           <motion.div 
             key={`left-${getProjectIndex(-1)}`}
             initial={{ opacity: 0, x: -100, scale: 0.7 }}
@@ -107,15 +139,20 @@ export default function PortfolioPreview() {
                 exit={{ opacity: 0, scale: 1.02, y: -10 }}
                 transition={{ duration: 0.4, ease: "circOut" }}
                 className="relative w-full h-full rounded-[1.5rem] md:rounded-[3.5rem] overflow-hidden bg-white border border-border/50 shadow-[0_30px_60px_rgba(184,145,79,0.12)] group"
-                onMouseEnter={() => setIsAutoScrolling(false)}
-                onMouseLeave={() => setIsAutoScrolling(true)}
+                onMouseEnter={() => { isHovered.current = true; }}
+                onMouseLeave={() => { isHovered.current = false; scheduleResume(2000); }}
               >
                 {/* Scrollable Area */}
                 <div 
                   ref={scrollRef}
-                  onScroll={handleInteraction}
-                  onWheel={handleInteraction} // Detect mouse wheel
-                  onTouchStart={handleInteraction} // Detect touch interaction
+                  onScroll={() => {
+                    if (!isProgrammaticScroll.current) {
+                      pauseForUserInteraction();
+                    }
+                  }}
+                  onWheel={pauseForUserInteraction}
+                  onTouchStart={pauseForUserInteraction}
+                  onPointerDown={pauseForUserInteraction}
                   className="relative w-full h-full overflow-y-auto no-scrollbar bg-muted/10 overscroll-contain"
                 >
                   <div className="relative w-full h-auto">
@@ -156,7 +193,7 @@ export default function PortfolioPreview() {
             </AnimatePresence>
           </div>
 
-          {/* Next Card (Desktop Only) */}
+          {/* Next Card (Right) */}
           <motion.div 
             key={`right-${getProjectIndex(1)}`}
             initial={{ opacity: 0, x: 100, scale: 0.7 }}
