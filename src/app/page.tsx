@@ -18,11 +18,15 @@ export default function HomePage() {
     getFAQSchema()
   ];
 
+  // Escaping the JSON string to prevent XSS by replacing "<" with its unicode equivalent
+  // This prevents breaking out of the <script> tag via "</script>" sequences
+  const jsonLdContent = JSON.stringify(schemas).replace(/</g, '\\u003c');
+
   return (
     <main>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdContent }}
       />
       
       {/* 1. Hero */}
