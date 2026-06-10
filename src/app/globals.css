@@ -47,3 +47,23 @@
     @apply scroll-smooth;
   }
 }
+
+/* Portfolio Premium Scroll Animation */
+@keyframes portfolio-scroll {
+  0% { transform: translateY(0); }
+  20% { transform: translateY(0); }
+  100% { transform: translateY(-65%); }
+}
+
+.portfolio-scroll-active {
+  animation: portfolio-scroll 12s ease-in-out infinite alternate;
+}
+
+.portfolio-scroll-active:hover {
+  animation-play-state: paused;
+}
+
+/* Perspective for 3D carousel */
+.perspective-1000 {
+  perspective: 1500px;
+}
