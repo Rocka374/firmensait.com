@@ -19,7 +19,7 @@ export default function ProcessSection() {
                 <div key={idx} className="flex flex-col items-center text-center group">
                   <div className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-background border border-border/40 flex items-center justify-center mb-6 md:mb-8 relative transition-all duration-500 group-hover:border-primary/40 group-hover:shadow-xl group-hover:shadow-primary/5">
                     <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-primary/10 flex items-center justify-center bg-white group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-sm">
-                       <Icon size={24} md:size={28} strokeWidth={1.5} />
+                       <Icon size={24} strokeWidth={1.5} className="md:w-7 md:h-7" />
                     </div>
                     <div className="absolute -top-1 right-2 w-7 h-7 md:w-8 md:h-8 bg-primary text-white text-[10px] md:text-xs font-bold rounded-full flex items-center justify-center shadow-md">
                       {idx + 1}
