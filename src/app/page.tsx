@@ -1,5 +1,4 @@
 import Hero from '@/components/Hero';
-import TrustBar from '@/components/TrustBar';
 import BusinessTypesSection from '@/components/BusinessTypesSection';
 import IndustryGrid from '@/components/IndustryGrid';
 import PortfolioPreview from '@/components/PortfolioPreview';
@@ -29,37 +28,34 @@ export default function HomePage() {
       {/* 1. Hero */}
       <Hero />
       
-      {/* 2. TrustBar */}
-      <TrustBar />
-      
-      {/* 3. BusinessTypesSection */}
+      {/* 2. BusinessTypesSection */}
       <BusinessTypesSection />
       
-      {/* 4. IndustryGrid */}
+      {/* 3. IndustryGrid */}
       <IndustryGrid />
       
-      {/* 5. PortfolioPreview */}
+      {/* 4. PortfolioPreview */}
       <PortfolioPreview />
       
-      {/* 6. FeatureCards */}
+      {/* 5. FeatureCards */}
       <FeatureCards />
       
-      {/* 7. PricingSection */}
+      {/* 6. PricingSection */}
       <PricingSection />
       
-      {/* 8. HostingSection */}
+      {/* 7. HostingSection */}
       <HostingSection />
       
-      {/* 9. SEOSection */}
+      {/* 8. SEOSection */}
       <SEOSection />
       
-      {/* 10. ProcessSection */}
+      {/* 9. ProcessSection */}
       <ProcessSection />
       
-      {/* 11. FAQSection */}
+      {/* 10. FAQSection */}
       <FAQSection />
       
-      {/* 12. CTASection */}
+      {/* 11. CTASection */}
       <CTASection />
     </main>
   );
