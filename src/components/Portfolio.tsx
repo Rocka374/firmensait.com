@@ -1,4 +1,3 @@
-imageAlt според дефиницията в content/home.ts">
 import React from 'react';
 import SectionHeader from './SectionHeader';
 import { homeContent } from '@/content/home';
@@ -34,7 +33,7 @@ const Portfolio = () => {
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2">{project.title}</h3>
                 <p className="text-secondary text-sm mb-6">{project.description}</p>
-                <Button variant="link" className="text-primary font-bold p-0 h-auto">
+                <Button variant="outline" className="text-primary font-bold p-0 h-auto">
                   Виж проекта
                 </Button>
               </div>
