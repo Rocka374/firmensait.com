@@ -6,8 +6,8 @@ import Card from "./Card";
 export default function SEOSection() {
   const { seo } = homeContent;
   return (
-    <section className="py-32 md:py-44 bg-secondary-light/30">
-      <div className="container mx-auto px-4 max-w-[1400px]">
+    <section className="py-32 md:py-48 bg-gradient-to-b from-white via-secondary-light/20 to-secondary-light/30 relative">
+      <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
         <SectionHeader title={seo.title} subtitle={seo.description} />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
           {seo.items.map((item, idx) => {

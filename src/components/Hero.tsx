@@ -95,10 +95,13 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative pt-24 pb-20 md:pt-48 md:pb-40 overflow-hidden bg-background">
+    <section className="relative pt-24 pb-20 md:pt-48 md:pb-48 overflow-hidden bg-background">
       {/* Background Gradients */}
       <div className="absolute top-[-10%] right-[-5%] w-[60%] h-[60%] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[5%] left-[-5%] w-[40%] h-[40%] bg-accent/20 rounded-full blur-[100px] pointer-events-none" />
+      
+      {/* Soft Transition to white section */}
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent pointer-events-none z-0" />
 
       <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 mb-20 md:mb-28">

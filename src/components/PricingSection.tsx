@@ -6,7 +6,7 @@ import Button from "./Button";
 export default function PricingSection() {
   const { pricing } = homeContent;
   return (
-    <section id="ceni" className="py-24 md:py-36 bg-secondary-light/30">
+    <section id="ceni" className="py-24 md:py-40 bg-gradient-to-b from-white via-secondary-light/20 to-secondary-light/30">
       <div className="container mx-auto px-4 max-w-7xl">
         <SectionHeader title={pricing.title} subtitle={pricing.description} />
         
