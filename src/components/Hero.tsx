@@ -10,7 +10,7 @@ import {
   Search, 
   CloudOff, 
   Code,
-  Tag,
+  Tag, 
   Globe
 } from "lucide-react";
 import Button from "./Button";
@@ -26,13 +26,13 @@ const HeroBadge = ({
   className?: string; 
 }) => (
   <div className={cn(
-    "bg-white/60 backdrop-blur-sm border border-border/40 px-3 py-3 md:px-5 md:py-4 rounded-2xl flex items-center gap-3 md:gap-4 shadow-sm hover:shadow-md transition-all duration-300",
+    "bg-white/60 backdrop-blur-sm border border-border/40 px-4 py-3.5 rounded-2xl flex items-center gap-4 shadow-sm hover:shadow-md transition-all duration-300",
     className
   )}>
-    <div className="w-7 h-7 md:w-9 md:h-9 bg-primary/10 rounded-lg flex items-center justify-center text-primary shrink-0">
+    <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-primary shrink-0">
       <Icon size={16} className="md:w-5 md:h-5" strokeWidth={2.5} />
     </div>
-    <span className="text-[10px] sm:text-xs md:text-sm font-bold text-secondary whitespace-nowrap">{children}</span>
+    <span className="text-xs sm:text-sm font-bold text-secondary whitespace-nowrap">{children}</span>
   </div>
 );
 
@@ -60,12 +60,7 @@ export default function Hero() {
         <div className="flex flex-col lg:flex-row items-center mb-16 md:mb-24 gap-12 lg:gap-8">
           
           {/* Left Content */}
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex-1 lg:flex-[0.9] text-center lg:text-left relative z-20"
-          >
+          <div className="flex-1 lg:flex-[0.9] text-center lg:text-left relative z-20">
             <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-8">
               <ShieldCheck size={14} />
               Професионална изработка
@@ -85,57 +80,37 @@ export default function Hero() {
                 {hero.secondaryCTA}
               </Button>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Right Visual Showcase - Reduced overlap and balanced scale */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="flex-1 lg:flex-[1.1] w-full relative max-w-[850px] lg:max-w-none mx-auto py-10 lg:py-0 z-10"
-          >
+          {/* Right Visual Showcase - Cleaned from shadows and animations */}
+          <div className="flex-1 lg:flex-[1.1] w-full relative max-w-[850px] lg:max-w-none mx-auto py-10 lg:py-0 z-10">
             {/* Subtle Radial Glow Behind Image */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(184,145,79,0.18)_0%,_transparent_70%)] pointer-events-none transform scale-150" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(184,145,79,0.12)_0%,_transparent_70%)] pointer-events-none transform scale-150" />
 
             <div className="relative z-10 w-full aspect-[16/11]">
-              <div className="relative w-full h-full rounded-[3rem] md:rounded-[4rem] overflow-hidden">
-                {/* CSS Placeholder Background */}
-                <div className="absolute inset-0 p-8 flex flex-col gap-4 opacity-10 bg-primary/5">
-                  <div className="h-8 w-1/3 bg-primary rounded-full" />
-                  <div className="h-40 w-full bg-primary rounded-3xl" />
-                </div>
-                
+              <div className="relative w-full h-full">
                 <Image
                   src={hero.heroImage}
                   alt={hero.heroImageAlt}
                   fill
                   priority
-                  className="object-contain lg:object-cover drop-shadow-[0_40px_80px_rgba(0,0,0,0.15)]"
+                  className="object-contain"
                   sizes="(max-width: 1024px) 100vw, 80vw"
                   onError={(e) => { (e.target as any).style.display = 'none'; }}
                 />
-
-                {/* Soft Fade Mask at edges */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-40 pointer-events-none" />
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
-        {/* Full Width Badges Grid */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
-        >
+        {/* Badges Grid - 1 per row on mobile */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {badges.map((badge, idx) => (
             <HeroBadge key={idx} icon={badge.icon}>
               {badge.label}
             </HeroBadge>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
