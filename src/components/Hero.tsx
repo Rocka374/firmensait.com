@@ -84,14 +84,16 @@ export default function Hero() {
               </Button>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-10 border-t border-border/40">
-              {hero.trustItems.slice(0, 3).map((item) => (
-                <div key={item} className="flex items-center gap-3 justify-center lg:justify-start">
-                  <CheckCircle2 className="text-primary h-5 w-5 shrink-0" />
-                  <span className="text-sm md:text-base font-bold text-secondary">{item}</span>
-                </div>
-              ))}
-            </div>
+            {hero.trustItems && hero.trustItems.length > 0 && (
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-10 border-t border-border/40">
+                {hero.trustItems.slice(0, 3).map((item) => (
+                  <div key={item} className="flex items-center gap-3 justify-center lg:justify-start">
+                    <CheckCircle2 className="text-primary h-5 w-5 shrink-0" />
+                    <span className="text-sm md:text-base font-bold text-secondary">{item}</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </motion.div>
 
           {/* Right Visual Showcase */}
