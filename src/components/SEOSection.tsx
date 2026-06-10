@@ -1,26 +1,27 @@
 import SectionHeader from "./SectionHeader";
 import { homeContent } from "@/content/home";
 import * as Icons from "lucide-react";
+import Card from "./Card";
 
 export default function SEOSection() {
   const { seo } = homeContent;
   return (
-    <section className="py-24 bg-secondary-light/30">
-      <div className="container mx-auto px-4">
+    <section className="py-32 md:py-44 bg-secondary-light/30">
+      <div className="container mx-auto px-4 max-w-[1400px]">
         <SectionHeader title={seo.title} subtitle={seo.description} />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
           {seo.items.map((item, idx) => {
             const Icon = (Icons as any)[item.icon] || Icons.Check;
             return (
-              <div key={idx} className="bg-white p-8 rounded-3xl border border-border shadow-sm flex items-start gap-6">
-                <div className="w-12 h-12 bg-primary-soft rounded-xl flex items-center justify-center text-primary shrink-0">
-                  <Icon size={24} />
+              <Card key={idx} className="bg-white p-10 md:p-12 flex items-start gap-8">
+                <div className="w-14 h-14 bg-primary-soft rounded-2xl flex items-center justify-center text-primary shrink-0 shadow-sm">
+                  <Icon size={28} strokeWidth={1.5} />
                 </div>
                 <div>
-                  <h3 className="font-bold mb-2">{item.title}</h3>
-                  {item.description && <p className="text-secondary text-sm leading-relaxed">{item.description}</p>}
+                  <h3 className="font-bold text-2xl mb-4 tracking-tight">{item.title}</h3>
+                  {item.description && <p className="text-secondary/70 text-lg leading-relaxed font-medium">{item.description}</p>}
                 </div>
-              </div>
+              </Card>
             );
           })}
         </div>

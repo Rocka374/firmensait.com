@@ -11,17 +11,17 @@ import {
 
 export default function FAQSection() {
   return (
-    <section className="py-24 bg-white">
-      <div className="container mx-auto px-4 max-w-4xl">
+    <section className="py-32 md:py-44 bg-white">
+      <div className="container mx-auto px-4 max-w-[1100px]">
         <SectionHeader title={homeContent.faq.title} />
         
-        <Accordion type="single" collapsible className="w-full space-y-4">
+        <Accordion type="single" collapsible className="w-full space-y-6">
           {homeContent.faq.items.map((item, idx) => (
-            <AccordionItem key={idx} value={`item-${idx}`} className="border border-border rounded-2xl px-6 bg-secondary-light/30 overflow-hidden">
-              <AccordionTrigger className="text-left font-bold text-foreground py-6 hover:no-underline">
+            <AccordionItem key={idx} value={`item-${idx}`} className="border border-border/40 rounded-[2rem] px-8 md:px-12 bg-secondary-light/30 overflow-hidden transition-all hover:border-primary/20">
+              <AccordionTrigger className="text-left font-bold text-xl md:text-2xl text-foreground py-8 hover:no-underline">
                 {item.q}
               </AccordionTrigger>
-              <AccordionContent className="text-secondary text-base pb-6 leading-relaxed">
+              <AccordionContent className="text-secondary/80 text-lg md:text-xl pb-8 leading-relaxed font-medium">
                 {item.a}
               </AccordionContent>
             </AccordionItem>
