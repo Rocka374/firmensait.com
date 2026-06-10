@@ -5,7 +5,7 @@ import * as Icons from "lucide-react";
 export default function ProcessSection() {
   const { process } = homeContent;
   return (
-    <section id="kak-rabotim" className="py-20 md:py-32 bg-white overflow-hidden">
+    <section id="kak-rabotim" className="py-20 md:py-32 bg-gradient-to-b from-secondary-light/30 to-white overflow-hidden">
       <div className="container mx-auto px-4">
         <SectionHeader title={process.title} />
         <div className="max-w-6xl mx-auto relative">

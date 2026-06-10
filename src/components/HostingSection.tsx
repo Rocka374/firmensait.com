@@ -5,7 +5,7 @@ import * as Icons from "lucide-react";
 export default function HostingSection() {
   const { hosting } = homeContent;
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-gradient-to-b from-secondary-light/30 to-white">
       <div className="container mx-auto px-4">
         <SectionHeader title={hosting.title} subtitle={hosting.description} />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">

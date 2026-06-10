@@ -6,7 +6,7 @@ import Card from "./Card";
 export default function FeatureCards() {
   const { features } = homeContent;
   return (
-    <section className="py-32 md:py-44 bg-white">
+    <section className="py-32 md:py-44 bg-gradient-to-b from-secondary-light/50 to-white">
       <div className="container mx-auto px-4 max-w-[1400px]">
         <SectionHeader title={features.title} />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">

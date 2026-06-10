@@ -11,7 +11,7 @@ import {
 
 export default function FAQSection() {
   return (
-    <section className="py-24 md:py-32 bg-white">
+    <section className="py-24 md:py-32 bg-gradient-to-b from-white to-white">
       <div className="container mx-auto px-4 max-w-4xl">
         <SectionHeader title={homeContent.faq.title} />
         
