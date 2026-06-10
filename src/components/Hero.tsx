@@ -61,10 +61,6 @@ export default function Hero() {
           
           {/* Left Content */}
           <div className="flex-1 lg:flex-[0.9] text-center lg:text-left relative z-20">
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-8">
-              <ShieldCheck size={14} />
-              Професионална изработка
-            </div>
             <h1 className="text-4xl md:text-6xl lg:text-[5rem] font-bold text-foreground leading-[1.05] mb-8 tracking-tight">
               {hero.title}
             </h1>
@@ -82,9 +78,8 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Visual Showcase - Cleaned from shadows and animations */}
+          {/* Right Visual Showcase */}
           <div className="flex-1 lg:flex-[1.1] w-full relative max-w-[850px] lg:max-w-none mx-auto py-10 lg:py-0 z-10">
-            {/* Subtle Radial Glow Behind Image */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(184,145,79,0.12)_0%,_transparent_70%)] pointer-events-none transform scale-150" />
 
             <div className="relative z-10 w-full aspect-[16/11]">
