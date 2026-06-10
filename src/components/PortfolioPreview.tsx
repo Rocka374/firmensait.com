@@ -24,6 +24,7 @@ export default function PortfolioPreview() {
     setCurrentIndex((prev) => (prev - 1 + portfolio.projects.length) % portfolio.projects.length);
   }, [portfolio.projects.length]);
 
+  // Reset scroll position and restart auto-scroll on project change
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = 0;
@@ -31,16 +32,18 @@ export default function PortfolioPreview() {
     setIsAutoScrolling(true);
   }, [currentIndex]);
 
+  // Auto-scroll logic (Interval based for maximum control)
   useEffect(() => {
     if (!isAutoScrolling || !scrollRef.current) return;
 
     const interval = setInterval(() => {
       if (scrollRef.current) {
         const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
+        // If reached bottom, reset to top
         if (scrollTop + clientHeight >= scrollHeight - 2) {
           scrollRef.current.scrollTop = 0;
         } else {
-          scrollRef.current.scrollTop += 0.8;
+          scrollRef.current.scrollTop += 0.8; // Smooth slow scroll
         }
       }
     }, 30);
@@ -48,12 +51,13 @@ export default function PortfolioPreview() {
     return () => clearInterval(interval);
   }, [isAutoScrolling, currentIndex]);
 
+  // Handle manual interaction to pause auto-scroll
   const handleInteraction = () => {
     setIsAutoScrolling(false);
     if (autoScrollTimer.current) clearTimeout(autoScrollTimer.current);
     autoScrollTimer.current = setTimeout(() => {
       setIsAutoScrolling(true);
-    }, 5000);
+    }, 5000); // Resume auto-scroll after 5s of inactivity
   };
 
   const getProjectIndex = (offset: number) => {
@@ -73,7 +77,7 @@ export default function PortfolioPreview() {
       </div>
 
       <div className="relative w-full max-w-[1600px] mx-auto px-4">
-        {/* Carousel Scene - Height optimized for mobile */}
+        {/* Carousel Scene */}
         <div className="perspective-1000 relative h-[280px] sm:h-[400px] md:h-[680px] flex items-center justify-center">
           
           {/* Previous Card (Desktop Only) */}
@@ -93,7 +97,7 @@ export default function PortfolioPreview() {
             />
           </motion.div>
 
-          {/* Active Card (Center) - Compact aspect on mobile */}
+          {/* Active Card (Center) */}
           <div className="relative w-full max-w-[950px] h-full z-30">
             <AnimatePresence mode="wait">
               <motion.div
@@ -106,9 +110,12 @@ export default function PortfolioPreview() {
                 onMouseEnter={() => setIsAutoScrolling(false)}
                 onMouseLeave={() => setIsAutoScrolling(true)}
               >
+                {/* Scrollable Area */}
                 <div 
                   ref={scrollRef}
                   onScroll={handleInteraction}
+                  onWheel={handleInteraction} // Detect mouse wheel
+                  onTouchStart={handleInteraction} // Detect touch interaction
                   className="relative w-full h-full overflow-y-auto no-scrollbar bg-muted/10 overscroll-contain"
                 >
                   <div className="relative w-full h-auto">
@@ -123,14 +130,14 @@ export default function PortfolioPreview() {
                   </div>
                 </div>
                 
-                {/* Visual Overlay Hint for mobile */}
+                {/* Mobile Hint Overlay */}
                 <div className="absolute bottom-4 right-4 md:hidden pointer-events-none">
                   <div className="bg-black/40 backdrop-blur-md text-white text-[8px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">
                     Scroll
                   </div>
                 </div>
 
-                {/* Navigation Arrows (Desktop Overlaid) */}
+                {/* Desktop Arrows Overlay */}
                 <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-4 hidden md:flex justify-between pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <button 
                     onClick={(e) => { e.stopPropagation(); prevProject(); }}
@@ -167,7 +174,7 @@ export default function PortfolioPreview() {
           </motion.div>
         </div>
 
-        {/* Info Panel & Controls - Tightened for mobile */}
+        {/* Text Info & Controls */}
         <div className="mt-8 md:mt-24 text-center max-w-2xl mx-auto px-4">
           <AnimatePresence mode="wait">
             <motion.div 
