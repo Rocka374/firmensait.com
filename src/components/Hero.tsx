@@ -69,7 +69,7 @@ export default function Hero() {
 
   const primaryBadges = [
     { label: "Цена 350 евро", icon: Tag },
-    { label: "Готов за 1–2 седмици", icon: Clock },
+    { label: "Готов до 10 дни", icon: Clock },
     { label: "Без месечен хостинг", icon: CloudOff },
   ];
 
@@ -136,7 +136,7 @@ export default function Hero() {
               </FloatingBadge>
               
               <FloatingBadge icon={Clock} className="top-[40%] left-[-8%]" delay={0.4}>
-                Готов за 1–2 седмици
+                Готов до 10 дни
               </FloatingBadge>
               
               <FloatingBadge icon={CloudOff} className="bottom-[5%] right-[10%]" delay={0.6}>
