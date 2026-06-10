@@ -30,7 +30,6 @@ export default function PortfolioPreview() {
     setCurrentIndex((prev) => (prev - 1 + portfolio.projects.length) % portfolio.projects.length);
   }, [portfolio.projects.length]);
 
-  // Clean up timers/animations
   const clearTimers = () => {
     if (resumeTimer.current) clearTimeout(resumeTimer.current);
     if (requestRef.current) cancelAnimationFrame(requestRef.current);
@@ -45,30 +44,27 @@ export default function PortfolioPreview() {
 
   const pauseForUserInteraction = () => {
     userPaused.current = true;
-    scheduleResume(5000); // Resume after 5s of inactivity
+    scheduleResume(5000);
   };
 
-  // Main animation loop
   const animate = useCallback(() => {
     if (scrollRef.current && !isHovered.current && !userPaused.current) {
       const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
       const maxScroll = scrollHeight - clientHeight;
 
       if (maxScroll > 0) {
-        // Change direction at boundaries (Bounce)
         if (scrollTop >= maxScroll - 1) {
           scrollDirection.current = -1;
         } else if (scrollTop <= 0) {
           scrollDirection.current = 1;
         }
 
-        const speed = 0.6; // Very slow and smooth
+        const speed = 0.6;
         const newScrollTop = scrollTop + (speed * scrollDirection.current);
 
         isProgrammaticScroll.current = true;
         scrollRef.current.scrollTop = newScrollTop;
         
-        // Reset the flag after the browser has a chance to process the scroll event
         requestAnimationFrame(() => {
           isProgrammaticScroll.current = false;
         });
@@ -77,7 +73,6 @@ export default function PortfolioPreview() {
     requestRef.current = requestAnimationFrame(animate);
   }, []);
 
-  // Initialize/Reset scroll state on project change
   useEffect(() => {
     clearTimers();
     if (scrollRef.current) {
@@ -85,8 +80,6 @@ export default function PortfolioPreview() {
     }
     scrollDirection.current = 1;
     userPaused.current = false;
-    
-    // Start animation
     requestRef.current = requestAnimationFrame(animate);
     
     return () => clearTimers();
@@ -97,6 +90,8 @@ export default function PortfolioPreview() {
   };
 
   const activeProject = portfolio.projects[currentIndex];
+  const prevProjectData = portfolio.projects[getProjectIndex(-1)];
+  const nextProjectData = portfolio.projects[getProjectIndex(1)];
 
   return (
     <section id="portfolio" className="py-12 md:py-40 bg-white overflow-hidden">
@@ -112,6 +107,11 @@ export default function PortfolioPreview() {
         {/* Carousel Scene */}
         <div className="perspective-1000 relative h-[280px] sm:h-[400px] md:h-[680px] flex items-center justify-center">
           
+          {/* 
+              Optimization: Only render active, previous and next images to avoid 
+              loading all portfolio screenshots. 
+          */}
+
           {/* Previous Card (Left) */}
           <motion.div 
             key={`left-${getProjectIndex(-1)}`}
@@ -121,11 +121,12 @@ export default function PortfolioPreview() {
             className="absolute hidden lg:block w-[750px] aspect-[16/10] rounded-[2.5rem] overflow-hidden border border-border/40 bg-white blur-[2px] z-10 pointer-events-none shadow-2xl"
           >
              <Image 
-              src={portfolio.projects[getProjectIndex(-1)].image} 
-              alt="Previous" 
+              src={prevProjectData.image} 
+              alt="Предишен проект" 
               fill 
               className="object-cover object-top"
               sizes="800px"
+              loading="lazy"
             />
           </motion.div>
 
@@ -142,7 +143,6 @@ export default function PortfolioPreview() {
                 onMouseEnter={() => { isHovered.current = true; }}
                 onMouseLeave={() => { isHovered.current = false; scheduleResume(2000); }}
               >
-                {/* Scrollable Area */}
                 <div 
                   ref={scrollRef}
                   onScroll={() => {
@@ -162,19 +162,17 @@ export default function PortfolioPreview() {
                       width={1200}
                       height={4000}
                       className="w-full h-auto block"
-                      priority
+                      priority={true} // Only active image gets priority
                     />
                   </div>
                 </div>
                 
-                {/* Mobile Hint Overlay */}
                 <div className="absolute bottom-4 right-4 md:hidden pointer-events-none">
                   <div className="bg-black/40 backdrop-blur-md text-white text-[8px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">
                     Scroll
                   </div>
                 </div>
 
-                {/* Desktop Arrows Overlay */}
                 <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-4 hidden md:flex justify-between pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <button 
                     onClick={(e) => { e.stopPropagation(); prevProject(); }}
@@ -202,11 +200,12 @@ export default function PortfolioPreview() {
             className="absolute hidden lg:block w-[750px] aspect-[16/10] rounded-[2.5rem] overflow-hidden border border-border/40 bg-white blur-[2px] z-10 pointer-events-none shadow-2xl"
           >
              <Image 
-              src={portfolio.projects[getProjectIndex(1)].image} 
-              alt="Next" 
+              src={nextProjectData.image} 
+              alt="Следващ проект" 
               fill 
               className="object-cover object-top"
               sizes="800px"
+              loading="lazy"
             />
           </motion.div>
         </div>
