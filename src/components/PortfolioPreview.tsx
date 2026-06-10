@@ -65,7 +65,7 @@ export default function PortfolioPreview() {
   const activeProject = portfolio.projects[currentIndex];
 
   return (
-    <section id="portfolio" className="py-24 md:py-40 bg-secondary-light/30 overflow-hidden">
+    <section id="portfolio" className="py-24 md:py-40 bg-white overflow-hidden">
       <div className="container mx-auto px-4 mb-16">
         <SectionHeader title={portfolio.title} subtitle={portfolio.subtitle} />
       </div>

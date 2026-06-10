@@ -18,8 +18,6 @@ export default function HomePage() {
     getFAQSchema()
   ];
 
-  // Escaping the JSON string to prevent XSS by replacing "<" with its unicode equivalent
-  // This prevents breaking out of the <script> tag via "</script>" sequences
   const jsonLdContent = JSON.stringify(schemas).replace(/</g, '\\u003c');
 
   return (
@@ -32,14 +30,14 @@ export default function HomePage() {
       {/* 1. Hero */}
       <Hero />
       
-      {/* 2. BusinessTypesSection */}
+      {/* 2. PortfolioPreview - Moved here as requested */}
+      <PortfolioPreview />
+      
+      {/* 3. BusinessTypesSection */}
       <BusinessTypesSection />
       
-      {/* 3. IndustryGrid */}
+      {/* 4. IndustryGrid */}
       <IndustryGrid />
-      
-      {/* 4. PortfolioPreview */}
-      <PortfolioPreview />
       
       {/* 5. FeatureCards */}
       <FeatureCards />
