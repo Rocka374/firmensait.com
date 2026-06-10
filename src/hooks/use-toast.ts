@@ -34,7 +34,7 @@ export function toast({ title, description, variant, ...props }: ToastProps) {
 export function useToast() {
   return {
     toast,
-    toasts: [] as ToastProps[], // Added to satisfy types in UI components
+    toasts: [] as ToastProps[],
     dismiss: (id?: string | number) => sonnerToast.dismiss(id),
   };
 }
