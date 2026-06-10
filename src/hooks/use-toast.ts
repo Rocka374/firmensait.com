@@ -4,6 +4,7 @@ import { toast as sonnerToast } from "sonner";
 import React from "react";
 
 type ToastProps = {
+  id?: string | number;
   title?: React.ReactNode;
   description?: React.ReactNode;
   variant?: "default" | "destructive";
@@ -12,7 +13,6 @@ type ToastProps = {
 
 /**
  * Modern, SSR-safe toast function using sonner.
- * Prevents cross-request state pollution by avoiding module-level globals.
  */
 export function toast({ title, description, variant, ...props }: ToastProps) {
   const options = {
@@ -34,6 +34,7 @@ export function toast({ title, description, variant, ...props }: ToastProps) {
 export function useToast() {
   return {
     toast,
+    toasts: [] as ToastProps[], // Added to satisfy types in UI components
     dismiss: (id?: string | number) => sonnerToast.dismiss(id),
   };
 }

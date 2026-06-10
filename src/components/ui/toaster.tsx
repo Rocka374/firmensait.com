@@ -1,4 +1,6 @@
-import { useToast } from "@/hooks/use-toast";
+"use client"
+
+import { useToast } from "@/hooks/use-toast"
 import {
   Toast,
   ToastClose,
@@ -6,10 +8,17 @@ import {
   ToastProvider,
   ToastTitle,
   ToastViewport,
-} from "@/components/ui/toast";
+} from "@/components/ui/toast"
 
 export function Toaster() {
-  const { toasts } = useToast();
+  const { toasts } = useToast()
+
+  // If using Sonner as the primary toaster (as seen in layout.tsx), 
+  // this component can be kept for compatibility but Sonner's <Toaster /> 
+  // in layout.tsx will handle the actual rendering.
+  if (!toasts || toasts.length === 0) {
+    return null
+  }
 
   return (
     <ToastProvider>
@@ -25,9 +34,9 @@ export function Toaster() {
             {action}
             <ToastClose />
           </Toast>
-        );
+        )
       })}
       <ToastViewport />
     </ToastProvider>
-  );
+  )
 }
