@@ -1,3 +1,4 @@
+imageAlt според дефиницията в content/home.ts">
 import React from 'react';
 import SectionHeader from './SectionHeader';
 import { homeContent } from '@/content/home';
@@ -18,7 +19,7 @@ const Portfolio = () => {
               <div className="aspect-video bg-secondary-light relative overflow-hidden">
                 <img 
                   src={project.image} 
-                  alt={project.alt}
+                  alt={project.imageAlt}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
                     (e.target as HTMLImageElement).style.display = 'none';
