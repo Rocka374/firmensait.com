@@ -1,10 +1,16 @@
 import Hero from '@/components/Hero';
+import TrustBar from '@/components/TrustBar';
+import BusinessTypesSection from '@/components/BusinessTypesSection';
+import IndustryGrid from '@/components/IndustryGrid';
 import PortfolioPreview from '@/components/PortfolioPreview';
+import FeatureCards from '@/components/FeatureCards';
+import PricingSection from '@/components/PricingSection';
+import HostingSection from '@/components/HostingSection';
+import SEOSection from '@/components/SEOSection';
+import ProcessSection from '@/components/ProcessSection';
 import FAQSection from '@/components/FAQSection';
+import CTASection from '@/components/CTASection';
 import { getOrganizationSchema, getServiceSchema, getFAQSchema } from '@/lib/structured-data';
-
-// Още секции биха били добавени тук като отделни компоненти
-// За да запазя отговора кратък, ще фокусирам върху основните изисквания
 
 export default function HomePage() {
   const schemas = [
@@ -20,23 +26,41 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
       />
       
+      {/* 1. Hero */}
       <Hero />
       
-      {/* Другите секции (Features, Industries, Pricing и т.н.) биха били импортирани тук */}
+      {/* 2. TrustBar */}
+      <TrustBar />
+      
+      {/* 3. BusinessTypesSection */}
+      <BusinessTypesSection />
+      
+      {/* 4. IndustryGrid */}
+      <IndustryGrid />
+      
+      {/* 5. PortfolioPreview */}
       <PortfolioPreview />
       
+      {/* 6. FeatureCards */}
+      <FeatureCards />
+      
+      {/* 7. PricingSection */}
+      <PricingSection />
+      
+      {/* 8. HostingSection */}
+      <HostingSection />
+      
+      {/* 9. SEOSection */}
+      <SEOSection />
+      
+      {/* 10. ProcessSection */}
+      <ProcessSection />
+      
+      {/* 11. FAQSection */}
       <FAQSection />
-
-      {/* Final CTA */}
-      <section id="kontakti" className="py-24 bg-primary text-white text-center relative overflow-hidden">
-        <div className="container mx-auto px-4 relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Готови ли сте за нов фирмен сайт?</h2>
-          <p className="text-xl opacity-90 mb-10 max-w-2xl mx-auto">Изпратете запитване и ще обсъдим проекта ви в детайли.</p>
-          <a href="#kontakti" className="bg-white text-primary font-bold py-5 px-12 rounded-full text-xl shadow-xl hover:scale-105 transition-transform inline-block">
-            Искам сайт
-          </a>
-        </div>
-      </section>
+      
+      {/* 12. CTASection */}
+      <CTASection />
     </main>
   );
 }
