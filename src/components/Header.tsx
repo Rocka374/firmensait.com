@@ -27,7 +27,7 @@ export default function Header() {
         <Link href="/" className="flex items-center group">
           <div className="relative h-10 w-auto md:h-12 flex items-center justify-center">
             <Image 
-              src="/logo.webp" 
+              src="/logo firmensait.webp" 
               alt={siteConfig.name}
               width={160}
               height={48}
