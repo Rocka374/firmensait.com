@@ -2,6 +2,7 @@ import SectionHeader from "@/components/SectionHeader";
 import { siteConfig } from "@/content/site";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import Button from "@/components/Button";
+import EmailLink from "@/components/EmailLink";
 
 export default function ContactPage() {
   return (
@@ -23,9 +24,9 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <span className="block text-[10px] font-black uppercase tracking-widest text-secondary/40 mb-1">Имейл</span>
-                    <a href={`mailto:${siteConfig.links.email}`} className="text-xl font-bold hover:text-primary transition-colors">
-                      {siteConfig.links.email}
-                    </a>
+                    <div className="text-xl font-bold">
+                      <EmailLink email={siteConfig.links.email} />
+                    </div>
                   </div>
                </div>
 

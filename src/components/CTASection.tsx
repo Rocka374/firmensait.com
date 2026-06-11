@@ -1,6 +1,7 @@
 import { homeContent } from "@/content/home";
 import { siteConfig } from "@/content/site";
 import Button from "./Button";
+import EmailLink from "./EmailLink";
 
 export default function CTASection() {
   const { cta } = homeContent;
@@ -24,14 +25,19 @@ export default function CTASection() {
           <div className="relative inline-block group">
             {/* Enhanced Button Glow Effect */}
             <div className="absolute inset-0 bg-white/40 blur-3xl rounded-full scale-125 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <Button 
-              variant="secondary" 
-              size="xl" 
-              href={`mailto:${siteConfig.links.email}`} 
-              className="bg-white text-primary hover:bg-white shadow-[0_20px_50px_rgba(255,255,255,0.2)] py-8 px-16 text-xl font-black relative z-10"
-            >
-              {cta.button}
-            </Button>
+            <div className="relative z-10 flex flex-col items-center gap-4">
+              <Button 
+                variant="secondary" 
+                size="xl" 
+                href={`mailto:${siteConfig.links.email}`} 
+                className="bg-white text-primary hover:bg-white shadow-[0_20px_50px_rgba(255,255,255,0.2)] py-8 px-16 text-xl font-black"
+              >
+                {cta.button}
+              </Button>
+              <div className="mt-4">
+                <EmailLink email={siteConfig.links.email} className="text-white/80 hover:text-white font-bold text-lg" />
+              </div>
+            </div>
           </div>
           <span className="text-sm font-bold text-white/50 uppercase tracking-widest">
             Запитването не ви обвързва
