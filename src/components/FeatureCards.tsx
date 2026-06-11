@@ -6,9 +6,6 @@ import { cn } from "@/lib/utils";
 
 export default function FeatureCards() {
   const { features } = homeContent;
-  
-  // Highlight some key features
-  const highlightedFeatures = ["Palette", "Smartphone", "Search", "Mail"];
 
   return (
     <section className="py-24 md:py-36 bg-white relative">
@@ -24,20 +21,13 @@ export default function FeatureCards() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {features.items.map((item, idx) => {
             const Icon = (Icons as any)[item.icon] || Icons.Check;
-            const isHighlighted = highlightedFeatures.includes(item.icon);
             
             return (
               <Card 
                 key={idx} 
-                className={cn(
-                  "p-8 md:p-10 group transition-all duration-500",
-                  isHighlighted ? "border-primary/20 shadow-[0_15px_40px_rgba(184,145,79,0.05)]" : "border-border/30"
-                )}
+                className="p-8 md:p-10 group transition-all duration-500 border-border/30 hover:border-primary/20 hover:shadow-[0_15px_40px_rgba(184,145,79,0.05)]"
               >
-                <div className={cn(
-                  "w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-all duration-500",
-                  isHighlighted ? "bg-primary text-white" : "bg-primary-soft/50 text-primary group-hover:bg-primary group-hover:text-white"
-                )}>
+                <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-primary text-white transition-all duration-500 group-hover:scale-110">
                   <Icon size={28} strokeWidth={1.5} />
                 </div>
                 <h3 className="font-bold text-xl md:text-2xl mb-3 tracking-tight leading-tight">{item.title}</h3>
