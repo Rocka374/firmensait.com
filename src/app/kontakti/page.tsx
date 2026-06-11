@@ -119,9 +119,10 @@ export default function ContactPage() {
                 </div>
                 
                 <Button 
+                  type="submit"
                   variant="primary" 
                   size="lg" 
-                  className="w-full py-5 text-xl font-black disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full py-5 text-xl font-black"
                   disabled={!token}
                 >
                    Изпрати съобщение
