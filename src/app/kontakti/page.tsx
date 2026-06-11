@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import SectionHeader from "@/components/SectionHeader";
 import { siteConfig } from "@/content/site";
-import { Mail, MapPin, Send } from "lucide-react";
+import { Mail, Send } from "lucide-react";
 import Button from "@/components/Button";
 import EmailLink from "@/components/EmailLink";
 import { Turnstile } from "@marsidev/react-turnstile";
@@ -39,15 +39,11 @@ export default function ContactPage() {
                     </div>
                   </div>
                </div>
-
-               <div className="flex items-start gap-5">
-                  <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center text-white shrink-0">
-                    <MapPin size={22} />
-                  </div>
-                  <div>
-                    <span className="block text-[10px] font-black uppercase tracking-widest text-secondary/40 mb-1">Локация</span>
-                    <span className="text-xl font-bold">България, Онлайн обслужване</span>
-                  </div>
+               
+               <div className="pt-6 border-t border-border/40">
+                 <p className="text-secondary/60 text-sm font-medium leading-relaxed">
+                   Работим с клиенти от цяла България. Комуникацията и процесът по изработка са изцяло онлайн за ваше улеснение.
+                 </p>
                </div>
             </div>
 
@@ -97,7 +93,6 @@ export default function ContactPage() {
                    />
                 </div>
                 
-                {/* Turnstile Widget with Light Theme */}
                 <div className="flex justify-center py-2">
                   <Turnstile 
                     siteKey="0x4AAAAAADitFwbuldyaA82G" 
