@@ -171,7 +171,7 @@ export default function Header() {
             </Link>
           </nav>
 
-          {/* Mobile Hamburger Toggle - Hidden when drawer is open to use the internal X instead */}
+          {/* Mobile Hamburger Toggle */}
           {!isMobileMenuOpen && (
             <button 
               className="md:hidden relative z-[110] text-foreground w-12 h-12 flex items-center justify-center bg-white border border-border/40 rounded-2xl shadow-sm" 
@@ -187,8 +187,8 @@ export default function Header() {
       {/* Fullscreen Mobile Drawer */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-[200] bg-[#FAF8F4] md:hidden flex flex-col overflow-y-auto overscroll-contain">
-          {/* Internal Sticky Bar with Close Button - Aligned with main header container (px-4, h-72) */}
-          <div className="sticky top-0 z-[210] h-[72px] flex items-center justify-between px-4 bg-[#FAF8F4]/95 backdrop-blur-md border-b border-border/30">
+          {/* Drawer Top Bar - Using h-80 for more vertical space and perfect centering */}
+          <div className="sticky top-0 z-[210] h-[80px] min-h-[80px] flex items-center justify-between px-4 bg-[#FAF8F4]/95 backdrop-blur-md border-b border-border/30">
             <Link href="/" className="flex items-center" onClick={closeAll}>
               <span className="text-xl font-bold text-foreground tracking-tighter flex items-baseline">
                 Firmensait
@@ -200,7 +200,7 @@ export default function Header() {
               type="button"
               onClick={closeAll}
               aria-label="Затвори меню"
-              className="w-12 h-12 rounded-2xl bg-white border border-border/40 shadow-sm flex items-center justify-center text-foreground shrink-0"
+              className="w-12 h-12 shrink-0 rounded-2xl bg-white border border-border/40 shadow-sm flex items-center justify-center text-foreground"
             >
               <X size={24} />
             </button>
