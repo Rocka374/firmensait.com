@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
-import { Menu, X, ChevronDown, ChevronRight, ArrowRight, Home, Mail, ExternalLink } from 'lucide-react';
+import { Menu, X, ChevronDown, ChevronRight, Home, Mail, ExternalLink, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { industries } from '@/content/industries';
@@ -54,13 +54,15 @@ export default function Header() {
   return (
     <>
       <header className={cn(
-        "fixed top-0 left-0 right-0 z-[110] transition-all duration-500 ease-in-out",
+        "fixed top-0 left-0 right-0 transition-all duration-500 ease-in-out",
+        // Използваме изключително висок z-index, за да сме над всичко останало
+        "z-[9999]",
         scrolled || isMegaMenuOpen || isMobileMenuOpen
-          ? "bg-white/90 backdrop-blur-xl shadow-sm py-3" 
+          ? "bg-white/95 backdrop-blur-xl shadow-sm py-3" 
           : "bg-transparent py-6"
       )}>
         <div className="container mx-auto px-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center group relative z-[111]" onClick={closeAll}>
+          <Link href="/" className="flex items-center group relative z-[10001]" onClick={closeAll}>
             <span className="text-2xl md:text-3xl font-bold text-foreground tracking-tighter flex items-baseline">
               Firmensait
               <span className="text-primary ml-0.5 text-xl md:text-2xl font-black opacity-80">.com</span>
@@ -93,7 +95,7 @@ export default function Header() {
               </button>
 
               <div className={cn(
-                "fixed top-[calc(100%+12px)] left-1/2 -translate-x-1/2 w-full max-w-[1120px] z-50 transition-all duration-300 ease-out pointer-events-none opacity-0 translate-y-3",
+                "fixed top-[calc(100%+12px)] left-1/2 -translate-x-1/2 w-full max-w-[1120px] z-[10000] transition-all duration-300 ease-out pointer-events-none opacity-0 translate-y-3",
                 isMegaMenuOpen && "opacity-100 translate-y-0 pointer-events-auto"
               )}>
                 <div className="mx-4 bg-[#FFFCF7] rounded-[2.25rem] border border-border/60 shadow-[0_30px_90px_rgba(23,23,23,0.12)] overflow-hidden relative">
@@ -172,7 +174,7 @@ export default function Header() {
           </nav>
 
           <button 
-            className="md:hidden relative z-[111] text-foreground p-2 focus:outline-none" 
+            className="md:hidden relative z-[10001] text-foreground p-2 focus:outline-none" 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? "Затвори меню" : "Отвори меню"}
           >
@@ -205,7 +207,7 @@ export default function Header() {
         {/* Desktop Mega Menu Backdrop */}
         <div 
           className={cn(
-            "fixed inset-0 bg-background/45 backdrop-blur-[3px] z-[40] transition-opacity duration-300 pointer-events-none opacity-0",
+            "fixed inset-0 bg-background/45 backdrop-blur-[3px] z-[9998] transition-opacity duration-300 pointer-events-none opacity-0",
             isMegaMenuOpen && "opacity-100 pointer-events-auto"
           )} 
           onClick={() => setIsMegaMenuOpen(false)}
@@ -215,17 +217,16 @@ export default function Header() {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div 
-              initial={{ opacity: 0, y: -20 }}
+              initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="fixed inset-0 bg-[#FAF8F4] z-[105] md:hidden overflow-y-auto pt-24 pb-10"
+              className="fixed inset-0 bg-[#FAF8F4] z-[10000] md:hidden overflow-y-auto pt-24 pb-10"
+              style={{ height: '100vh', width: '100vw' }}
             >
-              {/* Subtle background glow */}
               <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-primary/[0.04] rounded-full blur-[100px] pointer-events-none" />
 
-              <div className="px-5">
-                {/* Mobile Menu Header */}
+              <div className="px-5 relative z-[10001]">
                 <div className="mb-8 mt-4">
                   <h2 className="text-3xl font-bold text-foreground mb-2">Меню</h2>
                   <p className="text-secondary/70 text-sm font-medium">
@@ -233,7 +234,6 @@ export default function Header() {
                   </p>
                 </div>
 
-                {/* Main Mobile Link Cards */}
                 <div className="space-y-3 mb-10">
                   <Link 
                     href="/" 
@@ -264,7 +264,6 @@ export default function Header() {
                   </Link>
                 </div>
 
-                {/* Portfolio Accordion Block */}
                 <div className="mb-8">
                   <button 
                     onClick={() => setIsMobilePortfolioOpen(!isMobilePortfolioOpen)}
@@ -321,7 +320,6 @@ export default function Header() {
                   </AnimatePresence>
                 </div>
 
-                {/* Final Mobile CTA Card */}
                 <div className="bg-primary text-white rounded-[2rem] p-6 shadow-[0_20px_50px_rgba(184,145,79,0.25)] relative overflow-hidden">
                   <div className="absolute top-[-20%] right-[-10%] w-[120px] h-[120px] bg-white/10 rounded-full blur-[40px] pointer-events-none" />
                   
