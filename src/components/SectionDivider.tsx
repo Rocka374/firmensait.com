@@ -7,8 +7,8 @@ interface SectionDividerProps {
 
 export default function SectionDivider({ className, variant = 'border' }: SectionDividerProps) {
   const colors = {
-    border: "via-border/60",
-    gold: "via-primary/30"
+    border: "via-border/30",
+    gold: "via-primary/15"
   };
 
   return (
