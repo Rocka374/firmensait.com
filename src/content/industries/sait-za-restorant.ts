@@ -13,8 +13,8 @@ export const saitZaRestorant: IndustryPageContent = {
   heroImage: { src: "/images/portfolio/сайт за ресторант.webp", alt: "Hero сайт за ресторант" },
   portfolioImages: [
     { src: "/images/portfolio/verde oro готов сайт за ресторант.webp", alt: "Проект Verde Oro" },
-    { src: "/images/portfolio/майстор сервиз готов сайт за ресторант.webp", alt: "Проект Майстор Сервиз" },
-    { src: "/images/portfolio/atelier blanc готов сайт за ресторант.webp", alt: "Проект Atelier Blanc" }
+    { src: "/images/portfolio/atelier blanc готов сайт за ресторант.webp", alt: "Проект Atelier Blanc" },
+    { src: "/images/portfolio/casa nuvola изработка на сайт за ресторант.webp", alt: "Проект Casa Nuvola" }
   ],
   intro: "Вашият ресторант има нужда от дигитален дом. Пълният текст ще бъде добавен по-късно.",
   sections: [{ h2: "Меню", paragraphs: ["Placeholder текст."] }],

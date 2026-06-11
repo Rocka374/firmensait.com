@@ -14,7 +14,7 @@ export const saitZaPochistvashtaFirma: IndustryPageContent = {
   portfolioImages: [
     { src: "/images/portfolio/spotless pro готов сайт за почистваща фирма.webp", alt: "Проект Spotless Pro" },
     { src: "/images/portfolio/green glow готов сайт за почистваща фирма.webp", alt: "Проект Green Glow" },
-    { src: "/images/portfolio/spotless pro готов сайт за почистваща фирма.webp", alt: "Професионално почистване" }
+    { src: "/images/portfolio/чист дом готов сайт за почистваща фирма.webp", alt: "Проект Чист Дом" }
   ],
   intro: "Placeholder текст.",
   sections: [{ h2: "Услуги", paragraphs: ["Placeholder."] }],

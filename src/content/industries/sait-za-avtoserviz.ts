@@ -14,7 +14,7 @@ export const saitZaAvtoserviz: IndustryPageContent = {
   portfolioImages: [
     { src: "/images/portfolio/Pit stop auto готов сайт за авто сервиз.webp", alt: "Проект Pit Stop Auto" },
     { src: "/images/portfolio/garage 24 готов сайт за сервиз.webp", alt: "Проект Garage 24" },
-    { src: "/images/portfolio/Pit stop auto готов сайт за авто сервиз.webp", alt: "Автодиагностика" }
+    { src: "/images/portfolio/майстор сервиз готов сайт за сервиз.webp", alt: "Проект Майстор Сервиз" }
   ],
   intro: "Placeholder текст.",
   sections: [{ h2: "Услуги", paragraphs: ["Placeholder."] }],

@@ -14,7 +14,7 @@ export const saitZaPsiholog: IndustryPageContent = {
   portfolioImages: [
     { src: "/images/portfolio/мост към себе си готов сайт за психолог.webp", alt: "Проект Мост към себе си" },
     { src: "/images/portfolio/вътрешен компас готов сайт за психолог.webp", alt: "Проект Вътрешен компас" },
-    { src: "/images/portfolio/мост към себе си готов сайт за психолог.webp", alt: "Психологическа практика" }
+    { src: "/images/portfolio/тиха опора готов сайт за психолог.webp", alt: "Проект Тиха опора" }
   ],
   intro: "Вашата практика заслужава сайт, който излъчва спокойствие. Пълният текст ще бъде добавен по-късно.",
   sections: [{ h2: "Защо ви е сайт?", paragraphs: ["Placeholder текст."] }],
