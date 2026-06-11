@@ -9,27 +9,29 @@ interface Section {
 export default function IndustryContent({ title, sections }: { title: string, sections: Section[] }) {
   return (
     <section className="py-24 md:py-36 bg-white overflow-hidden">
-      <div className="container mx-auto px-4 max-w-5xl">
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
-          <div className="lg:w-[40%]">
-             <SectionHeader 
-              title={`Защо сайтът е важен за ${title.replace("Сайт за ", "")}?`}
-              align="left"
-              className="mb-8"
-            />
-            <div className="bg-primary/[0.03] border-l-4 border-primary p-8 rounded-r-3xl">
-              <div className="flex items-start gap-4">
-                <div className="mt-1 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center shrink-0">
-                  <Info size={14} strokeWidth={3} />
-                </div>
-                <p className="text-lg font-bold text-foreground/80 leading-relaxed">
-                  Добре структурираният сайт помага на клиентите по-бързо да разберат услугите ви и да изпратят запитване с доверие.
-                </p>
+      <div className="container mx-auto px-4 max-w-4xl">
+        <div className="flex flex-col items-center text-center">
+          {/* Centered Header */}
+          <SectionHeader 
+            title={`Защо сайтът е важен за ${title.replace("Сайт за ", "")}?`}
+            align="center"
+            className="mb-12"
+          />
+
+          {/* Centered Highlighted Note */}
+          <div className="bg-primary/[0.03] border-l-4 border-primary p-8 rounded-r-3xl mb-16 max-w-2xl text-left">
+            <div className="flex items-start gap-4">
+              <div className="mt-1 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center shrink-0">
+                <Info size={14} strokeWidth={3} />
               </div>
+              <p className="text-lg font-bold text-foreground/80 leading-relaxed">
+                Добре структурираният сайт помага на клиентите по-бързо да разберат услугите ви и да изпратят запитване с доверие.
+              </p>
             </div>
           </div>
           
-          <div className="lg:w-[60%] space-y-10">
+          {/* Main Centered Paragraphs */}
+          <div className="space-y-10">
             {sections.map((section, idx) => (
               <div key={idx} className="space-y-8">
                 {section.paragraphs.map((p, pIdx) => (
