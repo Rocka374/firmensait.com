@@ -15,47 +15,67 @@ export default function Header() {
   const megaMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    // По-стабилна детекция на скрол
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 10;
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
+      }
+    };
+
     const handleClickOutside = (e: MouseEvent) => {
       if (megaMenuRef.current && !megaMenuRef.current.contains(e.target as Node)) {
         setIsMegaMenuOpen(false);
       }
     };
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsMegaMenuOpen(false);
-    };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('keydown', handleEscape);
+    
+    // Първоначална проверка
+    handleScroll();
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleEscape);
     };
-  }, []);
+  }, [scrolled]);
 
   const closeAll = () => {
     setIsMegaMenuOpen(false);
     setIsMobileMenuOpen(false);
+    setIsMobilePortfolioOpen(false);
+    document.body.style.overflow = 'unset';
+  };
+
+  const toggleMobileMenu = () => {
+    const newState = !isMobileMenuOpen;
+    setIsMobileMenuOpen(newState);
+    if (newState) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
   };
 
   return (
     <>
       <header className={cn(
-        "fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ease-in-out",
-        scrolled || isMegaMenuOpen 
-          ? "bg-white/90 backdrop-blur-xl shadow-sm py-3" 
-          : "bg-transparent py-6"
+        "fixed top-0 left-0 right-0 w-full transition-all duration-300 ease-in-out",
+        // На мобилни винаги искаме малко повече видимост, ако менюто е отворено
+        scrolled || isMegaMenuOpen || isMobileMenuOpen
+          ? "bg-white/95 backdrop-blur-xl shadow-md py-3 z-[150]" 
+          : "bg-transparent py-6 z-[150]"
       )}>
         <div className="container mx-auto px-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center group relative z-[101]" onClick={closeAll}>
+          <Link href="/" className="flex items-center group relative z-[160]" onClick={closeAll}>
             <span className="text-2xl md:text-3xl font-bold text-foreground tracking-tighter flex items-baseline">
               Firmensait
               <span className="text-primary ml-0.5 text-xl md:text-2xl font-black opacity-80">.com</span>
             </span>
           </Link>
 
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
             <Link 
               href="/" 
@@ -66,8 +86,6 @@ export default function Header() {
             
             <div className="relative" ref={megaMenuRef}>
               <button 
-                aria-haspopup="menu"
-                aria-expanded={isMegaMenuOpen}
                 className={cn(
                   "flex items-center gap-1.5 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 border",
                   isMegaMenuOpen 
@@ -81,17 +99,14 @@ export default function Header() {
               </button>
 
               <div className={cn(
-                "fixed top-[calc(100%+12px)] left-1/2 -translate-x-1/2 w-full max-w-[1120px] z-50 transition-all duration-300 ease-out pointer-events-none opacity-0 translate-y-3",
+                "fixed top-[calc(100%+12px)] left-1/2 -translate-x-1/2 w-full max-w-[1120px] z-[170] transition-all duration-300 ease-out pointer-events-none opacity-0 translate-y-3",
                 isMegaMenuOpen && "opacity-100 translate-y-0 pointer-events-auto"
               )}>
                 <div className="mx-4 bg-[#FFFCF7] rounded-[2.25rem] border border-border/60 shadow-[0_30px_90px_rgba(23,23,23,0.12)] overflow-hidden relative">
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
                   
                   <div className="flex flex-col lg:flex-row min-h-[460px]">
-                    {/* Left Column */}
                     <div className="lg:w-[340px] bg-primary/[0.035] p-10 flex flex-col border-r border-border/40 relative">
-                      <div className="absolute bottom-0 left-0 right-0 h-40 bg-[radial-gradient(circle_at_bottom,_rgba(184,145,79,0.05)_0%,_transparent_70%)] pointer-events-none" />
-                      
                       <div className="flex-1 relative z-10">
                         <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-[11px] font-black uppercase tracking-[0.2em] mb-6">
                           Разгледайте
@@ -100,14 +115,11 @@ export default function Header() {
                           Портфолио по браншове
                         </h3>
                         <p className="text-secondary/75 text-base leading-relaxed font-medium">
-                          Изберете примерна уеб визия според типа бизнес. Всеки сайт е с уникална SEO структура.
+                          Изберете примерна уеб визия според типа бизнес.
                         </p>
                       </div>
 
-                      {/* CTA Block */}
                       <div className="mt-12 p-6 bg-white border border-primary/10 rounded-2xl shadow-sm relative z-10">
-                        <p className="text-xs font-bold text-secondary/60 mb-1 uppercase tracking-wider">Не виждате вашия бранш?</p>
-                        <p className="text-[11px] text-secondary/50 mb-5 leading-snug font-medium">Ще подготвим структура според вашите услуги.</p>
                         <Link 
                           href="/kontakti" 
                           className="inline-flex items-center gap-2 text-primary font-black text-xs uppercase tracking-widest group/cta hover:text-primary-dark transition-colors"
@@ -119,7 +131,6 @@ export default function Header() {
                       </div>
                     </div>
 
-                    {/* Right Grid */}
                     <div className="flex-1 p-6 lg:p-8 min-w-0">
                       <div className="grid min-w-0 grid-cols-2 lg:grid-cols-4 gap-2">
                         {industries.map((item) => {
@@ -159,17 +170,19 @@ export default function Header() {
             
             <Link 
               href="/kontakti"
-              className="ml-4 bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-full transition-all shadow-[0_10px_25px_-5px_rgba(184,145,79,0.3)] hover:shadow-[0_15px_30px_-5px_rgba(184,145,79,0.4)] active:scale-95"
+              className="ml-4 bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-full transition-all shadow-[0_10px_25px_-5px_rgba(184,145,79,0.3)] active:scale-95"
             >
               Искам сайт
             </Link>
           </nav>
 
+          {/* Mobile Menu Toggle Button */}
           <button 
-            className="md:hidden relative z-[101] text-foreground p-2" 
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden relative z-[160] text-foreground p-3 bg-white/50 backdrop-blur-md rounded-xl border border-border/20 shadow-sm" 
+            onClick={toggleMobileMenu}
+            aria-label="Toggle Menu"
           >
-            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
@@ -182,9 +195,9 @@ export default function Header() {
           onClick={() => setIsMegaMenuOpen(false)}
         />
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu Overlay */}
         <div className={cn(
-          "fixed inset-0 bg-background z-[100] md:hidden flex flex-col transition-transform duration-500 ease-in-out pt-24 overflow-y-auto",
+          "fixed inset-0 bg-white z-[155] md:hidden flex flex-col transition-transform duration-500 ease-in-out pt-28 overflow-y-auto",
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         )}>
           <div className="p-6 space-y-4">
@@ -198,16 +211,16 @@ export default function Header() {
             
             <div className="space-y-4">
               <button 
-                className="w-full flex items-center justify-between text-2xl font-bold border-b border-border/40 pb-4 px-2"
+                className="w-full flex items-center justify-between text-2xl font-bold border-b border-border/40 pb-4 px-2 text-left"
                 onClick={() => setIsMobilePortfolioOpen(!isMobilePortfolioOpen)}
               >
                 Портфолио
-                <ChevronDown size={24} className={cn("transition-transform", isMobilePortfolioOpen && "rotate-180")} />
+                <ChevronDown size={24} className={cn("transition-transform duration-300", isMobilePortfolioOpen && "rotate-180")} />
               </button>
               
               <div className={cn(
                 "grid grid-cols-1 gap-3 overflow-hidden transition-all duration-300",
-                isMobilePortfolioOpen ? "max-h-[1500px] opacity-100 mb-8" : "max-h-0 opacity-0"
+                isMobilePortfolioOpen ? "max-h-[2000px] opacity-100 mb-8 mt-4" : "max-h-0 opacity-0"
               )}>
                 {industries.map((item) => {
                   if (!item?.href) return null;
@@ -216,10 +229,10 @@ export default function Header() {
                     <Link 
                       key={item.slug} 
                       href={item.href}
-                      className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-border/30 active:bg-primary/5 transition-all shadow-sm"
+                      className="flex items-center gap-4 p-4 bg-[#FAF8F4] rounded-2xl border border-border/30 active:bg-primary/10 transition-all"
                       onClick={closeAll}
                     >
-                      <div className="w-10 h-10 rounded-xl bg-primary/5 border border-primary/10 flex items-center justify-center text-primary shrink-0">
+                      <div className="w-10 h-10 rounded-xl bg-white border border-primary/10 flex items-center justify-center text-primary shrink-0 shadow-sm">
                         <Icon size={20} strokeWidth={2.5} />
                       </div>
                       <span className="font-bold text-foreground/80">{item.menuLabel}</span>
@@ -237,7 +250,7 @@ export default function Header() {
               Контакти
             </Link>
             
-            <div className="pt-8 px-2">
+            <div className="pt-8 px-2 pb-10">
               <Link 
                 href="/kontakti"
                 className="bg-primary text-white text-center font-bold py-5 rounded-full text-xl block shadow-xl shadow-primary/20 active:scale-95 transition-transform"
