@@ -168,31 +168,39 @@ export default function Header() {
             </Link>
           </nav>
 
-          {/* Mobile Hamburger Toggle */}
-          <button 
-            className="md:hidden relative z-[160] text-foreground w-12 h-12 flex items-center justify-center bg-white border border-border/40 rounded-2xl shadow-sm" 
-            onClick={toggleMobileMenu}
-            aria-label={isMobileMenuOpen ? "Затвори меню" : "Отвори меню"}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Hamburger Toggle - Hidden when drawer is open to use the internal X instead */}
+          {!isMobileMenuOpen && (
+            <button 
+              className="md:hidden relative z-[110] text-foreground w-12 h-12 flex items-center justify-center bg-white border border-border/40 rounded-2xl shadow-sm" 
+              onClick={toggleMobileMenu}
+              aria-label="Отвори меню"
+            >
+              <Menu size={24} />
+            </button>
+          )}
         </div>
       </header>
 
       {/* Fullscreen Mobile Drawer */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-[150] bg-[#FAF8F4] md:hidden flex flex-col overflow-y-auto overscroll-contain no-scrollbar">
-          {/* Internal Sticky Bar in Drawer */}
-          <div className="sticky top-0 z-[160] h-[72px] flex items-center justify-between px-4 bg-[#FAF8F4]/95 backdrop-blur-md border-b border-border/30">
+        <div className="fixed inset-0 z-[200] bg-[#FAF8F4] md:hidden flex flex-col overflow-y-auto overscroll-contain no-scrollbar">
+          {/* Internal Sticky Bar with Close Button */}
+          <div className="sticky top-0 z-[210] h-[72px] flex items-center justify-between px-4 bg-[#FAF8F4]/95 backdrop-blur-md border-b border-border/30">
             <Link href="/" className="flex items-center" onClick={closeAll}>
               <span className="text-xl font-bold text-foreground tracking-tighter flex items-baseline">
                 Firmensait
                 <span className="text-primary ml-0.5 text-lg font-black opacity-80">.com</span>
               </span>
             </Link>
-            {/* The main toggle button is already outside and layered on top (z-160), 
-                so we don't need a second one here if they overlap perfectly. 
-                But for clarity, the user can use the same button as it remains visible. */}
+            
+            <button
+              type="button"
+              onClick={closeAll}
+              aria-label="Затвори меню"
+              className="w-12 h-12 rounded-2xl bg-white border border-border/40 shadow-sm flex items-center justify-center text-foreground"
+            >
+              <X size={24} />
+            </button>
           </div>
 
           <div className="flex-1 px-5 py-8 space-y-6">
@@ -205,7 +213,7 @@ export default function Header() {
             <div className="grid grid-cols-1 gap-4">
               <Link 
                 href="/" 
-                className="flex items-center justify-between p-5 bg-white border border-border/40 rounded-2xl shadow-sm active:scale-[0.98] transition-all" 
+                className="flex items-center justify-between p-5 bg-white border border-border/40 rounded-3xl shadow-sm active:scale-[0.98] transition-all" 
                 onClick={closeAll}
               >
                 <div className="flex items-center gap-4">
@@ -219,7 +227,7 @@ export default function Header() {
 
               <Link 
                 href="/kontakti" 
-                className="flex items-center justify-between p-5 bg-white border border-border/40 rounded-2xl shadow-sm active:scale-[0.98] transition-all" 
+                className="flex items-center justify-between p-5 bg-white border border-border/40 rounded-3xl shadow-sm active:scale-[0.98] transition-all" 
                 onClick={closeAll}
               >
                 <div className="flex items-center gap-4">
@@ -236,7 +244,7 @@ export default function Header() {
             <div className="pt-4">
               <button 
                 className={cn(
-                  "w-full flex items-center justify-between p-5 rounded-2xl border transition-all",
+                  "w-full flex items-center justify-between p-5 rounded-3xl border transition-all",
                   isMobilePortfolioOpen 
                     ? "bg-primary text-white border-primary shadow-lg" 
                     : "bg-white text-foreground border-border/40"
@@ -262,14 +270,16 @@ export default function Header() {
                     <Link 
                       key={item.slug} 
                       href={item.href}
-                      className="flex items-center justify-between p-4 bg-white/50 rounded-xl border border-border/20 active:bg-primary/5"
+                      className="flex items-center justify-between p-4 bg-white/50 rounded-2xl border border-border/20 active:bg-primary/5"
                       onClick={closeAll}
                     >
-                      <div className="flex items-center gap-4 min-w-0">
-                        <div className="w-9 h-9 rounded-lg bg-primary/5 flex items-center justify-center text-primary shrink-0">
-                          <Icon size={16} strokeWidth={2.5} />
+                      <div className="flex items-center gap-4 min-w-0 flex-1">
+                        <div className="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center text-primary shrink-0">
+                          <Icon size={18} strokeWidth={2.5} />
                         </div>
-                        <span className="font-bold text-sm text-foreground/80 leading-tight truncate">{item.title}</span>
+                        <span className="font-bold text-sm text-foreground/80 leading-tight break-words min-w-0">
+                          {item.title}
+                        </span>
                       </div>
                       <ArrowRight size={14} className="text-secondary/20 shrink-0" />
                     </Link>
@@ -279,14 +289,14 @@ export default function Header() {
             </div>
 
             {/* CTA Card in Drawer */}
-            <div className="mt-8 bg-primary p-8 rounded-[2rem] text-white relative overflow-hidden">
+            <div className="mt-8 bg-primary p-8 rounded-[2.5rem] text-white relative overflow-hidden">
                <div className="absolute top-[-20%] right-[-10%] w-32 h-32 bg-white/10 rounded-full blur-[40px]" />
                <h3 className="text-xl font-bold mb-3 relative z-10">Готови ли сте за нов сайт?</h3>
                <p className="opacity-80 text-sm mb-8 leading-relaxed relative z-10">Опишете вашия бизнес и ще ви върнем предложение за структура.</p>
                <Link 
                  href="/kontakti" 
                  onClick={closeAll}
-                 className="w-full bg-white text-primary font-black py-4 rounded-xl flex items-center justify-center gap-2 shadow-xl active:scale-95 transition-transform"
+                 className="w-full bg-white text-primary font-black py-4 rounded-2xl flex items-center justify-center gap-2 shadow-xl active:scale-95 transition-transform"
                >
                  Искам сайт
                  <ArrowRight size={18} />
