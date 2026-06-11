@@ -67,9 +67,9 @@ export default function IndustryHero({ data }: { data: IndustryPageContent }) {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative z-10 w-full aspect-[16/11] bg-white rounded-[2.5rem] p-4 md:p-6 shadow-[0_20px_60px_rgba(0,0,0,0.04)] border border-border/20"
+              className="relative z-10 w-full aspect-[16/11]"
             >
-              <div className="relative w-full h-full rounded-[1.5rem] overflow-hidden">
+              <div className="relative w-full h-full">
                 <Image
                   src={data.heroImage.src}
                   alt={data.heroImage.alt}
