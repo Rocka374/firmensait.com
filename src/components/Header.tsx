@@ -35,7 +35,6 @@ export default function Header() {
     };
   }, []);
 
-  // Close menus on path change (via clicks)
   const closeAll = () => {
     setIsMegaMenuOpen(false);
     setIsMobileMenuOpen(false);
@@ -50,7 +49,6 @@ export default function Header() {
           : "bg-transparent py-6"
       )}>
         <div className="container mx-auto px-4 flex items-center justify-between">
-          {/* Logo */}
           <Link href="/" className="flex items-center group relative z-[101]" onClick={closeAll}>
             <span className="text-2xl md:text-3xl font-bold text-foreground tracking-tighter flex items-baseline">
               Firmensait
@@ -58,7 +56,6 @@ export default function Header() {
             </span>
           </Link>
 
-          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
             <Link 
               href="/" 
@@ -83,17 +80,14 @@ export default function Header() {
                 <ChevronDown size={14} className={cn("transition-transform duration-300", isMegaMenuOpen && "rotate-180")} />
               </button>
 
-              {/* Desktop Mega Menu (Floating Card) */}
               <div className={cn(
                 "fixed top-[74px] left-1/2 -translate-x-1/2 w-full max-w-[1150px] z-50 transition-all duration-300 ease-out pointer-events-none opacity-0 translate-y-2",
                 isMegaMenuOpen && "opacity-100 translate-y-0 pointer-events-auto"
               )}>
                 <div className="mx-4 bg-white/95 backdrop-blur-2xl rounded-[2.5rem] border border-border/50 shadow-[0_40px_100px_-15px_rgba(0,0,0,0.12)] overflow-hidden relative">
-                  {/* Subtle Top Accent Line */}
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
                   
                   <div className="flex flex-col lg:flex-row min-h-[480px]">
-                    {/* Left CTA Column */}
                     <div className="lg:w-[320px] bg-primary/[0.03] p-10 flex flex-col border-r border-border/30">
                       <div className="flex-1">
                         <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest mb-4">
@@ -119,10 +113,10 @@ export default function Header() {
                       </div>
                     </div>
 
-                    {/* Right Grid Column */}
                     <div className="flex-1 p-8 lg:p-10">
                       <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-2">
                         {industries.map((item) => {
+                          if (!item?.href) return null; // Safety check
                           const Icon = (Icons as any)[item.icon] || Icons.Check;
                           return (
                             <Link 
@@ -164,7 +158,6 @@ export default function Header() {
             </Link>
           </nav>
 
-          {/* Mobile Menu Trigger */}
           <button 
             className="md:hidden relative z-[101] text-foreground p-2" 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -173,7 +166,6 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Mobile Drawer */}
         <div className={cn(
           "fixed inset-0 bg-white z-[100] md:hidden flex flex-col transition-transform duration-500 ease-in-out pt-24 overflow-y-auto",
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
@@ -187,7 +179,6 @@ export default function Header() {
               Начало
             </Link>
             
-            {/* Mobile Accordion */}
             <div className="space-y-4">
               <button 
                 className="w-full flex items-center justify-between text-2xl font-bold border-b border-border/40 pb-4"
@@ -202,6 +193,7 @@ export default function Header() {
                 isMobilePortfolioOpen ? "max-h-[1000px] opacity-100 mb-6" : "max-h-0 opacity-0"
               )}>
                 {industries.map((item) => {
+                  if (!item?.href) return null; // Safety check
                   const Icon = (Icons as any)[item.icon] || Icons.Check;
                   return (
                     <Link 
@@ -241,7 +233,6 @@ export default function Header() {
         </div>
       </header>
       
-      {/* Dim Overlay when Mega Menu is open */}
       <div 
         className={cn(
           "fixed inset-0 bg-black/5 backdrop-blur-sm z-[40] transition-opacity duration-300 pointer-events-none opacity-0",
