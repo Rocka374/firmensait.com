@@ -16,9 +16,9 @@ export const saitZaSalonZaKrasota: IndustryPageContent = {
     { src: "/images/portfolio/etalier eclat готов сайт за салон за красота.webp", alt: "Проект Etalier Eclat" },
     { src: "/images/portfolio/bella aura готов сайт за салон за красота.webp", alt: "Проект Bella Aura" }
   ],
-  intro: "Placeholder текст.",
+  intro: "Placeholder.",
   sections: [{ h2: "Процедури", paragraphs: ["Placeholder."] }],
-  benefits: [{ title: "Стил", text: "Модерен изглед." }],
+  benefits: [{ title: "Стил", text: "Модерен." }],
   faq: [{ q: "Има ли цени?", a: "Да." }],
   relatedIndustries: ["sait-za-frizyorski-salon"]
 };

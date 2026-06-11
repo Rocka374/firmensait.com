@@ -7,7 +7,7 @@ export const saitZaKafetaria: IndustryPageContent = {
   icon: "Coffee",
   shortDescription: "Уютна уеб визия за вашето кафене.",
   metaTitle: "Изработка на сайт за кафетария | Firmensait.com",
-  metaDescription: "Професионален сайт за кафене или пекарна.",
+  metaDescription: "Професионален сайт за кафетария. Пълният SEO текст ще бъде добавен по-късно.",
   h1: "Сайт за кафетария",
   subtitle: "Споделете аромата на вашия бизнес онлайн.",
   heroImage: { src: "/images/portfolio/сайт за кафетария.webp", alt: "Hero кафе" },
@@ -16,9 +16,9 @@ export const saitZaKafetaria: IndustryPageContent = {
     { src: "/images/portfolio/lumiere готов сайт за кафетария.webp", alt: "Проект Lumiere" },
     { src: "/images/portfolio/aurora готов сайт за кафетария.webp", alt: "Проект Aurora" }
   ],
-  intro: "Placeholder текст.",
+  intro: "Placeholder.",
   sections: [{ h2: "Меню", paragraphs: ["Placeholder."] }],
-  benefits: [{ title: "Дизайн", text: "Модерен." }],
-  faq: [{ q: "Къде сте?", a: "Карта е включена." }],
+  benefits: [{ title: "Стил", text: "Модерен." }],
+  faq: [{ q: "Има ли карта?", a: "Да." }],
   relatedIndustries: ["sait-za-restorant"]
 };

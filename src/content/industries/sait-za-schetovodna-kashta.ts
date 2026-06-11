@@ -7,7 +7,7 @@ export const saitZaSchetovodnaKashta: IndustryPageContent = {
   icon: "Calculator",
   shortDescription: "Професионално представяне на вашите финансови услуги.",
   metaTitle: "Изработка на сайт за счетоводна къща | Firmensait.com",
-  metaDescription: "Професионален сайт за счетоводни услуги.",
+  metaDescription: "Професионален сайт за счетоводна къща.",
   h1: "Сайт за счетоводна къща",
   subtitle: "Сигурност и професионализъм за вашите клиенти.",
   heroImage: { src: "/images/portfolio/сайт за счетоводна къща.webp", alt: "Hero счетоводител" },
@@ -16,9 +16,9 @@ export const saitZaSchetovodnaKashta: IndustryPageContent = {
     { src: "/images/portfolio/finera accounting сайт за счетоводна къща.webp", alt: "Проект Finera Accounting" },
     { src: "/images/portfolio/balance point сайт за счетоводна къща.webp", alt: "Проект Balance Point" }
   ],
-  intro: "Placeholder текст.",
+  intro: "Placeholder.",
   sections: [{ h2: "Услуги", paragraphs: ["Placeholder."] }],
-  benefits: [{ title: "Доверие", text: "Ясни цени." }],
-  faq: [{ q: "Има ли блог?", a: "Да." }],
+  benefits: [{ title: "Доверие", text: "Яснота." }],
+  faq: [{ q: "Има ли абонамент?", a: "Да." }],
   relatedIndustries: ["sait-za-advokat"]
 };
