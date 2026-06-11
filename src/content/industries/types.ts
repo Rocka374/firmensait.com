@@ -24,7 +24,7 @@ export interface IndustryPageContent {
     items: {
       title: string;
       text: string;
-      icon: any;
+      icon: string;
     }[];
   };
   features?: {
@@ -33,7 +33,7 @@ export interface IndustryPageContent {
     items: {
       title: string;
       text: string;
-      icon: any;
+      icon: string;
     }[];
   };
   seoFoundation?: {
@@ -42,7 +42,7 @@ export interface IndustryPageContent {
     items: {
       title: string;
       text: string;
-      icon: any;
+      icon: string;
     }[];
   };
   processSteps?: {
@@ -50,7 +50,7 @@ export interface IndustryPageContent {
     items: {
       title: string;
       description: string;
-      icon: any;
+      icon: string;
     }[];
   };
   sections: {

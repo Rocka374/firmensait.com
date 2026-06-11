@@ -5,6 +5,7 @@ import { IndustryPageContent } from "@/content/industries/types";
 import Button from "@/components/Button";
 import { Tag, Smartphone, Search, CloudOff } from "lucide-react";
 import { motion } from "framer-motion";
+import * as Icons from "lucide-react";
 
 export default function IndustryHero({ data }: { data: IndustryPageContent }) {
   const trustItems = [
