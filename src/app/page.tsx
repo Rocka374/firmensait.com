@@ -9,6 +9,7 @@ import SEOSection from '@/components/SEOSection';
 import ProcessSection from '@/components/ProcessSection';
 import FAQSection from '@/components/FAQSection';
 import CTASection from '@/components/CTASection';
+import SectionDivider from '@/components/SectionDivider';
 import { getOrganizationSchema, getServiceSchema, getFAQSchema } from '@/lib/structured-data';
 
 export default function HomePage() {
@@ -30,34 +31,50 @@ export default function HomePage() {
       {/* 1. Hero */}
       <Hero />
       
-      {/* 2. PortfolioPreview - Moved here as requested */}
+      {/* 2. Portfolio Preview */}
       <PortfolioPreview />
       
-      {/* 3. BusinessTypesSection */}
+      <SectionDivider variant="gold" />
+
+      {/* 3. Business Types */}
       <BusinessTypesSection />
       
-      {/* 4. IndustryGrid */}
+      <SectionDivider />
+
+      {/* 4. Industry Grid */}
       <IndustryGrid />
       
-      {/* 5. FeatureCards */}
+      <SectionDivider variant="gold" />
+
+      {/* 5. Feature Cards */}
       <FeatureCards />
       
-      {/* 6. PricingSection */}
+      <SectionDivider />
+
+      {/* 6. Pricing Section */}
       <PricingSection />
       
-      {/* 7. HostingSection */}
+      <SectionDivider variant="gold" />
+
+      {/* 7. Hosting Section */}
       <HostingSection />
       
-      {/* 8. SEOSection */}
+      <SectionDivider />
+
+      {/* 8. SEO Section */}
       <SEOSection />
       
-      {/* 9. ProcessSection */}
+      <SectionDivider variant="gold" />
+
+      {/* 9. Process Section */}
       <ProcessSection />
       
-      {/* 10. FAQSection */}
+      <SectionDivider />
+
+      {/* 10. FAQ Section */}
       <FAQSection />
       
-      {/* 11. CTASection */}
+      {/* 11. CTA Section */}
       <CTASection />
     </main>
   );

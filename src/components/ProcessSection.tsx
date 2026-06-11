@@ -5,28 +5,43 @@ import * as Icons from "lucide-react";
 export default function ProcessSection() {
   const { process } = homeContent;
   return (
-    <section id="kak-rabotim" className="py-20 md:py-32 bg-gradient-to-b from-secondary-light/30 to-white overflow-hidden">
+    <section id="kak-rabotim" className="py-32 md:py-48 bg-[#FAF8F4] overflow-hidden relative">
       <div className="container mx-auto px-4">
         <SectionHeader title={process.title} />
-        <div className="max-w-6xl mx-auto relative">
-          {/* Timeline Line */}
-          <div className="hidden lg:block absolute top-14 left-[8%] right-[8%] h-px bg-border/40 z-0" />
+        
+        <div className="max-w-7xl mx-auto relative mt-20">
+          {/* Desktop Connecting Line */}
+          <div className="hidden lg:block absolute top-[55px] left-[8%] right-[8%] h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent z-0" />
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-10 lg:gap-4 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-14 lg:gap-6 relative z-10">
             {process.steps.map((step, idx) => {
               const Icon = (Icons as any)[step.icon] || Icons.Check;
               return (
                 <div key={idx} className="flex flex-col items-center text-center group">
-                  <div className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-background border border-border/40 flex items-center justify-center mb-6 md:mb-8 relative transition-all duration-500 group-hover:border-primary/40 group-hover:shadow-xl group-hover:shadow-primary/5">
-                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-primary/10 flex items-center justify-center bg-white group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-sm">
-                       <Icon size={24} strokeWidth={1.5} className="md:w-7 md:h-7" />
+                  
+                  {/* Step Visual */}
+                  <div className="relative mb-10">
+                    <div className="w-28 h-28 rounded-full bg-white border border-border/40 flex items-center justify-center transition-all duration-500 group-hover:border-primary/40 group-hover:shadow-[0_20px_50px_rgba(184,145,79,0.12)]">
+                      <div className="w-20 h-20 rounded-full border border-primary/5 flex items-center justify-center bg-primary/5 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                         <Icon size={28} strokeWidth={1.5} />
+                      </div>
                     </div>
-                    <div className="absolute -top-1 right-2 w-7 h-7 md:w-8 md:h-8 bg-primary text-white text-[10px] md:text-xs font-bold rounded-full flex items-center justify-center shadow-md">
+                    {/* Number Badge */}
+                    <div className="absolute -top-1 right-1 w-10 h-10 bg-primary text-white text-xs font-black rounded-full flex items-center justify-center shadow-xl border-4 border-[#FAF8F4]">
                       {idx + 1}
                     </div>
                   </div>
-                  <h3 className="font-bold text-[10px] md:text-[11px] uppercase tracking-[0.15em] mb-2 md:mb-3 text-foreground/80">{step.title}</h3>
-                  <p className="text-secondary/70 text-[11px] md:text-xs leading-relaxed max-w-[160px] md:max-w-[150px]">{step.description}</p>
+
+                  {/* Step Text */}
+                  <div className="space-y-3 px-4">
+                    <h3 className="font-black text-[11px] md:text-xs uppercase tracking-[0.25em] text-foreground/80 leading-snug min-h-[3em] flex items-center justify-center">
+                      {step.title}
+                    </h3>
+                    <p className="text-secondary/60 text-xs md:text-[13px] leading-relaxed font-medium">
+                      {step.description}
+                    </p>
+                  </div>
+
                 </div>
               );
             })}
