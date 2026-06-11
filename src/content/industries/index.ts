@@ -41,7 +41,7 @@ export const industries: IndustryPageContent[] = [
   saitZaPochistvashtaFirma,
   saitZaStroitelnaFirma,
   saitZaPsiholog,
-];
+].filter(Boolean); // Safety check to remove any undefined entries
 
 export const industriesBySlug = Object.fromEntries(
   industries.map((industry) => [industry.slug, industry])
