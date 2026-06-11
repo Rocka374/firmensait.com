@@ -1,5 +1,4 @@
 import SectionHeader from "../SectionHeader";
-import { Info } from "lucide-react";
 
 interface Section {
   h2: string;
@@ -15,20 +14,8 @@ export default function IndustryContent({ title, sections }: { title: string, se
           <SectionHeader 
             title={`Защо сайтът е важен за ${title.replace("Сайт за ", "")}?`}
             align="center"
-            className="mb-12"
+            className="mb-16"
           />
-
-          {/* Centered Highlighted Note */}
-          <div className="bg-primary/[0.03] border-l-4 border-primary p-8 rounded-r-3xl mb-16 max-w-2xl text-left">
-            <div className="flex items-start gap-4">
-              <div className="mt-1 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center shrink-0">
-                <Info size={14} strokeWidth={3} />
-              </div>
-              <p className="text-lg font-bold text-foreground/80 leading-relaxed">
-                Добре структурираният сайт помага на клиентите по-бързо да разберат услугите ви и да изпратят запитване с доверие.
-              </p>
-            </div>
-          </div>
           
           {/* Main Centered Paragraphs */}
           <div className="space-y-10">
