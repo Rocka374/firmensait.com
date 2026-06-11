@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Obfuscate from 'react-obfuscate';
 import { cn } from '@/lib/utils';
 
 interface EmailLinkProps {
@@ -8,26 +9,11 @@ interface EmailLinkProps {
   className?: string;
 }
 
-/**
- * Прост компонент за защита на имейла от ботове, 
- * който не разчита на външни библиотеки и е напълно безопасен за React 19.
- */
 export default function EmailLink({ email, className }: EmailLinkProps) {
-  const [user, domain] = email.split('@');
-  
   return (
-    <a
-      href="#"
-      onClick={(e) => {
-        e.preventDefault();
-        window.location.href = `mailto:${user}@${domain}`;
-      }}
-      className={cn("hover:text-primary transition-colors cursor-pointer", className)}
-      title="Изпрати имейл"
-    >
-      <span className="hidden md:inline">{user}</span>
-      <span className="md:hidden">Изпрати имейл</span>
-      <span className="hidden md:inline">@{domain}</span>
-    </a>
+    <Obfuscate
+      email={email}
+      className={cn("hover:text-primary transition-colors", className)}
+    />
   );
 }
