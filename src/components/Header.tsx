@@ -54,15 +54,15 @@ export default function Header() {
   return (
     <>
       <header className={cn(
-        "fixed top-0 left-0 right-0 transition-all duration-500 ease-in-out",
-        // Използваме изключително висок z-index, за да сме над всичко останало
-        "z-[9999]",
+        "fixed top-0 left-0 right-0 transition-all duration-300 ease-in-out",
+        "z-[99999]", // Изключително висок z-index
         scrolled || isMegaMenuOpen || isMobileMenuOpen
-          ? "bg-white/95 backdrop-blur-xl shadow-sm py-3" 
-          : "bg-transparent py-6"
+          ? "bg-white/95 backdrop-blur-xl shadow-md py-3" 
+          : "bg-white/80 md:bg-transparent py-5 md:py-6" // Плътен фон на мобилен дори без скрол
       )}>
-        <div className="container mx-auto px-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center group relative z-[10001]" onClick={closeAll}>
+        <div className="container mx-auto px-4 flex items-center justify-between relative">
+          {/* Лого с фиксиран висок z-index */}
+          <Link href="/" className="flex items-center group relative z-[100001]" onClick={closeAll}>
             <span className="text-2xl md:text-3xl font-bold text-foreground tracking-tighter flex items-baseline">
               Firmensait
               <span className="text-primary ml-0.5 text-xl md:text-2xl font-black opacity-80">.com</span>
@@ -95,13 +95,13 @@ export default function Header() {
               </button>
 
               <div className={cn(
-                "fixed top-[calc(100%+12px)] left-1/2 -translate-x-1/2 w-full max-w-[1120px] z-[10000] transition-all duration-300 ease-out pointer-events-none opacity-0 translate-y-3",
+                "fixed top-[calc(100%+12px)] left-1/2 -translate-x-1/2 w-full max-w-[1120px] z-[100000] transition-all duration-300 ease-out pointer-events-none opacity-0 translate-y-3",
                 isMegaMenuOpen && "opacity-100 translate-y-0 pointer-events-auto"
               )}>
                 <div className="mx-4 bg-[#FFFCF7] rounded-[2.25rem] border border-border/60 shadow-[0_30px_90px_rgba(23,23,23,0.12)] overflow-hidden relative">
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-                  
                   <div className="flex flex-col lg:flex-row min-h-[460px]">
+                    {/* ... (mega menu content stays the same) */}
                     <div className="lg:w-[340px] bg-primary/[0.035] p-10 flex flex-col border-r border-border/40 relative">
                       <div className="absolute bottom-0 left-0 right-0 h-40 bg-[radial-gradient(circle_at_bottom,_rgba(184,145,79,0.05)_0%,_transparent_70%)] pointer-events-none" />
                       <div className="flex-1 relative z-10">
@@ -173,47 +173,43 @@ export default function Header() {
             </Link>
           </nav>
 
+          {/* Хамбургер бутон с най-висок z-index */}
           <button 
-            className="md:hidden relative z-[10001] text-foreground p-2 focus:outline-none" 
+            className="md:hidden relative z-[100001] text-foreground p-3 focus:outline-none" 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? "Затвори меню" : "Отвори меню"}
           >
-            <AnimatePresence mode="wait">
-              {isMobileMenuOpen ? (
-                <motion.div
-                  key="close"
-                  initial={{ opacity: 0, rotate: -90 }}
-                  animate={{ opacity: 1, rotate: 0 }}
-                  exit={{ opacity: 0, rotate: 90 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <X size={32} strokeWidth={1.5} />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="menu"
-                  initial={{ opacity: 0, rotate: 90 }}
-                  animate={{ opacity: 1, rotate: 0 }}
-                  exit={{ opacity: 0, rotate: -90 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Menu size={32} strokeWidth={1.5} />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <div className="relative w-8 h-8">
+              <AnimatePresence mode="wait">
+                {isMobileMenuOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ opacity: 0, rotate: -90 }}
+                    animate={{ opacity: 1, rotate: 0 }}
+                    exit={{ opacity: 0, rotate: 90 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute inset-0 flex items-center justify-center"
+                  >
+                    <X size={32} strokeWidth={2} />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ opacity: 0, rotate: 90 }}
+                    animate={{ opacity: 1, rotate: 0 }}
+                    exit={{ opacity: 0, rotate: -90 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute inset-0 flex items-center justify-center"
+                  >
+                    <Menu size={32} strokeWidth={2} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </button>
         </div>
 
-        {/* Desktop Mega Menu Backdrop */}
-        <div 
-          className={cn(
-            "fixed inset-0 bg-background/45 backdrop-blur-[3px] z-[9998] transition-opacity duration-300 pointer-events-none opacity-0",
-            isMegaMenuOpen && "opacity-100 pointer-events-auto"
-          )} 
-          onClick={() => setIsMegaMenuOpen(false)}
-        />
-
-        {/* Premium Mobile Drawer */}
+        {/* Мобилен Drawer */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div 
@@ -221,12 +217,12 @@ export default function Header() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="fixed inset-0 bg-[#FAF8F4] z-[10000] md:hidden overflow-y-auto pt-24 pb-10"
-              style={{ height: '100vh', width: '100vw' }}
+              className="fixed inset-0 bg-[#FAF8F4] z-[100000] md:hidden overflow-y-auto pt-24 pb-10"
+              style={{ height: '100dvh', width: '100vw' }} // Използваме dvh за мобилни
             >
               <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-primary/[0.04] rounded-full blur-[100px] pointer-events-none" />
 
-              <div className="px-5 relative z-[10001]">
+              <div className="px-5 relative z-[100001]">
                 <div className="mb-8 mt-4">
                   <h2 className="text-3xl font-bold text-foreground mb-2">Меню</h2>
                   <p className="text-secondary/70 text-sm font-medium">
@@ -341,6 +337,15 @@ export default function Header() {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* Backdrop за десктоп мега менюто */}
+        <div 
+          className={cn(
+            "fixed inset-0 bg-background/45 backdrop-blur-[3px] z-[99998] transition-opacity duration-300 pointer-events-none opacity-0",
+            isMegaMenuOpen && "opacity-100 pointer-events-auto"
+          )} 
+          onClick={() => setIsMegaMenuOpen(false)}
+        />
       </header>
     </>
   );
