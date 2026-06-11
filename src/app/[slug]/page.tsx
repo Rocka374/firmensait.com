@@ -60,19 +60,26 @@ export default function IndustryPage({ params }: Props) {
       <SectionDivider />
 
       {/* 3. Showcase / Portfolio */}
-      <IndustryShowcase images={industry.portfolioImages} title={industry.title} />
+      <IndustryShowcase 
+        images={industry.portfolioImages} 
+        title={industry.title} 
+        subtitle={industry.showcaseSubtitle}
+      />
       
       <SectionDivider variant="gold" />
       
       {/* 4. Who is it for */}
-      <IndustryWhoFor industryTitle={industry.title} />
+      <IndustryWhoFor 
+        industryTitle={industry.title} 
+        data={industry.whoFor}
+      />
       
-      {/* 5. What's included (8 cards on cream) */}
-      <IndustryFeatures />
+      {/* 5. What's included */}
+      <IndustryFeatures data={industry.features} />
       
       <SectionDivider variant="gold" />
 
-      {/* 6. Specific Features (Split layout on white) */}
+      {/* 6. Specific Features */}
       {industry.specificFeatures && (
         <>
           <IndustrySpecificFeatures data={industry.specificFeatures} />
@@ -80,18 +87,18 @@ export default function IndustryPage({ params }: Props) {
         </>
       )}
 
-      {/* 7. Main SEO Text Section (Why it's important) */}
+      {/* 7. Main SEO Text Section */}
       <IndustryContent title={industry.title} sections={industry.sections} />
       
       <SectionDivider variant="gold" />
 
-      {/* 8. SEO Foundation (6 cards on cream) */}
-      <IndustrySEO />
+      {/* 8. SEO Foundation */}
+      <IndustrySEO data={industry.seoFoundation} />
       
       <SectionDivider variant="gold" />
 
       {/* 9. Process */}
-      <IndustryProcess />
+      <IndustryProcess data={industry.processSteps} />
       
       <SectionDivider />
       

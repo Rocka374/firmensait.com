@@ -18,13 +18,44 @@ export interface IndustryPageContent {
     alt: string;
   }[];
   intro: string;
+  showcaseSubtitle?: string;
+  whoFor?: {
+    title: string;
+    items: {
+      title: string;
+      text: string;
+      icon: any;
+    }[];
+  };
+  features?: {
+    title: string;
+    subtitle?: string;
+    items: {
+      title: string;
+      text: string;
+      icon: any;
+    }[];
+  };
+  seoFoundation?: {
+    title: string;
+    subtitle: string;
+    items: {
+      title: string;
+      text: string;
+      icon: any;
+    }[];
+  };
+  processSteps?: {
+    title: string;
+    items: {
+      title: string;
+      description: string;
+      icon: any;
+    }[];
+  };
   sections: {
     h2: string;
     paragraphs: string[];
-    h3Items?: {
-      h3: string;
-      text: string;
-    }[];
   }[];
   specificFeatures?: {
     title: string;
@@ -35,10 +66,6 @@ export interface IndustryPageContent {
       icon: string;
     }[];
   };
-  benefits: {
-    title: string;
-    text: string;
-  }[];
   faq: {
     q: string;
     a: string;

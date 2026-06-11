@@ -2,8 +2,20 @@ import SectionHeader from "../SectionHeader";
 import Card from "../Card";
 import { Users, Target, Rocket } from "lucide-react";
 
-export default function IndustryWhoFor({ industryTitle }: { industryTitle: string }) {
-  const items = [
+interface Props {
+  industryTitle: string;
+  data?: {
+    title: string;
+    items: {
+      title: string;
+      text: string;
+      icon: any;
+    }[];
+  };
+}
+
+export default function IndustryWhoFor({ industryTitle, data }: Props) {
+  const defaultItems = [
     { 
       title: "За малък бизнес", 
       text: "Идеално решение за фирми, които искат професионално присъствие на достъпна цена.",
@@ -21,11 +33,14 @@ export default function IndustryWhoFor({ industryTitle }: { industryTitle: strin
     }
   ];
 
+  const title = data?.title || `За кого е подходящ сайтът за ${industryTitle.replace("Сайт за ", "")}?`;
+  const items = data?.items || defaultItems;
+
   return (
     <section className="py-24 md:py-32 bg-white">
       <div className="container mx-auto px-4 max-w-7xl">
         <SectionHeader 
-          title={`За кого е подходящ сайтът за ${industryTitle.replace("Сайт за ", "")}?`}
+          title={title}
           className="mb-16"
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
