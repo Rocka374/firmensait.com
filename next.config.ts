@@ -11,7 +11,6 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: 'X-Frame-Options',
-            // Променяме DENY на SAMEORIGIN, за да позволим прегледа в средата на Dyad
             value: 'SAMEORIGIN',
           },
           {
@@ -24,8 +23,8 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            // Променяме frame-ancestors 'none' на 'self', за да работи прегледа
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: *; font-src 'self' data:; frame-ancestors 'self';",
+            // Добавяме challenges.cloudflare.com към script-src и frame-src, за да работи Turnstile
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com; frame-src 'self' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: *; font-src 'self' data:; frame-ancestors 'self';",
           },
         ],
       },
