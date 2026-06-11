@@ -187,7 +187,7 @@ export default function Header() {
       {/* Fullscreen Mobile Drawer */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-[200] bg-[#FAF8F4] md:hidden flex flex-col overflow-y-auto overscroll-contain">
-          {/* Internal Sticky Bar with Close Button */}
+          {/* Internal Sticky Bar with Close Button - Aligned with main header container (px-4, h-72) */}
           <div className="sticky top-0 z-[210] h-[72px] flex items-center justify-between px-4 bg-[#FAF8F4]/95 backdrop-blur-md border-b border-border/30">
             <Link href="/" className="flex items-center" onClick={closeAll}>
               <span className="text-xl font-bold text-foreground tracking-tighter flex items-baseline">
@@ -200,19 +200,13 @@ export default function Header() {
               type="button"
               onClick={closeAll}
               aria-label="Затвори меню"
-              className="w-12 h-12 rounded-2xl bg-white border border-border/40 shadow-sm flex items-center justify-center text-foreground"
+              className="w-12 h-12 rounded-2xl bg-white border border-border/40 shadow-sm flex items-center justify-center text-foreground shrink-0"
             >
               <X size={24} />
             </button>
           </div>
 
-          <div className="flex-1 px-5 py-8 space-y-6">
-            <div className="mb-10 px-1">
-               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-3 block">Меню</span>
-               <h2 className="text-3xl font-bold tracking-tighter">Добре дошли</h2>
-               <p className="text-secondary/60 text-sm mt-2 font-medium">Изберете страница или разгледайте портфолиото ни.</p>
-            </div>
-
+          <div className="flex-1 px-5 pt-6 pb-10 space-y-4">
             <div className="grid grid-cols-1 gap-4">
               <Link 
                 href="/" 
@@ -244,7 +238,7 @@ export default function Header() {
             </div>
             
             {/* Industry Accordion Section */}
-            <div className="pt-4">
+            <div className="pt-2">
               <button 
                 className={cn(
                   "w-full flex items-center justify-between p-5 rounded-3xl border transition-all duration-300",
