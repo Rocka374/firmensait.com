@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { IndustryPageContent } from "@/content/industries/types";
 import Button from "@/components/Button";
-import { Tag, Smartphone, Search, CloudOff, CheckCircle2 } from "lucide-react";
+import { Tag, Smartphone, Search, CloudOff } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function IndustryHero({ data }: { data: IndustryPageContent }) {
@@ -15,9 +15,9 @@ export default function IndustryHero({ data }: { data: IndustryPageContent }) {
   ];
 
   return (
-    <section className="relative pt-32 pb-24 md:pt-48 md:pb-36 overflow-hidden bg-gradient-to-b from-[#FAF8F4] via-white to-white">
-      {/* Subtle radial glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/[0.03] rounded-full blur-[120px] pointer-events-none" />
+    <section className="relative pt-32 pb-24 md:pt-48 md:pb-36 overflow-hidden bg-white">
+      {/* Extremely subtle radial glow for depth, but staying within white theme */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/[0.02] rounded-full blur-[120px] pointer-events-none" />
       
       <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
@@ -67,7 +67,7 @@ export default function IndustryHero({ data }: { data: IndustryPageContent }) {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative z-10 w-full aspect-[16/11] bg-white rounded-[2.5rem] p-4 md:p-6 shadow-[0_30px_90px_rgba(0,0,0,0.06)] border border-border/30"
+              className="relative z-10 w-full aspect-[16/11] bg-white rounded-[2.5rem] p-4 md:p-6 shadow-[0_20px_60px_rgba(0,0,0,0.04)] border border-border/20"
             >
               <div className="relative w-full h-full rounded-[1.5rem] overflow-hidden">
                 <Image
@@ -79,9 +79,6 @@ export default function IndustryHero({ data }: { data: IndustryPageContent }) {
                   sizes="(max-width: 1024px) 100vw, 40vw"
                 />
               </div>
-              
-              {/* Subtle glow effect around the card */}
-              <div className="absolute inset-0 bg-primary/[0.04] blur-[60px] rounded-[2.5rem] -z-10 scale-110" />
             </motion.div>
           </div>
         </div>
