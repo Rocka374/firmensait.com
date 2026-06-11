@@ -70,14 +70,14 @@ export default function SEOSection() {
                   </div>
                </div>
                
-               {/* Floating Badge */}
+               {/* Floating Badge - Updated Labels */}
                <div className="absolute bottom-10 right-[-20px] md:right-10 bg-white shadow-2xl rounded-2xl p-6 border border-primary/10 flex items-center gap-5 scale-90 md:scale-100">
                   <div className="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white">
                     <Icons.Zap size={28} />
                   </div>
                   <div>
-                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-secondary/40 mb-1">Performance</div>
-                    <div className="text-2xl font-bold text-foreground">Score 100/100</div>
+                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-secondary/40 mb-1">SEO Основи</div>
+                    <div className="text-2xl font-bold text-foreground">Оптимизирана структура</div>
                   </div>
                </div>
             </div>

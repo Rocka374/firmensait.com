@@ -33,11 +33,11 @@ export default function ProcessSection() {
                   </div>
 
                   {/* Step Text */}
-                  <div className="space-y-3 px-4">
-                    <h3 className="font-black text-[11px] md:text-xs uppercase tracking-[0.25em] text-foreground/80 leading-snug min-h-[3em] flex items-center justify-center">
+                  <div className="space-y-4 px-4">
+                    <h3 className="font-black text-[11px] md:text-xs uppercase tracking-[0.2em] text-foreground/80 leading-snug min-h-[3em] flex items-center justify-center">
                       {step.title}
                     </h3>
-                    <p className="text-secondary/60 text-xs md:text-[13px] leading-relaxed font-medium">
+                    <p className="text-secondary/70 text-sm md:text-base leading-relaxed font-medium">
                       {step.description}
                     </p>
                   </div>

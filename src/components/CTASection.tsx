@@ -19,17 +19,23 @@ export default function CTASection() {
       <div className="container mx-auto px-4 max-w-4xl relative z-10">
         <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-[1.1] tracking-tight">{cta.title}</h2>
         <p className="text-lg md:text-2xl opacity-80 mb-12 max-w-2xl mx-auto leading-relaxed font-medium">{cta.description}</p>
-        <div className="relative inline-block group">
-          {/* Button Glow Effect */}
-          <div className="absolute inset-0 bg-white/20 blur-2xl rounded-full scale-110 opacity-0 group-hover:opacity-100 transition-opacity" />
-          <Button 
-            variant="secondary" 
-            size="xl" 
-            href={`mailto:${siteConfig.links.email}`} 
-            className="bg-white text-primary hover:bg-white shadow-2xl py-8 px-14 text-xl font-black relative z-10"
-          >
-            {cta.button}
-          </Button>
+        
+        <div className="flex flex-col items-center gap-6">
+          <div className="relative inline-block group">
+            {/* Enhanced Button Glow Effect */}
+            <div className="absolute inset-0 bg-white/40 blur-3xl rounded-full scale-125 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <Button 
+              variant="secondary" 
+              size="xl" 
+              href={`mailto:${siteConfig.links.email}`} 
+              className="bg-white text-primary hover:bg-white shadow-[0_20px_50px_rgba(255,255,255,0.2)] py-8 px-16 text-xl font-black relative z-10"
+            >
+              {cta.button}
+            </Button>
+          </div>
+          <span className="text-sm font-bold text-white/50 uppercase tracking-widest">
+            Запитването не ви обвързва
+          </span>
         </div>
       </div>
     </section>
