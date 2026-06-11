@@ -1,8 +1,9 @@
+"use client";
+
 import { notFound } from "next/navigation";
 import { industries, industriesBySlug } from "@/content/industries";
 import IndustryHero from "@/components/industry/IndustryHero";
 import IndustryShowcase from "@/components/industry/IndustryShowcase";
-import IndustryContent from "@/components/industry/IndustryContent";
 import IndustryFAQ from "@/components/industry/IndustryFAQ";
 import IndustryWhoFor from "@/components/industry/IndustryWhoFor";
 import IndustryFeatures from "@/components/industry/IndustryFeatures";
@@ -14,31 +15,6 @@ import SectionDivider from "@/components/SectionDivider";
 
 interface Props {
   params: { slug: string };
-}
-
-export async function generateStaticParams() {
-  return industries.map((industry) => ({
-    slug: industry.slug,
-  }));
-}
-
-export async function generateMetadata({ params }: Props) {
-  const industry = industriesBySlug[params.slug];
-  if (!industry) return {};
-
-  return {
-    title: industry.metaTitle,
-    description: industry.metaDescription,
-    alternates: {
-      canonical: `/${industry.slug}`,
-    },
-    openGraph: {
-      title: industry.metaTitle,
-      description: industry.metaDescription,
-      url: `/${industry.slug}`,
-      images: [{ url: industry.heroImage.src }],
-    },
-  };
 }
 
 export default function IndustryPage({ params }: Props) {
@@ -83,25 +59,20 @@ export default function IndustryPage({ params }: Props) {
         </>
       )}
 
-      {/* 7. Main Content Section (Storytelling/SEO) */}
-      <IndustryContent sections={industry.sections} benefits={industry.benefits} />
-      
-      <SectionDivider />
-
-      {/* 8. SEO Section */}
+      {/* 7. SEO Section */}
       <IndustrySEO />
       
       <SectionDivider variant="gold" />
 
-      {/* 9. Process */}
+      {/* 8. Process */}
       <IndustryProcess />
       
       <SectionDivider />
       
-      {/* 10. FAQ */}
+      {/* 9. FAQ */}
       <IndustryFAQ items={industry.faq} />
       
-      {/* 11. Final CTA */}
+      {/* 10. Final CTA */}
       <IndustryFinalCTA />
     </main>
   );
