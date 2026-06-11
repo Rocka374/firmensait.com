@@ -25,12 +25,12 @@ export default function Header() {
     )}>
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link href="/" className="flex items-center group">
-          <div className="relative h-10 w-auto md:h-12 flex items-center justify-center">
+          <div className="relative h-7 md:h-9 w-auto flex items-center justify-center">
             <Image 
               src="/logo firmensait.webp" 
               alt={siteConfig.name}
-              width={160}
-              height={48}
+              width={140}
+              height={40}
               className="h-full w-auto object-contain"
               priority
               onError={(e) => {
