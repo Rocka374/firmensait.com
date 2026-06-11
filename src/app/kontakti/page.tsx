@@ -109,11 +109,12 @@ export default function ContactPage() {
                    />
                 </div>
                 
-                {/* Turnstile Widget */}
+                {/* Turnstile Widget with Light Theme */}
                 <div className="flex justify-center py-2">
                   <Turnstile 
                     siteKey="0x4AAAAAADitFwbuldyaA82G" 
                     onSuccess={handleTurnstileSuccess}
+                    options={{ theme: 'light' }}
                   />
                 </div>
                 
