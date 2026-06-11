@@ -6,7 +6,7 @@ import Card from "./Card";
 export default function SEOSection() {
   const { seo } = homeContent;
   return (
-    <section className="py-32 md:py-48 bg-white relative overflow-hidden">
+    <section className="py-32 md:py-48 bg-white relative overflow-hidden max-w-full">
       {/* Background Accent */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/[0.02] rounded-full blur-[120px] translate-x-1/2 -translate-y-1/4" />
 
@@ -36,7 +36,7 @@ export default function SEOSection() {
             </div>
           </div>
 
-          <div className="flex-1 w-full relative">
+          <div className="flex-1 w-full relative overflow-hidden lg:overflow-visible">
             {/* Visual Search Preview Mockup */}
             <div className="relative bg-white border border-border/40 rounded-3xl shadow-[0_40px_100px_rgba(0,0,0,0.05)] overflow-hidden">
                <div className="h-10 bg-secondary-light/30 border-b border-border/30 flex items-center px-6 gap-2">
@@ -70,14 +70,14 @@ export default function SEOSection() {
                   </div>
                </div>
                
-               {/* Floating Badge - Updated Labels */}
-               <div className="absolute bottom-10 right-[-20px] md:right-10 bg-white shadow-2xl rounded-2xl p-6 border border-primary/10 flex items-center gap-5 scale-90 md:scale-100">
-                  <div className="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white">
+               {/* Floating Badge - Corrected position for mobile */}
+               <div className="absolute bottom-6 right-2 left-2 md:left-auto md:bottom-10 md:right-10 bg-white shadow-2xl rounded-2xl p-6 border border-primary/10 flex items-center gap-5 scale-90 md:scale-100">
+                  <div className="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white shrink-0">
                     <Icons.Zap size={28} />
                   </div>
                   <div>
                     <div className="text-[10px] font-black uppercase tracking-[0.2em] text-secondary/40 mb-1">SEO Основи</div>
-                    <div className="text-2xl font-bold text-foreground">Оптимизирана структура</div>
+                    <div className="text-xl font-bold text-foreground">Оптимизирана структура</div>
                   </div>
                </div>
             </div>

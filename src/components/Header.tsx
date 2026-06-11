@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
-import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowRight, Home, Mail, ExternalLink } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { industries } from '@/content/industries';
@@ -15,7 +15,6 @@ export default function Header() {
   const megaMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // По-стабилна детекция на скрол
     const handleScroll = () => {
       const isScrolled = window.scrollY > 10;
       if (isScrolled !== scrolled) {
@@ -32,7 +31,6 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     document.addEventListener('mousedown', handleClickOutside);
     
-    // Първоначална проверка
     handleScroll();
 
     return () => {
@@ -41,37 +39,41 @@ export default function Header() {
     };
   }, [scrolled]);
 
+  // Body scroll lock
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
   const closeAll = () => {
     setIsMegaMenuOpen(false);
     setIsMobileMenuOpen(false);
     setIsMobilePortfolioOpen(false);
-    document.body.style.overflow = 'unset';
   };
 
   const toggleMobileMenu = () => {
-    const newState = !isMobileMenuOpen;
-    setIsMobileMenuOpen(newState);
-    if (newState) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
     <>
       <header className={cn(
-        "fixed top-0 left-0 right-0 w-full transition-all duration-300 ease-in-out",
-        // На мобилни винаги искаме малко повече видимост, ако менюто е отворено
+        "fixed top-0 left-0 right-0 w-full transition-all duration-300 ease-in-out h-[72px] md:h-auto",
         scrolled || isMegaMenuOpen || isMobileMenuOpen
-          ? "bg-white/95 backdrop-blur-xl shadow-md py-3 z-[150]" 
-          : "bg-transparent py-6 z-[150]"
+          ? "bg-white/95 backdrop-blur-xl shadow-md z-[150]" 
+          : "bg-transparent z-[150] py-4"
       )}>
-        <div className="container mx-auto px-4 flex items-center justify-between">
+        <div className="container mx-auto px-4 h-full flex items-center justify-between">
           <Link href="/" className="flex items-center group relative z-[160]" onClick={closeAll}>
-            <span className="text-2xl md:text-3xl font-bold text-foreground tracking-tighter flex items-baseline">
+            <span className="text-xl md:text-3xl font-bold text-foreground tracking-tighter flex items-baseline">
               Firmensait
-              <span className="text-primary ml-0.5 text-xl md:text-2xl font-black opacity-80">.com</span>
+              <span className="text-primary ml-0.5 text-lg md:text-2xl font-black opacity-80">.com</span>
             </span>
           </Link>
 
@@ -176,9 +178,9 @@ export default function Header() {
             </Link>
           </nav>
 
-          {/* Mobile Menu Toggle Button */}
+          {/* Mobile Menu Toggle Button - Always Visible and Layered High */}
           <button 
-            className="md:hidden relative z-[160] text-foreground p-3 bg-white/50 backdrop-blur-md rounded-xl border border-border/20 shadow-sm" 
+            className="md:hidden relative z-[160] text-foreground w-12 h-12 flex items-center justify-center bg-white border border-border/40 rounded-2xl shadow-sm" 
             onClick={toggleMobileMenu}
             aria-label="Toggle Menu"
           >
@@ -186,7 +188,7 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Backdrop for Mega Menu */}
+        {/* Backdrop for Mega Menu (Desktop) */}
         <div 
           className={cn(
             "fixed inset-0 bg-background/45 backdrop-blur-[3px] z-[40] transition-opacity duration-300 pointer-events-none opacity-0",
@@ -195,69 +197,99 @@ export default function Header() {
           onClick={() => setIsMegaMenuOpen(false)}
         />
 
-        {/* Mobile Menu Overlay */}
+        {/* Mobile Menu Overlay - Premium Fixed Drawer */}
         <div className={cn(
-          "fixed inset-0 bg-white z-[155] md:hidden flex flex-col transition-transform duration-500 ease-in-out pt-28 overflow-y-auto",
-          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          "fixed inset-0 bg-[#FAF8F4] z-[155] md:hidden flex flex-col transition-all duration-500 ease-in-out pt-[72px]",
+          isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
         )}>
-          <div className="p-6 space-y-4">
-            <Link 
-              href="/" 
-              className="text-2xl font-bold border-b border-border/40 pb-4 block px-2" 
-              onClick={closeAll}
-            >
-              Начало
-            </Link>
-            
+          <div className="flex-1 overflow-y-auto overscroll-contain px-5 py-6">
+            <div className="mb-10 px-2">
+               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-3 block">Меню</span>
+               <h2 className="text-3xl font-bold tracking-tighter">Добре дошли</h2>
+               <p className="text-secondary/60 text-sm mt-2 font-medium">Изберете страница или разгледайте портфолиото ни.</p>
+            </div>
+
             <div className="space-y-4">
-              <button 
-                className="w-full flex items-center justify-between text-2xl font-bold border-b border-border/40 pb-4 px-2 text-left"
-                onClick={() => setIsMobilePortfolioOpen(!isMobilePortfolioOpen)}
+              <Link 
+                href="/" 
+                className="flex items-center gap-5 p-5 bg-white border border-border/40 rounded-3xl shadow-sm active:scale-[0.98] transition-all" 
+                onClick={closeAll}
               >
-                Портфолио
-                <ChevronDown size={24} className={cn("transition-transform duration-300", isMobilePortfolioOpen && "rotate-180")} />
-              </button>
+                <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+                  <Home size={22} />
+                </div>
+                <span className="text-xl font-bold">Начало</span>
+              </Link>
+
+              <Link 
+                href="/kontakti" 
+                className="flex items-center gap-5 p-5 bg-white border border-border/40 rounded-3xl shadow-sm active:scale-[0.98] transition-all" 
+                onClick={closeAll}
+              >
+                <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+                  <Mail size={22} />
+                </div>
+                <span className="text-xl font-bold">Контакти</span>
+              </Link>
               
-              <div className={cn(
-                "grid grid-cols-1 gap-3 overflow-hidden transition-all duration-300",
-                isMobilePortfolioOpen ? "max-h-[2000px] opacity-100 mb-8 mt-4" : "max-h-0 opacity-0"
-              )}>
-                {industries.map((item) => {
-                  if (!item?.href) return null;
-                  const Icon = (Icons as any)[item.icon] || Icons.Check;
-                  return (
-                    <Link 
-                      key={item.slug} 
-                      href={item.href}
-                      className="flex items-center gap-4 p-4 bg-[#FAF8F4] rounded-2xl border border-border/30 active:bg-primary/10 transition-all"
-                      onClick={closeAll}
-                    >
-                      <div className="w-10 h-10 rounded-xl bg-white border border-primary/10 flex items-center justify-center text-primary shrink-0 shadow-sm">
-                        <Icon size={20} strokeWidth={2.5} />
-                      </div>
-                      <span className="font-bold text-foreground/80">{item.menuLabel}</span>
-                    </Link>
-                  );
-                })}
+              {/* Portfolio Accordion */}
+              <div className="pt-4">
+                <button 
+                  className={cn(
+                    "w-full flex items-center justify-between p-5 rounded-3xl border transition-all",
+                    isMobilePortfolioOpen 
+                      ? "bg-primary text-white border-primary shadow-lg" 
+                      : "bg-white text-foreground border-border/40"
+                  )}
+                  onClick={() => setIsMobilePortfolioOpen(!isMobilePortfolioOpen)}
+                >
+                  <div className="flex flex-col items-start text-left">
+                    <span className="text-xl font-bold">Портфолио по браншове</span>
+                    <span className={cn("text-[10px] uppercase font-black tracking-widest mt-0.5 opacity-60", isMobilePortfolioOpen ? "text-white" : "text-primary")}>
+                      20 примерни уеб визии
+                    </span>
+                  </div>
+                  <ChevronDown size={24} className={cn("transition-transform duration-300", isMobilePortfolioOpen && "rotate-180")} />
+                </button>
+                
+                <div className={cn(
+                  "grid grid-cols-1 gap-2.5 overflow-hidden transition-all duration-500",
+                  isMobilePortfolioOpen ? "max-h-[2500px] opacity-100 mt-4 mb-8" : "max-h-0 opacity-0"
+                )}>
+                  {industries.map((item) => {
+                    if (!item?.href) return null;
+                    const Icon = (Icons as any)[item.icon] || Icons.Check;
+                    return (
+                      <Link 
+                        key={item.slug} 
+                        href={item.href}
+                        className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-border/30 active:bg-primary/5 transition-all"
+                        onClick={closeAll}
+                      >
+                        <div className="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center text-primary shrink-0">
+                          <Icon size={18} strokeWidth={2.5} />
+                        </div>
+                        <span className="font-bold text-sm text-foreground/80 leading-tight">{item.title}</span>
+                      </Link>
+                    );
+                  })}
+                </div>
               </div>
             </div>
 
-            <Link 
-              href="/kontakti" 
-              className="text-2xl font-bold border-b border-border/40 pb-4 block px-2" 
-              onClick={closeAll}
-            >
-              Контакти
-            </Link>
-            
-            <div className="pt-8 px-2 pb-10">
-              <Link 
-                href="/kontakti"
-                className="bg-primary text-white text-center font-bold py-5 rounded-full text-xl block shadow-xl shadow-primary/20 active:scale-95 transition-transform"
-                onClick={closeAll}
-              >
-                Искам сайт
-              </Link>
+            {/* CTA Card in Drawer */}
+            <div className="mt-12 bg-primary p-10 rounded-[2.5rem] text-white relative overflow-hidden">
+               <div className="absolute top-[-20%] right-[-10%] w-32 h-32 bg-white/10 rounded-full blur-[40px]" />
+               <h3 className="text-2xl font-bold mb-4 relative z-10">Готови ли сте за нов сайт?</h3>
+               <p className="opacity-70 text-sm mb-8 leading-relaxed relative z-10">Изпратете ни запитване и ще обсъдим вашия проект.</p>
+               <Link 
+                 href="/kontakti" 
+                 onClick={closeAll}
+                 className="w-full bg-white text-primary font-black py-4 rounded-2xl flex items-center justify-center gap-2 shadow-xl"
+               >
+                 Искам сайт
+                 <ArrowRight size={18} />
+               </Link>
             </div>
           </div>
         </div>

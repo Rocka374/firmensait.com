@@ -9,17 +9,12 @@ import { cn } from "@/lib/utils";
 import Button from "./Button";
 import { motion, AnimatePresence } from "framer-motion";
 
-/**
- * Initial viewport intentionally renders only 3 portfolio images: previous, active and next. 
- * The remaining projects are not rendered as images until they become adjacent.
- */
 export default function PortfolioPreview() {
   const { portfolio } = homeContent;
   const [currentIndex, setCurrentIndex] = useState(0);
   
-  // Refs for scroll logic
   const scrollRef = useRef<HTMLDivElement>(null);
-  const scrollDirection = useRef(1); // 1 for down, -1 for up
+  const scrollDirection = useRef(1);
   const isHovered = useRef(false);
   const userPaused = useRef(false);
   const isProgrammaticScroll = useRef(false);
@@ -93,13 +88,12 @@ export default function PortfolioPreview() {
     return (currentIndex + offset + portfolio.projects.length) % portfolio.projects.length;
   };
 
-  // Data for the 3 visible projects
   const activeProject = portfolio.projects[currentIndex];
   const prevProjectData = portfolio.projects[getProjectIndex(-1)];
   const nextProjectData = portfolio.projects[getProjectIndex(1)];
 
   return (
-    <section id="portfolio" className="py-12 md:py-40 bg-white overflow-hidden">
+    <section id="portfolio" className="py-12 md:py-40 bg-white overflow-hidden max-w-full">
       <div className="container mx-auto px-4 mb-8 md:mb-16">
         <SectionHeader 
           title={portfolio.title} 
@@ -109,7 +103,7 @@ export default function PortfolioPreview() {
       </div>
 
       <div className="relative w-full max-w-[1600px] mx-auto px-4">
-        {/* Carousel Scene */}
+        {/* Carousel Scene - Restricted with overflow-hidden on container */}
         <div className="perspective-1000 relative h-[280px] sm:h-[400px] md:h-[680px] flex items-center justify-center">
           
           {/* Previous Card (Left) */}
@@ -177,7 +171,7 @@ export default function PortfolioPreview() {
                   </div>
                 </div>
 
-                <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-4 hidden md:flex justify-between pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 hidden md:flex justify-between pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <button 
                     onClick={(e) => { e.stopPropagation(); prevProject(); }}
                     className="w-12 h-12 rounded-full bg-white/90 backdrop-blur-md shadow-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all pointer-events-auto active:scale-90"
@@ -229,7 +223,7 @@ export default function PortfolioPreview() {
                 <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-black uppercase tracking-[0.15em]">
                   {activeProject.category}
                 </span>
-                <h3 className="text-2xl md:text-6xl font-bold tracking-tight text-foreground">
+                <h3 className="text-2xl md:text-5xl font-bold tracking-tight text-foreground">
                   {activeProject.title}
                 </h3>
                 <p className="text-sm md:text-xl text-secondary/70 font-medium leading-relaxed max-w-lg mx-auto">
@@ -237,7 +231,7 @@ export default function PortfolioPreview() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row items-center gap-6 mt-2">
+              <div className="flex flex-col sm:flex-row items-center gap-6 mt-2 w-full max-w-xs sm:max-w-none">
                 <Button size="lg" className="w-full sm:min-w-[200px] py-4" href="#kontakti">
                   Изпрати запитване
                   <ExternalLink className="ml-2 w-4 h-4" />
