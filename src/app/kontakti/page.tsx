@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import SectionHeader from "@/components/SectionHeader";
 import { siteConfig } from "@/content/site";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, MapPin, Send } from "lucide-react";
 import Button from "@/components/Button";
 import EmailLink from "@/components/EmailLink";
 import { Turnstile } from "@marsidev/react-turnstile";
@@ -37,18 +37,6 @@ export default function ContactPage() {
                     <div className="text-xl font-bold">
                       <EmailLink email={siteConfig.links.email} />
                     </div>
-                  </div>
-               </div>
-
-               <div className="flex items-start gap-5">
-                  <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center text-white shrink-0">
-                    <Phone size={22} />
-                  </div>
-                  <div>
-                    <span className="block text-[10px] font-black uppercase tracking-widest text-secondary/40 mb-1">Телефон</span>
-                    <a href={`tel:${siteConfig.links.phone}`} className="text-xl font-bold hover:text-primary transition-colors">
-                      {siteConfig.links.phone}
-                    </a>
                   </div>
                </div>
 
