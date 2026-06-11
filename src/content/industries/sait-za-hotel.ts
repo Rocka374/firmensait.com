@@ -10,14 +10,14 @@ export const saitZaHotel: IndustryPageContent = {
   metaDescription: "Професионален сайт за хотел или комплекс.",
   h1: "Сайт за хотел",
   subtitle: "Привлечете повече гости с красиво представяне на вашата база.",
-  heroImage: { src: "/images/portfolio/pine peak готов сайт за хотел.webp", alt: "Hero хотел" },
+  heroImage: { src: "/images/portfolio/сайт за хотел.webp", alt: "Hero хотел" },
   portfolioImages: [
-    { src: "/images/portfolio/сайт за хотел.webp", alt: "Начална страница хотел" },
-    { src: "/images/portfolio/grand lumen готов сайт за хотел.webp", alt: "Стаи хотел" },
-    { src: "/images/portfolio/aurelia coast готов сайт за хотел.webp", alt: "Мобилна версия хотел" }
+    { src: "/images/portfolio/pine peak готов сайт за хотел.webp", alt: "Проект Pine Peak" },
+    { src: "/images/portfolio/grand lumen готов сайт за хотел.webp", alt: "Проект Grand Lumen" },
+    { src: "/images/portfolio/aurelia coast готов сайт за хотел.webp", alt: "Проект Aurelia Coast" }
   ],
   intro: "Placeholder текст.",
-  sections: [{ h2: "Настаняване", paragraphs: ["Placeholder текст."] }],
+  sections: [{ h2: "Настаняване", paragraphs: ["Placeholder."] }],
   benefits: [{ title: "Резервации", text: "Лесен контакт." }],
   faq: [{ q: "Има ли карта?", a: "Да." }],
   relatedIndustries: ["sait-za-restorant", "sait-za-kashta-za-gosti"]

@@ -7,14 +7,14 @@ export const saitZaFrizyorskiSalon: IndustryPageContent = {
   icon: "Scissors",
   shortDescription: "Професионална визия за вашето фризьорско студио.",
   metaTitle: "Изработка на сайт за фризьорски салон | Firmensait.com",
-  metaDescription: "Професионален сайт за фризьор или бръснарница.",
+  metaDescription: "Професионален сайт за фризьор.",
   h1: "Сайт за фризьорски салон",
   subtitle: "Вашият стил заслужава подобаващо онлайн представяне.",
-  heroImage: { src: "/images/portfolio/studio 7 готов сайт за фризьорски салон.webp", alt: "Hero фризьор" },
+  heroImage: { src: "/images/portfolio/сайт за фризьорски салон.webp", alt: "Hero фризьор" },
   portfolioImages: [
-    { src: "/images/portfolio/сайт за фризьорски салон.webp", alt: "Начална фризьор" },
-    { src: "/images/portfolio/salon mira готов сайт за фризьорски салон.webp", alt: "Галерия фризьор" },
-    { src: "/images/portfolio/bella casa hair готов сайт за фризьорски салон.webp", alt: "Мобилна фризьор" }
+    { src: "/images/portfolio/studio 7 готов сайт за фризьорски салон.webp", alt: "Проект Studio 7" },
+    { src: "/images/portfolio/salon mira готов сайт за фризьорски салон.webp", alt: "Проект Salon Mira" },
+    { src: "/images/portfolio/bella casa hair готов сайт за фризьорски салон.webp", alt: "Проект Bella Casa Hair" }
   ],
   intro: "Placeholder текст.",
   sections: [{ h2: "Услуги", paragraphs: ["Placeholder."] }],

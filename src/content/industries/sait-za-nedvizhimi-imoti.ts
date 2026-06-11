@@ -10,15 +10,15 @@ export const saitZaNedvizhimiImoti: IndustryPageContent = {
   metaDescription: "Професионален сайт за агенция за недвижими имоти.",
   h1: "Сайт за недвижими имоти",
   subtitle: "Продавайте и отдавайте имоти по-бързо с модерна уеб платформа.",
-  heroImage: { src: "/images/portfolio/urban key готов сайт за недвижими имоти.webp", alt: "Hero имоти" },
+  heroImage: { src: "/images/portfolio/сайт за агенция за недвижими имоти.webp", alt: "Hero имоти" },
   portfolioImages: [
-    { src: "/images/portfolio/сайт за агенция за недвижими имоти.webp", alt: "Начална страница имоти" },
-    { src: "/images/portfolio/doma home готов сайт за недвижими имоти.webp", alt: "Обяви имоти" },
-    { src: "/images/portfolio/auera готов сайт за недвижими имоти.webp", alt: "Мобилна версия имоти" }
+    { src: "/images/portfolio/urban key готов сайт за недвижими имоти.webp", alt: "Проект Urban Key" },
+    { src: "/images/portfolio/doma home готов сайт за недвижими имоти.webp", alt: "Проект Doma Home" },
+    { src: "/images/portfolio/auera готов сайт за недвижими имоти.webp", alt: "Проект Auera" }
   ],
   intro: "Placeholder текст.",
-  sections: [{ h2: "Обяви", paragraphs: ["Placeholder текст."] }],
+  sections: [{ h2: "Обяви", paragraphs: ["Placeholder."] }],
   benefits: [{ title: "Скорост", text: "Бързо зареждане." }],
-  faq: [{ q: "Има ли филтър?", a: "В този пакет не е включен сложен филтър." }],
+  faq: [{ q: "Има ли филтър?", a: "Не." }],
   relatedIndustries: ["sait-za-stroitelna-firma"]
 };

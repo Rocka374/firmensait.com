@@ -10,15 +10,15 @@ export const saitZaKashtaZaGosti: IndustryPageContent = {
   metaDescription: "Професионален сайт за къща за гости или вила.",
   h1: "Сайт за къща за гости",
   subtitle: "Покажете гостоприемството си с красив многостраничен сайт.",
-  heroImage: { src: "/images/portfolio/pine nest готов сайт за къща за гости.webp", alt: "Hero къща" },
+  heroImage: { src: "/images/portfolio/сайт за къща за гости.webp", alt: "Hero къща" },
   portfolioImages: [
-    { src: "/images/portfolio/сайт за къща за гости.webp", alt: "Начална къща" },
-    { src: "/images/portfolio/casa laguna готов сайт за къща за гости.webp", alt: "Галерия къща" },
-    { src: "/images/portfolio/bela dvor готов сайт за къща за гости.webp", alt: "Мобилна къща" }
+    { src: "/images/portfolio/pine nest готов сайт за къща за гости.webp", alt: "Проект Pine Nest" },
+    { src: "/images/portfolio/casa laguna готов сайт за къща за гости.webp", alt: "Проект Casa Laguna" },
+    { src: "/images/portfolio/bela dvor готов сайт за къща за гости.webp", alt: "Проект Bela Dvor" }
   ],
   intro: "Placeholder текст.",
   sections: [{ h2: "Удобства", paragraphs: ["Placeholder."] }],
-  benefits: [{ title: "Видимост", text: "Лесно намиране в Google." }],
-  faq: [{ q: "Има ли форма за контакт?", a: "Да." }],
+  benefits: [{ title: "Видимост", text: "Лесно намиране." }],
+  faq: [{ q: "Има ли форма?", a: "Да." }],
   relatedIndustries: ["sait-za-hotel"]
 };

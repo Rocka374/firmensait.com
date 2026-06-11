@@ -10,14 +10,14 @@ export const saitZaAdvokat: IndustryPageContent = {
   metaDescription: "Професионален сайт за адвокат или правна кантора.",
   h1: "Сайт за адвокат",
   subtitle: "Изградете доверие и авторитет с професионален юридически сайт.",
-  heroImage: { src: "/images/portfolio/иванова легал готов сайт за адвокат.webp", alt: "Hero адвокат" },
+  heroImage: { src: "/images/portfolio/сайт за адвокат.webp", alt: "Hero адвокат" },
   portfolioImages: [
-    { src: "/images/portfolio/сайт за адвокат.webp", alt: "Начална страница адвокат" },
-    { src: "/images/portfolio/lexon partners готов сайт за адвокат.webp", alt: "Услуги адвокат" },
-    { src: "/images/portfolio/atelier juris готов сайт за адвокат.webp", alt: "Мобилна версия адвокат" }
+    { src: "/images/portfolio/иванова легал готов сайт за адвокат.webp", alt: "Проект Иванова Легал" },
+    { src: "/images/portfolio/lexon partners готов сайт за адвокат.webp", alt: "Проект Lexon Partners" },
+    { src: "/images/portfolio/atelier juris готов сайт за адвокат.webp", alt: "Проект Atelier Juris" }
   ],
-  intro: "Placeholder текст. Пълният SEO текст ще бъде добавен по-късно.",
-  sections: [{ h2: "Експертиза", paragraphs: ["Placeholder текст за правни услуги."] }],
+  intro: "Placeholder текст.",
+  sections: [{ h2: "Експертиза", paragraphs: ["Placeholder."] }],
   benefits: [{ title: "Авторитет", text: "Професионално представяне." }],
   faq: [{ q: "Сигурен ли е сайтът?", a: "Да." }],
   relatedIndustries: ["sait-za-schetovodna-kashta"]
