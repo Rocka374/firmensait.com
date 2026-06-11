@@ -41,7 +41,7 @@ export default function IndustryHero({ data }: { data: IndustryPageContent }) {
                   Искам сайт
                 </Button>
                 <Button variant="outline" size="lg" href="#primerna-vizia" className="px-12 py-5 min-w-[200px]">
-                  Виж примерна визия
+                  Виж проекти
                 </Button>
               </div>
 
