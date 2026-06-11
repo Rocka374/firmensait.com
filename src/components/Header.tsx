@@ -6,7 +6,6 @@ import { siteConfig } from '@/content/site';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import Image from 'next/image';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,21 +24,10 @@ export default function Header() {
     )}>
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link href="/" className="flex items-center group">
-          <div className="relative h-7 md:h-9 w-auto flex items-center justify-center">
-            <Image 
-              src="/logo firmensait.webp" 
-              alt={siteConfig.name}
-              width={140}
-              height={40}
-              className="h-full w-auto object-contain"
-              priority
-              onError={(e) => {
-                (e.target as any).style.display = 'none';
-              }}
-            />
-            {/* Hidden text for SEO purposes only */}
-            <span className="sr-only">{siteConfig.name}</span>
-          </div>
+          <span className="text-2xl md:text-3xl font-bold text-foreground tracking-tight flex items-baseline">
+            Firmensait
+            <span className="text-primary text-base md:text-xl ml-0.5">.com</span>
+          </span>
         </Link>
 
         <nav className="hidden md:flex items-center space-x-8">
