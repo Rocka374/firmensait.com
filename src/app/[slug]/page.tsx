@@ -4,10 +4,8 @@ import IndustryHero from "@/components/industry/IndustryHero";
 import IndustryShowcase from "@/components/industry/IndustryShowcase";
 import IndustryContent from "@/components/industry/IndustryContent";
 import IndustryFAQ from "@/components/industry/IndustryFAQ";
-import RelatedIndustries from "@/components/industry/RelatedIndustries";
 import IndustryWhoFor from "@/components/industry/IndustryWhoFor";
 import IndustryFeatures from "@/components/industry/IndustryFeatures";
-import IndustryStructure from "@/components/industry/IndustryStructure";
 import IndustrySEO from "@/components/industry/IndustrySEO";
 import IndustryProcess from "@/components/industry/IndustryProcess";
 import IndustryFinalCTA from "@/components/industry/IndustryFinalCTA";
@@ -81,28 +79,20 @@ export default function IndustryPage({ params }: Props) {
       
       <SectionDivider />
 
-      {/* 7. Page Structure */}
-      <IndustryStructure />
-
-      {/* 8. SEO Section */}
+      {/* 7. SEO Section */}
       <IndustrySEO />
       
       <SectionDivider variant="gold" />
 
-      {/* 9. Process */}
+      {/* 8. Process */}
       <IndustryProcess />
       
       <SectionDivider />
       
-      {/* 10. Related Industries */}
-      <RelatedIndustries slugs={industry.relatedIndustries} />
-      
-      <SectionDivider />
-      
-      {/* 11. FAQ */}
+      {/* 9. FAQ */}
       <IndustryFAQ items={industry.faq} />
       
-      {/* 12. Final CTA */}
+      {/* 10. Final CTA */}
       <IndustryFinalCTA />
     </main>
   );
