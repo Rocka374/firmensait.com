@@ -7,18 +7,18 @@ export const saitZaStroitelnaFirma: IndustryPageContent = {
   icon: "HardHat",
   shortDescription: "Солидно онлайн присъствие за строителни проекти.",
   metaTitle: "Изработка на сайт за строителна фирма | Firmensait.com",
-  metaDescription: "Професионален сайт за строителство и проектиране.",
+  metaDescription: "Професионален сайт за строителство.",
   h1: "Сайт за строителна фирма",
   subtitle: "Изградете бъдещето с професионален строителен сайт.",
-  heroImage: { src: "/images/portfolio/urban structure готов сайт за строителна фирма.webp", alt: "Hero строителство" },
+  heroImage: { src: "/images/portfolio/сайт за строителна фирма.webp", alt: "Hero сайт за строителство" },
   portfolioImages: [
-    { src: "/images/portfolio/сайт за строителна фирма.webp", alt: "Начална строителство" },
-    { src: "/images/portfolio/stroi proekt готов сайт за строителна фирма.webp", alt: "Проекти строителство" },
-    { src: "/images/portfolio/monolit build готов сайт за строителна фирма.webp", alt: "Мобилна строителство" }
+    { src: "/images/portfolio/urban structure готов сайт за строителна фирма.webp", alt: "Проект Urban Structure" },
+    { src: "/images/portfolio/stroi proekt готов сайт за строителна фирма.webp", alt: "Проект Stroi Proekt" },
+    { src: "/images/portfolio/monolit build готов сайт за строителна фирма.webp", alt: "Проект Monolit Build" }
   ],
   intro: "Placeholder текст.",
   sections: [{ h2: "Проекти", paragraphs: ["Placeholder."] }],
   benefits: [{ title: "Мащаб", text: "Покажете възможностите си." }],
   faq: [{ q: "Има ли лицензи?", a: "Възможно е." }],
-  relatedIndustries: ["sait-za-nedvizhimi-imoti", "sait-za-remontni-deynosti"]
+  relatedIndustries: ["sait-za-nedvizhimi-imoti"]
 };

@@ -7,18 +7,18 @@ export const saitZaVeterinarnaKlinika: IndustryPageContent = {
   icon: "Dog",
   shortDescription: "Уеб решение за ветеринарни лекари и клиники.",
   metaTitle: "Изработка на сайт за ветеринарна клиника | Firmensait.com",
-  metaDescription: "Професионален сайт за ветеринарна клиника. Пълният SEO текст ще бъде добавен по-късно.",
+  metaDescription: "Професионален сайт за ветеринарна клиника.",
   h1: "Сайт за ветеринарна клиника",
-  subtitle: "Представете грижата за домашните любимци с професионален и доверен сайт.",
-  heroImage: { src: "/images/portfolio/vetora care готов сайт за ветеринарна клиника.webp", alt: "Hero ветеринар" },
+  subtitle: "Представете грижата за домашните любимци с професионален сайт.",
+  heroImage: { src: "/images/portfolio/сайт за ветеринарна клиника.webp", alt: "Hero сайт за ветеринар" },
   portfolioImages: [
-    { src: "/images/portfolio/сайт за ветеринарна клиника.webp", alt: "Начална страница ветеринар" },
-    { src: "/images/portfolio/animalia готов сайт за ветеринарна клиника.webp", alt: "Услуги ветеринар" },
-    { src: "/images/portfolio/pawpoint готов сайт за ветеринарна клиника.webp", alt: "Мобилна версия ветеринар" }
+    { src: "/images/portfolio/vetora care готов сайт за ветеринарна клиника.webp", alt: "Проект Vetora Care" },
+    { src: "/images/portfolio/animalia готов сайт за ветеринарна клиника.webp", alt: "Проект Animalia" },
+    { src: "/images/portfolio/pawpoint готов сайт за ветеринарна клиника.webp", alt: "Проект Pawpoint" }
   ],
-  intro: "Placeholder текст. Пълният SEO текст ще бъде добавен по-късно.",
-  sections: [{ h2: "Услуги", paragraphs: ["Placeholder текст за ветеринарни услуги."] }],
+  intro: "Placeholder текст.",
+  sections: [{ h2: "Услуги", paragraphs: ["Placeholder."] }],
   benefits: [{ title: "Доверие", text: "Вашата клиника изглежда професионално." }],
-  faq: [{ q: "Има ли галерия?", a: "Да, включена е." }],
-  relatedIndustries: ["sait-za-lekar", "sait-za-zabolekar"]
+  faq: [{ q: "Има ли галерия?", a: "Да." }],
+  relatedIndustries: ["sait-za-lekar"]
 };

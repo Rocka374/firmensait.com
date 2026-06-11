@@ -10,11 +10,11 @@ export const saitZaPochistvashtaFirma: IndustryPageContent = {
   metaDescription: "Професионален сайт за почистваща фирма.",
   h1: "Сайт за почистваща фирма",
   subtitle: "Чистота и ред за вашите клиенти онлайн.",
-  heroImage: { src: "/images/portfolio/spotless pro готов сайт за почистваща фирма.webp", alt: "Hero почистване" },
+  heroImage: { src: "/images/portfolio/сайт за фирма за почистване.webp", alt: "Hero сайт за почистване" },
   portfolioImages: [
-    { src: "/images/portfolio/сайт за фирма за почистване.webp", alt: "Начална почистване" },
-    { src: "/images/portfolio/green glow готов сайт за почистваща фирма.webp", alt: "Услуги почистване" },
-    { src: "/images/portfolio/spotless pro готов сайт за почистваща фирма.webp", alt: "Мобилна почистване" }
+    { src: "/images/portfolio/spotless pro готов сайт за почистваща фирма.webp", alt: "Проект Spotless Pro" },
+    { src: "/images/portfolio/green glow готов сайт за почистваща фирма.webp", alt: "Проект Green Glow" },
+    { src: "/images/portfolio/spotless pro готов сайт за почистваща фирма.webp", alt: "Професионално почистване" }
   ],
   intro: "Placeholder текст.",
   sections: [{ h2: "Услуги", paragraphs: ["Placeholder."] }],

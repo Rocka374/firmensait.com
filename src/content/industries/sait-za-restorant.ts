@@ -1,5 +1,4 @@
 import { IndustryPageContent } from "./types";
-
 export const saitZaRestorant: IndustryPageContent = {
   title: "Сайт за ресторант",
   slug: "sait-za-restorant",
@@ -8,36 +7,18 @@ export const saitZaRestorant: IndustryPageContent = {
   icon: "Utensils",
   shortDescription: "Дигитално меню и резервации за вашия ресторант.",
   metaTitle: "Изработка на сайт за ресторант | Firmensait.com",
-  metaDescription: "Професионален сайт за ресторант със страници за меню, галерия и контакти. SEO структура и модерен дизайн.",
+  metaDescription: "Професионален сайт за ресторант със страници за меню и галерия.",
   h1: "Сайт за ресторант",
-  subtitle: "Привлечете повече гости с апетитно представяне на вашето меню и атмосфера.",
-  heroImage: {
-    src: "/images/portfolio/verde oro готов сайт за ресторант.webp",
-    alt: "Hero визия за сайт за ресторант"
-  },
+  subtitle: "Привлечете повече гости с апетитно представяне на вашето меню.",
+  heroImage: { src: "/images/portfolio/сайт за ресторант.webp", alt: "Hero сайт за ресторант" },
   portfolioImages: [
-    { src: "/images/portfolio/сайт за ресторант.webp", alt: "Примерна начална страница на сайт за ресторант" },
-    { src: "/images/portfolio/verde oro готов сайт за ресторант.webp", alt: "Секция с меню в сайт за ресторант" },
-    { src: "/images/portfolio/майстор сервиз готов сайт за ресторант.webp", alt: "Мобилна версия на сайт за ресторант" }
+    { src: "/images/portfolio/verde oro готов сайт за ресторант.webp", alt: "Проект Verde Oro" },
+    { src: "/images/portfolio/майстор сервиз готов сайт за ресторант.webp", alt: "Проект Майстор Сервиз" },
+    { src: "/images/portfolio/atelier blanc готов сайт за ресторант.webp", alt: "Проект Atelier Blanc" }
   ],
-  intro: "Вашият ресторант има нужда от дигитален дом, който кара клиентите да огладнеят. Пълният SEO текст ще бъде добавен по-късно.",
-  sections: [
-    {
-      h2: "Меню и Резервации",
-      paragraphs: ["Представете вашите специалитети на отделни страници за всяка категория от менюто."],
-      h3Items: [
-        { h3: "Интерактивно меню", text: "Лесно за разглеждане от телефон." },
-        { h3: "Локация и Карта", text: "Интегриран Google Maps за лесно намиране." }
-      ]
-    }
-  ],
-  benefits: [
-    { title: "Визуално представяне", text: "Висококачествени галерии за вашите ястия." },
-    { title: "Локално SEO", text: "Класирайте се по-добре при търсения за заведения във вашия град." },
-    { title: "Бързина", text: "Сайтът зарежда светкавично за гладните клиенти." }
-  ],
-  faq: [
-    { q: "Може ли да се добави форма за резервации?", a: "Да, включена е в пакета за контакти." }
-  ],
-  relatedIndustries: ["sait-za-kafetaria", "sait-za-hotel", "sait-za-kashta-za-gosti"]
+  intro: "Вашият ресторант има нужда от дигитален дом. Пълният текст ще бъде добавен по-късно.",
+  sections: [{ h2: "Меню", paragraphs: ["Placeholder текст."] }],
+  benefits: [{ title: "Визия", text: "Апетитен дизайн." }],
+  faq: [{ q: "Има ли карта?", a: "Да." }],
+  relatedIndustries: ["sait-za-kafetaria", "sait-za-hotel"]
 };

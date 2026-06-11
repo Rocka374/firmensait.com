@@ -10,15 +10,15 @@ export const saitZaAvtoserviz: IndustryPageContent = {
   metaDescription: "Професионален сайт за сервиз и диагностика.",
   h1: "Сайт за автосервиз",
   subtitle: "Привлечете повече шофьори с модерен сервизен сайт.",
-  heroImage: { src: "/images/portfolio/Pit stop auto готов сайт за авто сервиз.webp", alt: "Hero сервиз" },
+  heroImage: { src: "/images/portfolio/сайт за авто сервиз.webp", alt: "Hero сайт за автосервиз" },
   portfolioImages: [
-    { src: "/images/portfolio/сайт за авто сервиз.webp", alt: "Начална сервиз" },
-    { src: "/images/portfolio/garage 24 готов сайт за сервиз.webp", alt: "Диагностика сервиз" },
-    { src: "/images/portfolio/Pit stop auto готов сайт за авто сервиз.webp", alt: "Мобилна сервиз" }
+    { src: "/images/portfolio/Pit stop auto готов сайт за авто сервиз.webp", alt: "Проект Pit Stop Auto" },
+    { src: "/images/portfolio/garage 24 готов сайт за сервиз.webp", alt: "Проект Garage 24" },
+    { src: "/images/portfolio/Pit stop auto готов сайт за авто сервиз.webp", alt: "Автодиагностика" }
   ],
   intro: "Placeholder текст.",
-  sections: [{ h2: "Ремонти", paragraphs: ["Placeholder."] }],
+  sections: [{ h2: "Услуги", paragraphs: ["Placeholder."] }],
   benefits: [{ title: "Локация", text: "Лесно намиране." }],
   faq: [{ q: "Има ли цени?", a: "Да." }],
-  relatedIndustries: ["sait-za-remontni-deynosti", "sait-za-transportna-firma"]
+  relatedIndustries: ["sait-za-remontni-deynosti"]
 };
