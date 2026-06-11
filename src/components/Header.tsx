@@ -120,8 +120,8 @@ export default function Header() {
                     </div>
 
                     {/* Right Grid */}
-                    <div className="flex-1 p-6 lg:p-8">
-                      <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-1.5">
+                    <div className="flex-1 p-6 lg:p-8 min-w-0">
+                      <div className="grid min-w-0 grid-cols-2 lg:grid-cols-4 gap-2">
                         {industries.map((item) => {
                           if (!item?.href) return null;
                           const Icon = (Icons as any)[item.icon] || Icons.Check;
@@ -129,15 +129,17 @@ export default function Header() {
                             <Link 
                               key={item.slug} 
                               href={item.href}
-                              className="flex items-center gap-3.5 px-4 py-3 rounded-2xl border border-transparent hover:bg-primary/[0.06] hover:border-primary/15 hover:shadow-[0_8px_24px_rgba(184,145,79,0.08)] group transition-all duration-200 hover:-translate-y-0.5"
+                              className="group flex min-w-0 items-center gap-3 p-3 rounded-2xl border border-transparent hover:bg-primary/[0.06] hover:border-primary/15 transition-all duration-200 hover:-translate-y-0.5 overflow-hidden box-border"
                               onClick={closeAll}
                             >
-                              <div className="w-9 h-9 rounded-xl bg-primary/[0.08] flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all shadow-sm shrink-0">
+                              <div className="w-9 h-9 shrink-0 rounded-xl bg-primary/[0.08] flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all shadow-sm">
                                 <Icon size={17} strokeWidth={2.5} />
                               </div>
-                              <span className="text-[13px] font-bold text-foreground/85 group-hover:text-primary transition-colors leading-tight">
-                                {item.menuLabel}
-                              </span>
+                              <div className="min-w-0 flex-1">
+                                <span className="block text-[13px] font-bold text-foreground/85 group-hover:text-primary transition-colors leading-tight break-words line-clamp-2">
+                                  {item.menuLabel}
+                                </span>
+                              </div>
                             </Link>
                           );
                         })}
