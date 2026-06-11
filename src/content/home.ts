@@ -52,67 +52,144 @@ export const homeContent = {
     cta: "Искам подобен сайт",
     projects: [
       { 
-        title: "Fit Forma", 
-        category: "Фитнес треньор",
-        description: "Сайт с отделни страници за тренировъчни програми, хранителни режими и контакти.", 
-        image: "/images/portfolio/fit forma готов сайт за фитнес треньор.webp", 
-        imageAlt: "Многостраничен сайт за фитнес треньор" 
+        title: "Vetora Care", 
+        category: "Ветеринар",
+        description: "Многостраничен сайт за ветеринарна клиника с представяне на екип и услуги.", 
+        image: "/images/portfolio/vetora care готов сайт за ветеринарна клиника.webp", 
+        imageAlt: "Сайт за ветеринарна клиника" 
       },
       { 
-        title: "Pit Stop Auto", 
-        category: "Автосервиз",
-        description: "Фирмен сайт със страници за диагностика, ремонт, цени и локация.", 
-        image: "/images/portfolio/Pit stop auto готов сайт за авто сервиз.webp", 
-        imageAlt: "Фирмен сайт за автосервиз" 
-      },
-      { 
-        title: "Pine Peak", 
-        category: "Хотел",
-        description: "Сайт със страници за типове стаи, ресторант, спа услуги и резервации.", 
-        image: "/images/portfolio/pine peak готов сайт за хотел.webp", 
-        imageAlt: "Сайт за хотел" 
+        title: "Ivory Vow", 
+        category: "Сватбена агенция",
+        description: "Елегантен сайт с портфолио от събития и пакети за организация.", 
+        image: "/images/portfolio/ivory vow готов сайт за сватбена агенция.webp", 
+        imageAlt: "Сайт за сватбена агенция" 
       },
       { 
         title: "Verde Oro", 
         category: "Ресторант",
-        description: "Професионален сайт със страници за меню, атмосфера, галерия, работно време, локация и ясна покана за резервация или запитване.", 
+        description: "Професионален сайт със страници за меню, галерия и резервации.", 
         image: "/images/portfolio/verde oro готов сайт за ресторант.webp", 
-        imageAlt: "Професионален сайт за ресторант" 
-      },
-      { 
-        title: "Smile Atelier", 
-        category: "Зъболекар",
-        description: "Сайт със страници за имплантология, ортодонтия, естетика и страница за контакти.", 
-        image: "/images/portfolio/smile atelier готов сайт за зъболекар.webp", 
-        imageAlt: "Сайт за зъболекарски кабинет" 
+        imageAlt: "Сайт за ресторант" 
       },
       { 
         title: "Иванова Легал", 
         category: "Адвокат",
-        description: "Сайт със страници за правни консултации, процесуално представителство и контакти.", 
+        description: "Авторитетен сайт с представяне на правни области и опит.", 
         image: "/images/portfolio/иванова легал готов сайт за адвокат.webp", 
-        imageAlt: "Фирмен сайт за адвокат" 
+        imageAlt: "Сайт за адвокат" 
+      },
+      { 
+        title: "Urban Key", 
+        category: "Недвижими имоти",
+        description: "Каталог за имоти със страници за оферти и контакти с брокери.", 
+        image: "/images/portfolio/urban key готов сайт за недвижими имоти.webp", 
+        imageAlt: "Сайт за недвижими имоти" 
+      },
+      { 
+        title: "Pine Peak", 
+        category: "Хотел",
+        description: "Сайт със страници за типове стаи, ресторант и резервации.", 
+        image: "/images/portfolio/pine peak готов сайт за хотел.webp", 
+        imageAlt: "Сайт за хотел" 
+      },
+      { 
+        title: "Nero Coffee", 
+        category: "Кафетария",
+        description: "Уютна визия за градско кафене с дигитално меню.", 
+        image: "/images/portfolio/nero готов сайт за кафетария.webp", 
+        imageAlt: "Сайт за кафетария" 
       },
       { 
         title: "Numera", 
         category: "Счетоводител",
-        description: "Сайт със страници за абонаментно обслужване, ТРЗ услуги и консултации.", 
+        description: "Подреден сайт за счетоводни услуги и консултации.", 
         image: "/images/portfolio/numera готов сайт за счетоводна къща.webp", 
-        imageAlt: "Сайт за счетоводна къща" 
-      },
-      { 
-        title: "Lumiere House", 
-        category: "Салон за красота",
-        description: "Сайт със страници за фризьорство, маникюр, терапии и онлайн записване.", 
-        image: "/images/portfolio/lumiere house готов сайт за салон за красота.webp", 
-        imageAlt: "Сайт за салон за красота" 
+        imageAlt: "Сайт за счетоводител" 
       },
       { 
         title: "Pine Nest", 
         category: "Къща за гости",
-        description: "Сайт със страници за обекта, забележителности в района и страница за запитвания.", 
+        description: "Сайт със страници за обекта и форма за запитвания.", 
         image: "/images/portfolio/pine nest готов сайт за къща за гости.webp", 
         imageAlt: "Сайт за къща за гости" 
+      },
+      { 
+        title: "Lumiere House", 
+        category: "Салон за красота",
+        description: "Стилна визия със страници за процедури и ценоразпис.", 
+        image: "/images/portfolio/lumiere house готов сайт за салон за красота.webp", 
+        imageAlt: "Сайт за салон за красота" 
+      },
+      { 
+        title: "Studio 7", 
+        category: "Фризьорски салон",
+        description: "Портфолио със снимки на прически и техники на боядисване.", 
+        image: "/images/portfolio/studio 7 готов сайт за фризьорски салон.webp", 
+        imageAlt: "Сайт за фризьорски салон" 
+      },
+      { 
+        title: "Transline", 
+        category: "Транспорт",
+        description: "Сайт за логистика с представяне на автопарк и маршрути.", 
+        image: "/images/portfolio/transline готов сайт за фирма за транспорт.webp", 
+        imageAlt: "Сайт за транспортна фирма" 
+      },
+      { 
+        title: "Smile Atelier", 
+        category: "Зъболекар",
+        description: "Дентална клиника с отделни страници за всяка услуга.", 
+        image: "/images/portfolio/smile atelier готов сайт за зъболекар.webp", 
+        imageAlt: "Сайт за зъболекар" 
+      },
+      { 
+        title: "Педикеър", 
+        category: "Лекар",
+        description: "Медицински сайт със страници за прегледи и записване на час.", 
+        image: "/images/portfolio/педикеър готов сайт за лекар.webp", 
+        imageAlt: "Сайт за лекар" 
+      },
+      { 
+        title: "Fit Forma", 
+        category: "Фитнес треньор",
+        description: "Сайт с тренировъчни програми и хранителни режими.", 
+        image: "/images/portfolio/fit forma готов сайт за фитнес треньор.webp", 
+        imageAlt: "Сайт за фитнес треньор" 
+      },
+      { 
+        title: "Ремонтти24", 
+        category: "Ремонти",
+        description: "Майсторски услуги с галерия преди/след и цени.", 
+        image: "/images/portfolio/ремонтти24 готов сайт за ремонти.webp", 
+        imageAlt: "Сайт за ремонтни дейности" 
+      },
+      { 
+        title: "Pit Stop Auto", 
+        category: "Автосервиз",
+        description: "Фирмен сайт със страници за диагностика и обслужване.", 
+        image: "/images/portfolio/Pit stop auto готов сайт за авто сервиз.webp", 
+        imageAlt: "Сайт за автосервиз" 
+      },
+      { 
+        title: "Spotless Pro", 
+        category: "Почистване",
+        description: "Сайт за почистващи услуги за домове и офиси.", 
+        image: "/images/portfolio/spotless pro готов сайт за почистваща фирма.webp", 
+        imageAlt: "Сайт за почистваща фирма" 
+      },
+      { 
+        title: "Urban Structure", 
+        category: "Строителство",
+        description: "Строителна фирма с представяне на завършени обекти.", 
+        image: "/images/portfolio/urban structure готов сайт за строителна фирма.webp", 
+        imageAlt: "Сайт за строителна фирма" 
+      },
+      { 
+        title: "Мост към себе си", 
+        category: "Психолог",
+        description: "Спокоен сайт с представяне на терапевтичния подход.", 
+        image: "/images/portfolio/мост към себе си готов сайт за психолог.webp", 
+        imageAlt: "Сайт за психолог" 
       }
     ]
   },
@@ -164,7 +241,7 @@ export const homeContent = {
     title: "SEO структура за всяка страница",
     description: "За разлика от едностраничните сайтове, нашият многостраничен подход позволява всяка услуга да бъде оптимизирана поотделно. Всяка страница има свои мета данни, заглавия и структура, което значително помага за класирането в Google.",
     items: [
-      { title: "SEO за всяка страница", description: "Отделни заглавия и описания за всяка ваша услуга.", icon: "AlignLeft" },
+      { title: "SEO for всяка страница", description: "Отделни заглавия и описания за всяка ваша услуга.", icon: "AlignLeft" },
       { title: "Мобилна оптимизация", description: "Всяка страница е перфектно адаптирана за телефон и таблет.", icon: "Smartphone" },
       { title: "Бързо зареждане", description: "Оптимизирана скорост на зареждане за целия многостраничен сайт.", icon: "Zap" },
       { title: "Чисти URL адреси", description: "Всяка услуга има собствен ясен адрес, например /usluga-1.", icon: "Link" },
