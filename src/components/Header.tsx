@@ -55,13 +55,16 @@ export default function Header() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  // Logic to determine if header needs a solid background
+  const headerHasBackground = scrolled || isMegaMenuOpen || isMobileMenuOpen;
+
   return (
     <>
       <header className={cn(
         "fixed top-0 left-0 right-0 w-full transition-all duration-300 ease-in-out h-[72px] z-[100]",
-        scrolled || isMegaMenuOpen
-          ? "bg-white/90 backdrop-blur-md shadow-sm border-b border-border/30" 
-          : "bg-[#FAF8F4]/80 backdrop-blur-sm z-[100]"
+        headerHasBackground
+          ? "bg-[#FAF8F4]/90 backdrop-blur-md shadow-sm border-b border-border/30" 
+          : "bg-transparent border-b border-transparent backdrop-blur-none"
       )}>
         <div className="container mx-auto px-4 h-full flex items-center justify-between gap-6">
           {/* Logo */}
