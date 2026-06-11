@@ -58,7 +58,7 @@ export default function Header() {
   return (
     <>
       <header className={cn(
-        "fixed top-0 left-0 right-0 w-full transition-all duration-300 ease-in-out h-[72px] z-[100]",
+        "fixed top-0 left-0 right-0 w-full transition-all duration-300 ease-in-out h-[96px] z-[100]",
         scrolled || isMegaMenuOpen
           ? "bg-white/90 backdrop-blur-md shadow-sm border-b border-border/30" 
           : "bg-[#FAF8F4]/80 backdrop-blur-sm z-[100]"
@@ -97,7 +97,7 @@ export default function Header() {
 
               {/* Mega Menu Dropdown */}
               <div className={cn(
-                "fixed top-[84px] left-1/2 -translate-x-1/2 w-full max-w-[1120px] z-[120] transition-all duration-300 ease-out pointer-events-none opacity-0 translate-y-3",
+                "fixed top-[96px] left-1/2 -translate-x-1/2 w-full max-w-[1120px] z-[120] transition-all duration-300 ease-out pointer-events-none opacity-0 translate-y-3",
                 isMegaMenuOpen && "opacity-100 translate-y-0 pointer-events-auto"
               )}>
                 <div className="mx-4 bg-[#FFFCF7] rounded-[2.25rem] border border-border/60 shadow-[0_30px_90px_rgba(23,23,23,0.12)] overflow-hidden">
@@ -182,26 +182,17 @@ export default function Header() {
       {/* Fullscreen Mobile Drawer */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-[150] bg-[#FAF8F4] md:hidden flex flex-col overflow-y-auto overscroll-contain no-scrollbar">
-          {/* Internal Sticky Bar in Drawer */}
-          <div className="sticky top-0 z-[160] h-[72px] flex items-center justify-between px-4 bg-[#FAF8F4]/95 backdrop-blur-md border-b border-border/30">
+          {/* Internal Sticky Bar in Drawer - Matches Header Height */}
+          <div className="sticky top-0 z-[160] h-[96px] flex items-center justify-between px-4 bg-[#FAF8F4]/95 backdrop-blur-md border-b border-border/30">
             <Link href="/" className="flex items-center" onClick={closeAll}>
               <span className="text-xl font-bold text-foreground tracking-tighter flex items-baseline">
                 Firmensait
                 <span className="text-primary ml-0.5 text-lg font-black opacity-80">.com</span>
               </span>
             </Link>
-            {/* The main toggle button is already outside and layered on top (z-160), 
-                so we don't need a second one here if they overlap perfectly. 
-                But for clarity, the user can use the same button as it remains visible. */}
           </div>
 
           <div className="flex-1 px-5 py-8 space-y-6">
-            <div className="mb-10 px-1">
-               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-3 block">Меню</span>
-               <h2 className="text-3xl font-bold tracking-tighter">Добре дошли</h2>
-               <p className="text-secondary/60 text-sm mt-2 font-medium">Изберете страница или разгледайте портфолиото ни.</p>
-            </div>
-
             <div className="grid grid-cols-1 gap-4">
               <Link 
                 href="/" 
