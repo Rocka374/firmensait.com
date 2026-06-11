@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { siteConfig } from '@/content/site';
 import { navigationLinks } from '@/content/navigation';
 import { footerContent } from '@/content/footer';
+import { industries } from '@/content/industries';
 
 export default function Footer() {
   return (
@@ -28,7 +29,9 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <h4 className="font-black text-[10px] uppercase tracking-[0.2em] text-secondary/40 mb-8">Навигация</h4>
             <ul className="space-y-4">
-              {navigationLinks.map((link) => (
+              <li><Link href="/" className="text-foreground font-bold hover:text-primary transition-colors text-sm">Начало</Link></li>
+              <li><Link href="/kontakti" className="text-foreground font-bold hover:text-primary transition-colors text-sm">Контакти</Link></li>
+              {navigationLinks.slice(0, 4).map((link) => (
                 <li key={link.title}>
                   <a href={link.href} className="text-foreground font-bold hover:text-primary transition-colors text-sm">{link.title}</a>
                 </li>
@@ -36,25 +39,20 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services Links */}
-          <div className="lg:col-span-3">
-            <h4 className="font-black text-[10px] uppercase tracking-[0.2em] text-secondary/40 mb-8">Услуги</h4>
-            <ul className="space-y-4">
-              {footerContent.services.slice(0, 5).map(item => (
-                <li key={item} className="text-secondary/80 text-sm font-bold">{item}</li>
+          {/* Industries Grid */}
+          <div className="lg:col-span-6">
+            <h4 className="font-black text-[10px] uppercase tracking-[0.2em] text-secondary/40 mb-8">Портфолио по браншове</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
+              {industries.map((item) => (
+                <Link 
+                  key={item.slug} 
+                  href={item.href} 
+                  className="text-secondary/80 text-sm font-bold hover:text-primary transition-colors"
+                >
+                  {item.title}
+                </Link>
               ))}
-            </ul>
-          </div>
-
-          {/* Industries Links */}
-          <div className="lg:col-span-3">
-            <h4 className="font-black text-[10px] uppercase tracking-[0.2em] text-secondary/40 mb-8">Браншове</h4>
-            <ul className="space-y-4">
-              {footerContent.industries.slice(0, 5).map(item => (
-                <li key={item} className="text-secondary/80 text-sm font-bold">{item}</li>
-              ))}
-              <li><a href="#branshove" className="text-primary font-black text-sm hover:underline decoration-2 underline-offset-4">Виж всички</a></li>
-            </ul>
+            </div>
           </div>
         </div>
 
