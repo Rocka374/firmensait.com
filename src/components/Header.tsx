@@ -162,7 +162,7 @@ export default function Header() {
             
             <Link 
               href="/kontakti"
-              className="ml-4 h-12 px-8 bg-primary hover:bg-primary-dark text-white font-bold rounded-full transition-all shadow-[0_8px_20px_-4px_rgba(184,145,79,0.3)] active:scale-95 flex items-center justify-center leading-none"
+              className="ml-4 h-11 px-8 bg-primary hover:bg-primary-dark text-white font-bold rounded-full transition-all shadow-[0_8px_20px_-4px_rgba(184,145,79,0.3)] active:scale-95 flex items-center justify-center leading-none"
             >
               Искам сайт
             </Link>
@@ -183,7 +183,7 @@ export default function Header() {
 
       {/* Fullscreen Mobile Drawer */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-[200] bg-[#FAF8F4] md:hidden flex flex-col overflow-y-auto overscroll-contain no-scrollbar">
+        <div className="fixed inset-0 z-[200] bg-[#FAF8F4] md:hidden flex flex-col overflow-y-auto overscroll-contain">
           {/* Internal Sticky Bar with Close Button */}
           <div className="sticky top-0 z-[210] h-[72px] flex items-center justify-between px-4 bg-[#FAF8F4]/95 backdrop-blur-md border-b border-border/30">
             <Link href="/" className="flex items-center" onClick={closeAll}>
@@ -244,7 +244,7 @@ export default function Header() {
             <div className="pt-4">
               <button 
                 className={cn(
-                  "w-full flex items-center justify-between p-5 rounded-3xl border transition-all",
+                  "w-full flex items-center justify-between p-5 rounded-3xl border transition-all duration-300",
                   isMobilePortfolioOpen 
                     ? "bg-primary text-white border-primary shadow-lg" 
                     : "bg-white text-foreground border-border/40"
@@ -261,7 +261,7 @@ export default function Header() {
               </button>
               
               <div className={cn(
-                "grid grid-cols-1 gap-2 overflow-hidden transition-all duration-500",
+                "grid grid-cols-1 gap-2 overflow-hidden transition-all duration-500 ease-in-out",
                 isMobilePortfolioOpen ? "max-h-[3000px] opacity-100 mt-4 mb-8" : "max-h-0 opacity-0"
               )}>
                 {industries.map((item) => {
