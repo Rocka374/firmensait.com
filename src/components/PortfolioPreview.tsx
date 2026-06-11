@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import SectionHeader from "./SectionHeader";
 import { homeContent } from "@/content/home";
-import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, MousePointer2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Button from "./Button";
 import { motion, AnimatePresence } from "framer-motion";
@@ -112,7 +112,7 @@ export default function PortfolioPreview() {
         {/* Carousel Scene */}
         <div className="perspective-1000 relative h-[280px] sm:h-[400px] md:h-[680px] flex items-center justify-center">
           
-          {/* Previous Card (Left) - Only rendered when adjacent */}
+          {/* Previous Card (Left) */}
           <motion.div 
             key={`left-${getProjectIndex(-1)}`}
             initial={{ opacity: 0, x: -100, scale: 0.7 }}
@@ -127,7 +127,6 @@ export default function PortfolioPreview() {
               className="object-cover object-top"
               sizes="800px"
               loading="lazy"
-              priority={false}
             />
           </motion.div>
 
@@ -163,14 +162,18 @@ export default function PortfolioPreview() {
                       width={1200}
                       height={4000}
                       className="w-full h-auto block"
-                      priority={true} // Only the active image gets priority
+                      priority={true}
                     />
                   </div>
                 </div>
                 
-                <div className="absolute bottom-4 right-4 md:hidden pointer-events-none">
-                  <div className="bg-black/40 backdrop-blur-md text-white text-[8px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">
-                    Scroll
+                {/* Scroll Indicator - Pulse Hint */}
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 pointer-events-none">
+                  <div className="flex flex-col items-center gap-2 animate-pulse">
+                    <div className="bg-primary/90 backdrop-blur-md text-white text-[10px] md:text-xs font-black uppercase tracking-[0.2em] px-4 py-2 rounded-full shadow-lg border border-white/20 flex items-center gap-2">
+                      <MousePointer2 size={14} className="rotate-90" />
+                      Scroll
+                    </div>
                   </div>
                 </div>
 
@@ -192,7 +195,7 @@ export default function PortfolioPreview() {
             </AnimatePresence>
           </div>
 
-          {/* Next Card (Right) - Only rendered when adjacent */}
+          {/* Next Card (Right) */}
           <motion.div 
             key={`right-${getProjectIndex(1)}`}
             initial={{ opacity: 0, x: 100, scale: 0.7 }}
@@ -207,7 +210,6 @@ export default function PortfolioPreview() {
               className="object-cover object-top"
               sizes="800px"
               loading="lazy"
-              priority={false}
             />
           </motion.div>
         </div>
