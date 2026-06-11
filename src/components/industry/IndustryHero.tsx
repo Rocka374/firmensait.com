@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { IndustryPageContent } from "@/content/industries/types";
 import Button from "@/components/Button";
@@ -62,7 +64,6 @@ export default function IndustryHero({ data }: { data: IndustryPageContent }) {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative z-10 w-full aspect-[16/11]"
             >
-              {/* This image contains the monitor/phone mockup */}
               <Image
                 src={data.heroImage.src}
                 alt={data.heroImage.alt}
@@ -71,8 +72,6 @@ export default function IndustryHero({ data }: { data: IndustryPageContent }) {
                 className="object-contain"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
-              
-              {/* Subtle radial glow under the mockup */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(184,145,79,0.08)_0%,_transparent_70%)] pointer-events-none transform scale-125 -z-10" />
             </motion.div>
           </div>
