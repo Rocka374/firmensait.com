@@ -28,12 +28,7 @@ export default function IndustryHero({ data }: { data: IndustryPageContent }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="flex items-center justify-center lg:justify-start gap-3 mb-6">
-                 <span className="text-[10px] font-black uppercase tracking-[0.3em] text-primary/60">Портфолио по браншове</span>
-                 <div className="w-8 h-px bg-primary/20" />
-              </div>
-              
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.05] mb-8 tracking-tight">
+              <h1 className="text-4xl md:text-6xl lg:text-[5.5rem] font-bold text-foreground leading-[1.05] mb-8 tracking-tight">
                 {data.h1}
               </h1>
               <p className="text-lg md:text-xl text-secondary/70 mb-10 leading-relaxed font-medium">
