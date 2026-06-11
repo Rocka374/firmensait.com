@@ -52,7 +52,7 @@ export default function Header() {
           <Link href="/" className="flex items-center group relative z-[101]" onClick={closeAll}>
             <span className="text-2xl md:text-3xl font-bold text-foreground tracking-tighter flex items-baseline">
               Firmensait
-              <span className="text-primary ml-0.5 text-sm md:text-lg font-black opacity-80">.com</span>
+              <span className="text-primary ml-0.5 text-sm md:text-base font-black opacity-80">.com</span>
             </span>
           </Link>
 
