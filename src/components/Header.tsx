@@ -1,12 +1,11 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
-import { Menu, X, ChevronDown, ChevronRight, ArrowRight, Home, Mail, ExternalLink } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { industries } from '@/content/industries';
 import * as Icons from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -36,38 +35,27 @@ export default function Header() {
     };
   }, []);
 
-  // Body scroll lock
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-  }, [isMobileMenuOpen]);
-
   const closeAll = () => {
     setIsMegaMenuOpen(false);
     setIsMobileMenuOpen(false);
-    setIsMobilePortfolioOpen(false);
   };
 
   return (
     <>
       <header className={cn(
-        "fixed top-0 left-0 right-0 z-[110] transition-all duration-500 ease-in-out",
-        scrolled || isMegaMenuOpen || isMobileMenuOpen
+        "fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ease-in-out",
+        scrolled || isMegaMenuOpen 
           ? "bg-white/90 backdrop-blur-xl shadow-sm py-3" 
           : "bg-transparent py-6"
       )}>
         <div className="container mx-auto px-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center group relative z-[111]" onClick={closeAll}>
+          <Link href="/" className="flex items-center group relative z-[101]" onClick={closeAll}>
             <span className="text-2xl md:text-3xl font-bold text-foreground tracking-tighter flex items-baseline">
               Firmensait
               <span className="text-primary ml-0.5 text-xl md:text-2xl font-black opacity-80">.com</span>
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
             <Link 
               href="/" 
@@ -100,8 +88,10 @@ export default function Header() {
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
                   
                   <div className="flex flex-col lg:flex-row min-h-[460px]">
+                    {/* Left Column */}
                     <div className="lg:w-[340px] bg-primary/[0.035] p-10 flex flex-col border-r border-border/40 relative">
                       <div className="absolute bottom-0 left-0 right-0 h-40 bg-[radial-gradient(circle_at_bottom,_rgba(184,145,79,0.05)_0%,_transparent_70%)] pointer-events-none" />
+                      
                       <div className="flex-1 relative z-10">
                         <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-[11px] font-black uppercase tracking-[0.2em] mb-6">
                           Разгледайте
@@ -113,6 +103,8 @@ export default function Header() {
                           Изберете примерна уеб визия според типа бизнес. Всеки сайт е с уникална SEO структура.
                         </p>
                       </div>
+
+                      {/* CTA Block */}
                       <div className="mt-12 p-6 bg-white border border-primary/10 rounded-2xl shadow-sm relative z-10">
                         <p className="text-xs font-bold text-secondary/60 mb-1 uppercase tracking-wider">Не виждате вашия бранш?</p>
                         <p className="text-[11px] text-secondary/50 mb-5 leading-snug font-medium">Ще подготвим структура според вашите услуги.</p>
@@ -126,6 +118,8 @@ export default function Header() {
                         </Link>
                       </div>
                     </div>
+
+                    {/* Right Grid */}
                     <div className="flex-1 p-6 lg:p-8 min-w-0">
                       <div className="grid min-w-0 grid-cols-2 lg:grid-cols-4 gap-2">
                         {industries.map((item) => {
@@ -172,37 +166,14 @@ export default function Header() {
           </nav>
 
           <button 
-            className="md:hidden relative z-[111] text-foreground p-2 focus:outline-none" 
+            className="md:hidden relative z-[101] text-foreground p-2" 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label={isMobileMenuOpen ? "Затвори меню" : "Отвори меню"}
           >
-            <AnimatePresence mode="wait">
-              {isMobileMenuOpen ? (
-                <motion.div
-                  key="close"
-                  initial={{ opacity: 0, rotate: -90 }}
-                  animate={{ opacity: 1, rotate: 0 }}
-                  exit={{ opacity: 0, rotate: 90 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <X size={32} strokeWidth={1.5} />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="menu"
-                  initial={{ opacity: 0, rotate: 90 }}
-                  animate={{ opacity: 1, rotate: 0 }}
-                  exit={{ opacity: 0, rotate: -90 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Menu size={32} strokeWidth={1.5} />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
 
-        {/* Desktop Mega Menu Backdrop */}
+        {/* Backdrop for Mega Menu */}
         <div 
           className={cn(
             "fixed inset-0 bg-background/45 backdrop-blur-[3px] z-[40] transition-opacity duration-300 pointer-events-none opacity-0",
@@ -211,138 +182,72 @@ export default function Header() {
           onClick={() => setIsMegaMenuOpen(false)}
         />
 
-        {/* Premium Mobile Drawer */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div 
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="fixed inset-0 bg-[#FAF8F4] z-[105] md:hidden overflow-y-auto pt-24 pb-10"
+        {/* Mobile Menu */}
+        <div className={cn(
+          "fixed inset-0 bg-background z-[100] md:hidden flex flex-col transition-transform duration-500 ease-in-out pt-24 overflow-y-auto",
+          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        )}>
+          <div className="p-6 space-y-4">
+            <Link 
+              href="/" 
+              className="text-2xl font-bold border-b border-border/40 pb-4 block px-2" 
+              onClick={closeAll}
             >
-              {/* Subtle background glow */}
-              <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-primary/[0.04] rounded-full blur-[100px] pointer-events-none" />
-
-              <div className="px-5">
-                {/* Mobile Menu Header */}
-                <div className="mb-8 mt-4">
-                  <h2 className="text-3xl font-bold text-foreground mb-2">Меню</h2>
-                  <p className="text-secondary/70 text-sm font-medium">
-                    Изберете секция или разгледайте примерни сайтове по браншове.
-                  </p>
-                </div>
-
-                {/* Main Mobile Link Cards */}
-                <div className="space-y-3 mb-10">
-                  <Link 
-                    href="/" 
-                    onClick={closeAll}
-                    className="flex items-center justify-between bg-white border border-border/40 rounded-2xl px-5 py-5 shadow-sm active:bg-primary/[0.04] transition-colors"
-                  >
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center text-primary">
-                        <Home size={20} strokeWidth={2} />
+              Начало
+            </Link>
+            
+            <div className="space-y-4">
+              <button 
+                className="w-full flex items-center justify-between text-2xl font-bold border-b border-border/40 pb-4 px-2"
+                onClick={() => setIsMobilePortfolioOpen(!isMobilePortfolioOpen)}
+              >
+                Портфолио
+                <ChevronDown size={24} className={cn("transition-transform", isMobilePortfolioOpen && "rotate-180")} />
+              </button>
+              
+              <div className={cn(
+                "grid grid-cols-1 gap-3 overflow-hidden transition-all duration-300",
+                isMobilePortfolioOpen ? "max-h-[1500px] opacity-100 mb-8" : "max-h-0 opacity-0"
+              )}>
+                {industries.map((item) => {
+                  if (!item?.href) return null;
+                  const Icon = (Icons as any)[item.icon] || Icons.Check;
+                  return (
+                    <Link 
+                      key={item.slug} 
+                      href={item.href}
+                      className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-border/30 active:bg-primary/5 transition-all shadow-sm"
+                      onClick={closeAll}
+                    >
+                      <div className="w-10 h-10 rounded-xl bg-primary/5 border border-primary/10 flex items-center justify-center text-primary shrink-0">
+                        <Icon size={20} strokeWidth={2.5} />
                       </div>
-                      <span className="font-bold text-lg text-foreground/90">Начало</span>
-                    </div>
-                    <ChevronRight size={20} className="text-primary/40" />
-                  </Link>
-
-                  <Link 
-                    href="/kontakti" 
-                    onClick={closeAll}
-                    className="flex items-center justify-between bg-white border border-border/40 rounded-2xl px-5 py-5 shadow-sm active:bg-primary/[0.04] transition-colors"
-                  >
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center text-primary">
-                        <Mail size={20} strokeWidth={2} />
-                      </div>
-                      <span className="font-bold text-lg text-foreground/90">Контакти</span>
-                    </div>
-                    <ChevronRight size={20} className="text-primary/40" />
-                  </Link>
-                </div>
-
-                {/* Portfolio Accordion Block */}
-                <div className="mb-8">
-                  <button 
-                    onClick={() => setIsMobilePortfolioOpen(!isMobilePortfolioOpen)}
-                    aria-expanded={isMobilePortfolioOpen}
-                    className={cn(
-                      "w-full flex items-center justify-between p-5 rounded-2xl shadow-sm transition-all duration-300 text-left border",
-                      isMobilePortfolioOpen 
-                        ? "bg-primary/[0.06] border-primary/20" 
-                        : "bg-white border-primary/15"
-                    )}
-                  >
-                    <div>
-                      <h3 className="font-bold text-lg text-foreground/90 leading-none mb-2">Портфолио по браншове</h3>
-                      <p className="text-xs font-medium text-secondary/60">20 примерни уеб визии според типа бизнес.</p>
-                    </div>
-                    <ChevronDown size={24} className={cn("text-primary transition-transform duration-300", isMobilePortfolioOpen && "rotate-180")} />
-                  </button>
-
-                  <AnimatePresence>
-                    {isMobilePortfolioOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="pt-4 grid grid-cols-1 gap-2">
-                          {industries.map((item) => {
-                            if (!item?.href) return null;
-                            const Icon = (Icons as any)[item.icon] || Icons.Check;
-                            return (
-                              <Link 
-                                key={item.slug} 
-                                href={item.href}
-                                className="flex items-center justify-between bg-white border border-border/30 rounded-xl p-3 shadow-sm active:bg-primary/[0.05] transition-colors"
-                                onClick={closeAll}
-                              >
-                                <div className="flex min-w-0 items-center gap-3">
-                                  <div className="w-9 h-9 shrink-0 rounded-xl bg-primary/[0.08] flex items-center justify-center text-primary">
-                                    <Icon size={17} strokeWidth={2.5} />
-                                  </div>
-                                  <span className="text-sm font-semibold text-foreground/90 leading-tight min-w-0 break-words line-clamp-2">
-                                    {item.title.replace("Сайт за ", "")}
-                                  </span>
-                                </div>
-                                <ChevronRight size={14} className="text-primary/50 shrink-0 ml-2" />
-                              </Link>
-                            );
-                          })}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-
-                {/* Final Mobile CTA Card */}
-                <div className="bg-primary text-white rounded-[2rem] p-6 shadow-[0_20px_50px_rgba(184,145,79,0.25)] relative overflow-hidden">
-                  <div className="absolute top-[-20%] right-[-10%] w-[120px] h-[120px] bg-white/10 rounded-full blur-[40px] pointer-events-none" />
-                  
-                  <div className="relative z-10 mb-6">
-                    <h3 className="text-2xl font-bold mb-2">Готови ли сте за нов сайт?</h3>
-                    <p className="text-white/80 text-sm font-medium">Изпратете запитване и ще обсъдим вашия бизнес.</p>
-                  </div>
-
-                  <Link 
-                    href="/kontakti" 
-                    onClick={closeAll}
-                    className="flex items-center justify-center gap-2 w-full bg-white text-primary font-black py-4 rounded-full text-lg shadow-xl active:scale-95 transition-transform"
-                  >
-                    Искам сайт
-                    <ExternalLink size={18} />
-                  </Link>
-                </div>
+                      <span className="font-bold text-foreground/80">{item.menuLabel}</span>
+                    </Link>
+                  );
+                })}
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            </div>
+
+            <Link 
+              href="/kontakti" 
+              className="text-2xl font-bold border-b border-border/40 pb-4 block px-2" 
+              onClick={closeAll}
+            >
+              Контакти
+            </Link>
+            
+            <div className="pt-8 px-2">
+              <Link 
+                href="/kontakti"
+                className="bg-primary text-white text-center font-bold py-5 rounded-full text-xl block shadow-xl shadow-primary/20 active:scale-95 transition-transform"
+                onClick={closeAll}
+              >
+                Искам сайт
+              </Link>
+            </div>
+          </div>
+        </div>
       </header>
     </>
   );
