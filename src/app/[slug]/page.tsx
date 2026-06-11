@@ -1,9 +1,9 @@
-"use client";
-
 import { notFound } from "next/navigation";
 import { industries, industriesBySlug } from "@/content/industries";
 import IndustryHero from "@/components/industry/IndustryHero";
+import IndustryIntro from "@/components/industry/IndustryIntro";
 import IndustryShowcase from "@/components/industry/IndustryShowcase";
+import IndustryContent from "@/components/industry/IndustryContent";
 import IndustryFAQ from "@/components/industry/IndustryFAQ";
 import IndustryWhoFor from "@/components/industry/IndustryWhoFor";
 import IndustryFeatures from "@/components/industry/IndustryFeatures";
@@ -15,6 +15,31 @@ import SectionDivider from "@/components/SectionDivider";
 
 interface Props {
   params: { slug: string };
+}
+
+export async function generateStaticParams() {
+  return industries.map((industry) => ({
+    slug: industry.slug,
+  }));
+}
+
+export async function generateMetadata({ params }: Props) {
+  const industry = industriesBySlug[params.slug];
+  if (!industry) return {};
+
+  return {
+    title: industry.metaTitle,
+    description: industry.metaDescription,
+    alternates: {
+      canonical: `/${industry.slug}`,
+    },
+    openGraph: {
+      title: industry.metaTitle,
+      description: industry.metaDescription,
+      url: `/${industry.slug}`,
+      images: [{ url: industry.heroImage.src }],
+    },
+  };
 }
 
 export default function IndustryPage({ params }: Props) {
@@ -29,14 +54,8 @@ export default function IndustryPage({ params }: Props) {
       {/* 1. Hero */}
       <IndustryHero data={industry} />
       
-      {/* 2. Intro Text */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 max-w-4xl text-center">
-          <p className="text-xl md:text-2xl text-secondary/70 font-medium leading-relaxed italic">
-            "{industry.intro}"
-          </p>
-        </div>
-      </section>
+      {/* 2. Intro Section */}
+      <IndustryIntro text={industry.intro} />
 
       {/* 3. Showcase / Portfolio */}
       <IndustryShowcase images={industry.portfolioImages} title={industry.title} />
@@ -46,12 +65,12 @@ export default function IndustryPage({ params }: Props) {
       {/* 4. Who is it for */}
       <IndustryWhoFor industryTitle={industry.title} />
       
-      {/* 5. What's included */}
+      {/* 5. What's included (8 cards on cream) */}
       <IndustryFeatures />
       
       <SectionDivider variant="gold" />
 
-      {/* 6. Specific Features (NEW) */}
+      {/* 6. Specific Features (Split layout on white) */}
       {industry.specificFeatures && (
         <>
           <IndustrySpecificFeatures data={industry.specificFeatures} />
@@ -59,20 +78,25 @@ export default function IndustryPage({ params }: Props) {
         </>
       )}
 
-      {/* 7. SEO Section */}
+      {/* 7. Main SEO Text Section (Why it's important) */}
+      <IndustryContent title={industry.title} sections={industry.sections} />
+      
+      <SectionDivider variant="gold" />
+
+      {/* 8. SEO Foundation (6 cards on cream) */}
       <IndustrySEO />
       
       <SectionDivider variant="gold" />
 
-      {/* 8. Process */}
+      {/* 9. Process */}
       <IndustryProcess />
       
       <SectionDivider />
       
-      {/* 9. FAQ */}
+      {/* 10. FAQ */}
       <IndustryFAQ items={industry.faq} />
       
-      {/* 10. Final CTA */}
+      {/* 11. Final CTA */}
       <IndustryFinalCTA />
     </main>
   );

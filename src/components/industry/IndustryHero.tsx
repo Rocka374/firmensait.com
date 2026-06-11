@@ -16,7 +16,7 @@ export default function IndustryHero({ data }: { data: IndustryPageContent }) {
 
   return (
     <section className="relative pt-32 pb-24 md:pt-48 md:pb-36 overflow-hidden bg-white">
-      {/* Extremely subtle radial glow for depth, but staying within white theme */}
+      {/* Extremely subtle radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/[0.02] rounded-full blur-[120px] pointer-events-none" />
       
       <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
@@ -62,9 +62,9 @@ export default function IndustryHero({ data }: { data: IndustryPageContent }) {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative z-10 w-full aspect-[16/11]"
+              className="relative z-10 w-full aspect-[16/11] bg-white rounded-[2.5rem] p-4 md:p-6 shadow-[0_30px_90px_rgba(0,0,0,0.06)] border border-border/30"
             >
-              <div className="relative w-full h-full">
+              <div className="relative w-full h-full rounded-[1.5rem] overflow-hidden">
                 <Image
                   src={data.heroImage.src}
                   alt={data.heroImage.alt}
@@ -74,6 +74,9 @@ export default function IndustryHero({ data }: { data: IndustryPageContent }) {
                   sizes="(max-width: 1024px) 100vw, 40vw"
                 />
               </div>
+              
+              {/* Subtle glow effect around the card */}
+              <div className="absolute inset-0 bg-primary/[0.03] blur-[60px] rounded-[2.5rem] -z-10 scale-110" />
             </motion.div>
           </div>
         </div>
