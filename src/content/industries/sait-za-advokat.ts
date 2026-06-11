@@ -17,6 +17,16 @@ export const saitZaAdvokat: IndustryPageContent = {
     { src: "/images/portfolio/atelier juris готов сайт за адвокат.webp", alt: "Проект Atelier Juris" }
   ],
   intro: "Placeholder текст.",
+  specificFeatures: {
+    title: "Специфични функции за адвокатски сайт",
+    description: "Инструменти за изграждане на професионален авторитет.",
+    items: [
+      { title: "Правни услуги", text: "Ясно дефиниране на сферите на експертиза.", icon: "Scale" },
+      { title: "Професионално био", text: "Представяне на опита и квалификацията на адвокатите.", icon: "UserCheck" },
+      { title: "Запитване", text: "Защитена форма за първоначална консултация.", icon: "MessageSquare" },
+      { title: "Доверие", text: "Секция с принципи на работа и етика.", icon: "Shield" }
+    ]
+  },
   sections: [{ h2: "Експертиза", paragraphs: ["Placeholder."] }],
   benefits: [{ title: "Авторитет", text: "Професионално представяне." }],
   faq: [{ q: "Сигурен ли е сайтът?", a: "Да." }],

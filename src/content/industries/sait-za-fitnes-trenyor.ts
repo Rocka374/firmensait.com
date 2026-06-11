@@ -17,6 +17,16 @@ export const saitZaFitnesTrenyor: IndustryPageContent = {
     { src: "/images/portfolio/studio balance готов сайт за фитнес треньор.webp", alt: "Проект Studio Balance" }
   ],
   intro: "Placeholder текст.",
+  specificFeatures: {
+    title: "Специфични функции за фитнес треньор",
+    description: "Всичко необходимо за мотивация и резултати.",
+    items: [
+      { title: "Програми", text: "Детайлно описание на тренировки и режими.", icon: "Dumbbell" },
+      { title: "Консултации", text: "Индивидуален подход и следене на напредъка.", icon: "Users" },
+      { title: "Трансформации", text: "Секция с постигнати резултати на клиенти.", icon: "Zap" },
+      { title: "Запитване", text: "Бърз старт на съвместната работа.", icon: "MessageSquare" }
+    ]
+  },
   sections: [{ h2: "Програми", paragraphs: ["Placeholder."] }],
   benefits: [{ title: "Резултати", text: "Покажете успехите си." }],
   faq: [{ q: "Има ли диети?", a: "Да." }],

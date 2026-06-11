@@ -17,6 +17,16 @@ export const saitZaFrizyorskiSalon: IndustryPageContent = {
     { src: "/images/portfolio/bella casa hair готов сайт за фризьорски салон.webp", alt: "Проект Bella Casa Hair" }
   ],
   intro: "Placeholder.",
+  specificFeatures: {
+    title: "Специфични функции за фризьорски салон",
+    description: "Покажете професионализма си във фризьорството.",
+    items: [
+      { title: "Услуги и подстригване", text: "Опис на техники, цветове и терапии за коса.", icon: "Scissors" },
+      { title: "Запазване на час", text: "Лесен достъп до контакти за резервация.", icon: "Clock" },
+      { title: "Галерия", text: "Покажете най-добрите си визии и прически.", icon: "Camera" },
+      { title: "Локация", text: "Карта и работно време за вашите клиенти.", icon: "Map" }
+    ]
+  },
   sections: [{ h2: "Услуги", paragraphs: ["Placeholder."] }],
   benefits: [{ title: "Достъпност", text: "Лесен контакт." }],
   faq: [{ q: "Има ли карта?", a: "Да." }],

@@ -17,6 +17,16 @@ export const saitZaVeterinarnaKlinika: IndustryPageContent = {
     { src: "/images/portfolio/pawpoint готов сайт за ветеринарна клиника.webp", alt: "Проект Pawpoint" }
   ],
   intro: "Placeholder текст.",
+  specificFeatures: {
+    title: "Специфични функции за ветеринарна клиника",
+    description: "Елементи, които помагат на стопаните да се доверят на вашите грижи.",
+    items: [
+      { title: "Услуги и прегледи", text: "Подробно представяне на всички ветеринарни дейности.", icon: "Dog" },
+      { title: "Информация за екипа", text: "Профили на лекарите и техния опит в грижата за животни.", icon: "Users" },
+      { title: "Записване на час", text: "Лесна форма за контакт или заявка за преглед.", icon: "Calendar" },
+      { title: "Локация и график", text: "Интерактивна карта и ясно работно време на клиниката.", icon: "Map" }
+    ]
+  },
   sections: [{ h2: "Услуги", paragraphs: ["Placeholder."] }],
   benefits: [{ title: "Доверие", text: "Вашата клиника изглежда професионално." }],
   faq: [{ q: "Има ли галерия?", a: "Да." }],

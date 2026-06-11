@@ -17,6 +17,16 @@ export const saitZaSchetovodnaKashta: IndustryPageContent = {
     { src: "/images/portfolio/balance point сайт за счетоводна къща.webp", alt: "Проект Balance Point" }
   ],
   intro: "Placeholder.",
+  specificFeatures: {
+    title: "Специфични функции за счетоводен сайт",
+    description: "Изградете доверие в управлението на финансите.",
+    items: [
+      { title: "Счетоводни услуги", text: "Подробен опис на ТРЗ, ДДС и годишно приключване.", icon: "Calculator" },
+      { title: "Абонаменти", text: "Обяснение на предимствата на месечното обслужване.", icon: "Briefcase" },
+      { title: "Заявка за оферта", text: "Форма за специфично запитване според нуждите на бизнеса.", icon: "FileText" },
+      { title: "Доверие", text: "Секция с ценности, опит и отговорност.", icon: "Award" }
+    ]
+  },
   sections: [{ h2: "Услуги", paragraphs: ["Placeholder."] }],
   benefits: [{ title: "Доверие", text: "Яснота." }],
   faq: [{ q: "Има ли абонамент?", a: "Да." }],

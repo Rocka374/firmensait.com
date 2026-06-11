@@ -17,6 +17,16 @@ export const saitZaAvtoserviz: IndustryPageContent = {
     { src: "/images/portfolio/майстор сервиз готов сайт за сервиз.webp", alt: "Проект Майстор Сервиз" }
   ],
   intro: "Placeholder текст.",
+  specificFeatures: {
+    title: "Специфични функции за автосервиз",
+    description: "Всичко необходимо за доверието на шофьорите.",
+    items: [
+      { title: "Авто услуги", text: "Диагностика, ремонт, смяна на консумативи.", icon: "Car" },
+      { title: "Запитване", text: "Бърза връзка за консултация или час.", icon: "MessageSquare" },
+      { title: "Работно време", text: "Ясна информация кога сте на разположение.", icon: "Clock" },
+      { title: "Контакт", text: "Локация и телефон за спешни случаи.", icon: "Phone" }
+    ]
+  },
   sections: [{ h2: "Услуги", paragraphs: ["Placeholder."] }],
   benefits: [{ title: "Локация", text: "Лесно намиране." }],
   faq: [{ q: "Има ли цени?", a: "Да." }],

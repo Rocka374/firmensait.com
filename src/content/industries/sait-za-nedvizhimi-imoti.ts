@@ -17,6 +17,16 @@ export const saitZaNedvizhimiImoti: IndustryPageContent = {
     { src: "/images/portfolio/auera готов сайт за недвижими имоти.webp", alt: "Проект Auera" }
   ],
   intro: "Placeholder.",
+  specificFeatures: {
+    title: "Специфични функции за сайт за имоти",
+    description: "Ефективно представяне на вашия портфейл от обекти.",
+    items: [
+      { title: "Представяне на имоти", text: "Визуални карти с ключови характеристики на обектите.", icon: "Home" },
+      { title: "Филтри и категории", text: "Лесно разделение на Продажба, Наем и тип имот.", icon: "Search" },
+      { title: "Запитване за оглед", text: "Директни бутони за контакт под всеки имот.", icon: "Calendar" },
+      { title: "За агенцията", text: "История, екип и доверие в обслужването.", icon: "Info" }
+    ]
+  },
   sections: [{ h2: "Обяви", paragraphs: ["Placeholder."] }],
   benefits: [{ title: "Скорост", text: "Бързина." }],
   faq: [{ q: "Има ли карта?", a: "Да." }],

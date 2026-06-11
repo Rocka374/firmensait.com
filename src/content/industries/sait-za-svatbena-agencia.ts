@@ -17,6 +17,16 @@ export const saitZaSvatbenaAgencia: IndustryPageContent = {
     { src: "/images/portfolio/atelier amour готов сайт за сватбена агенция.webp", alt: "Проект Atelier Amour" }
   ],
   intro: "Placeholder текст.",
+  specificFeatures: {
+    title: "Специфични функции за сватбена агенция",
+    description: "Естетика и детайли, които превръщат посетителите в клиенти.",
+    items: [
+      { title: "Представяне на пакети", text: "Ясно описание на услугите и възможностите за планиране.", icon: "Heart" },
+      { title: "Галерия с проекти", text: "Визуално портфолио от реализирани приказни събития.", icon: "Image" },
+      { title: "Запитване за дата", text: "Специализирана форма за проверка на наличност.", icon: "Calendar" },
+      { title: "Отзиви и доверие", text: "Секция с препоръки от доволни младоженци.", icon: "Star" }
+    ]
+  },
   sections: [{ h2: "Портфолио", paragraphs: ["Placeholder."] }],
   benefits: [{ title: "Елегантност", text: "Дизайн, който вдъхновява." }],
   faq: [{ q: "Има ли галерия?", a: "Да." }],

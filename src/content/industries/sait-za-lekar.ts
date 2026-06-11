@@ -17,6 +17,16 @@ export const saitZaLekar: IndustryPageContent = {
     { src: "/images/portfolio/derma lumen готов сайт за лекар.webp", alt: "Проект Derma Lumen" }
   ],
   intro: "Placeholder текст.",
+  specificFeatures: {
+    title: "Специфични функции за сайт за лекар",
+    description: "Улеснете пациентите си с ясно онлайн присъствие.",
+    items: [
+      { title: "Медицински услуги", text: "Опис на извършваните прегледи и манипулации.", icon: "UserRound" },
+      { title: "За лекаря", text: "Автобиография, квалификации и специализации.", icon: "Stethoscope" },
+      { title: "Записване на час", text: "Бърза контактна форма или телефон за връзка.", icon: "Clock" },
+      { title: "За пациентите", text: "Полезна информация и съвети за здравето.", icon: "BookOpen" }
+    ]
+  },
   sections: [{ h2: "Специалности", paragraphs: ["Placeholder."] }],
   benefits: [{ title: "Достъпност", text: "Лесен контакт." }],
   faq: [{ q: "Има ли часове?", a: "Форма за контакт." }],

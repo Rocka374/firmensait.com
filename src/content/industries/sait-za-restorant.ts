@@ -16,7 +16,17 @@ export const saitZaRestorant: IndustryPageContent = {
     { src: "/images/portfolio/atelier blanc готов сайт за ресторант.webp", alt: "Проект Atelier Blanc" },
     { src: "/images/portfolio/casa nuvola изработка на сайт за ресторант.webp", alt: "Проект Casa Nuvola" }
   ],
-  intro: "Вашият ресторант има нужда от дигитален дом. Пълният текст ще бъде добавен по-късно.",
+  intro: "Вашият ресторант има нужда от дигитален дом.",
+  specificFeatures: {
+    title: "Специфични функции за сайт за ресторант",
+    description: "Всичко необходимо, за да превърнете гладните посетители в редовни гости.",
+    items: [
+      { title: "Меню с категории", text: "Подредено представяне на храни, напитки и цени.", icon: "Utensils" },
+      { title: "Резервации", text: "Бърза форма за запитване за свободна маса.", icon: "CalendarCheck" },
+      { title: "Галерия и атмосфера", text: "Снимки от интериора и най-добрите ви ястия.", icon: "Images" },
+      { title: "Локация и време", text: "Карта и информация кога заведението е отворено.", icon: "MapPin" }
+    ]
+  },
   sections: [{ h2: "Меню", paragraphs: ["Placeholder текст."] }],
   benefits: [{ title: "Визия", text: "Апетитен дизайн." }],
   faq: [{ q: "Има ли карта?", a: "Да." }],

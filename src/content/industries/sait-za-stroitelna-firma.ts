@@ -17,6 +17,16 @@ export const saitZaStroitelnaFirma: IndustryPageContent = {
     { src: "/images/portfolio/monolit build готов сайт за строителна фирма.webp", alt: "Проект Monolit Build" }
   ],
   intro: "Placeholder текст.",
+  specificFeatures: {
+    title: "Специфични функции за строителна фирма",
+    description: "Покажете мащаба и опита си.",
+    items: [
+      { title: "Строителни услуги", text: "Груб строеж, проектиране, ключ.", icon: "HardHat" },
+      { title: "Обекти", text: "Секция със завършени и текущи проекти.", icon: "Building2" },
+      { title: "Консултация", text: "Форма за запитване за бъдещ проект.", icon: "MessageSquare" },
+      { title: "Екип", text: "Професионалистите зад вашата работа.", icon: "Users" }
+    ]
+  },
   sections: [{ h2: "Проекти", paragraphs: ["Placeholder."] }],
   benefits: [{ title: "Мащаб", text: "Покажете възможностите си." }],
   faq: [{ q: "Има ли лицензи?", a: "Възможно е." }],

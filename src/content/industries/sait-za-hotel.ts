@@ -17,6 +17,16 @@ export const saitZaHotel: IndustryPageContent = {
     { src: "/images/portfolio/aurelia coast готов сайт за хотел.webp", alt: "Проект Aurelia Coast" }
   ],
   intro: "Placeholder.",
+  specificFeatures: {
+    title: "Специфични функции за сайт за хотел",
+    description: "Покажете удобствата и гостоприемството си.",
+    items: [
+      { title: "Стаи и удобства", text: "Отделни блокове за различните типове настаняване.", icon: "Building" },
+      { title: "Запитване", text: "Ясна форма за проверка на свободни места.", icon: "Calendar" },
+      { title: "Галерия", text: "Висококачествени снимки от обекта и ресторанта.", icon: "Camera" },
+      { title: "Локация", text: "Карта и информация за близки забележителности.", icon: "Map" }
+    ]
+  },
   sections: [{ h2: "Стаи", paragraphs: ["Placeholder."] }],
   benefits: [{ title: "Резервации", text: "Контакт." }],
   faq: [{ q: "Има ли карта?", a: "Да." }],

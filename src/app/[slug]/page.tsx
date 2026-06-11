@@ -6,6 +6,7 @@ import IndustryContent from "@/components/industry/IndustryContent";
 import IndustryFAQ from "@/components/industry/IndustryFAQ";
 import IndustryWhoFor from "@/components/industry/IndustryWhoFor";
 import IndustryFeatures from "@/components/industry/IndustryFeatures";
+import IndustrySpecificFeatures from "@/components/industry/IndustrySpecificFeatures";
 import IndustrySEO from "@/components/industry/IndustrySEO";
 import IndustryProcess from "@/components/industry/IndustryProcess";
 import IndustryFinalCTA from "@/components/industry/IndustryFinalCTA";
@@ -74,25 +75,33 @@ export default function IndustryPage({ params }: Props) {
       
       <SectionDivider variant="gold" />
 
-      {/* 6. Main Content Section (Storytelling/SEO) */}
+      {/* 6. Specific Features (NEW) */}
+      {industry.specificFeatures && (
+        <>
+          <IndustrySpecificFeatures data={industry.specificFeatures} />
+          <SectionDivider />
+        </>
+      )}
+
+      {/* 7. Main Content Section (Storytelling/SEO) */}
       <IndustryContent sections={industry.sections} benefits={industry.benefits} />
       
       <SectionDivider />
 
-      {/* 7. SEO Section */}
+      {/* 8. SEO Section */}
       <IndustrySEO />
       
       <SectionDivider variant="gold" />
 
-      {/* 8. Process */}
+      {/* 9. Process */}
       <IndustryProcess />
       
       <SectionDivider />
       
-      {/* 9. FAQ */}
+      {/* 10. FAQ */}
       <IndustryFAQ items={industry.faq} />
       
-      {/* 10. Final CTA */}
+      {/* 11. Final CTA */}
       <IndustryFinalCTA />
     </main>
   );

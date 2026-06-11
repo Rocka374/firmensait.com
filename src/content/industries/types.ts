@@ -26,6 +26,15 @@ export interface IndustryPageContent {
       text: string;
     }[];
   }[];
+  specificFeatures?: {
+    title: string;
+    description: string;
+    items: {
+      title: string;
+      text: string;
+      icon: string;
+    }[];
+  };
   benefits: {
     title: string;
     text: string;
