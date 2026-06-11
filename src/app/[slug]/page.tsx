@@ -50,17 +50,19 @@ export default function IndustryPage({ params }: Props) {
   }
 
   return (
-    <main>
+    <main className="bg-white">
       {/* 1. Hero */}
       <IndustryHero data={industry} />
       
       {/* 2. Intro Section */}
       <IndustryIntro text={industry.intro} />
 
+      <SectionDivider />
+
       {/* 3. Showcase / Portfolio */}
       <IndustryShowcase images={industry.portfolioImages} title={industry.title} />
       
-      <SectionDivider />
+      <SectionDivider variant="gold" />
       
       {/* 4. Who is it for */}
       <IndustryWhoFor industryTitle={industry.title} />

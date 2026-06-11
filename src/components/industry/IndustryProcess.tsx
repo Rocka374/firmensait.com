@@ -7,19 +7,24 @@ export default function IndustryProcess() {
       <div className="container mx-auto px-4">
         <SectionHeader title="Как протича изработката?" />
         
-        <div className="max-w-6xl mx-auto relative mt-20">
-          <div className="hidden lg:block absolute top-[44px] left-[10%] right-[10%] h-px bg-border/40 z-0" />
+        <div className="max-w-7xl mx-auto relative mt-24">
+          <div className="hidden lg:block absolute top-[50px] left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-border/60 to-transparent z-0" />
           
-          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-12 lg:gap-8 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-16 lg:gap-10 relative z-10">
             {sharedProcess.map((step, idx) => (
               <div key={idx} className="flex flex-col items-center text-center group">
-                <div className="w-20 h-20 rounded-full bg-white border border-border/40 flex items-center justify-center mb-6 transition-all group-hover:border-primary group-hover:shadow-lg">
-                   <div className="w-14 h-14 rounded-full bg-primary/5 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
-                      <step.icon size={22} strokeWidth={2} />
-                   </div>
+                <div className="relative mb-8">
+                  <div className="w-24 h-24 rounded-full bg-white border border-border/40 flex items-center justify-center transition-all duration-500 group-hover:border-primary group-hover:shadow-xl group-hover:shadow-primary/10">
+                    <div className="w-16 h-16 rounded-full bg-primary/5 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                        <step.icon size={26} strokeWidth={2} />
+                    </div>
+                  </div>
+                  <div className="absolute -top-1 -right-1 w-8 h-8 bg-primary text-white text-[10px] font-black rounded-full flex items-center justify-center border-4 border-white shadow-lg">
+                    {idx + 1}
+                  </div>
                 </div>
-                <h3 className="font-bold text-xs uppercase tracking-[0.2em] mb-2">{step.title}</h3>
-                <p className="text-secondary/50 text-sm font-medium">{step.description}</p>
+                <h3 className="font-black text-xs uppercase tracking-[0.2em] mb-3 text-foreground/90">{step.title}</h3>
+                <p className="text-secondary/60 text-sm font-bold leading-relaxed">{step.description}</p>
               </div>
             ))}
           </div>
