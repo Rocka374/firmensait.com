@@ -1,5 +1,8 @@
+"use client";
+
 import { IndustryPageContent } from "./types";
-export const saitZaKashta_za_gosti: IndustryPageContent = {
+
+export const saitZaKashtaZaGosti: IndustryPageContent = {
   title: "Сайт за къща за гости",
   slug: "sait-za-kashta-za-gosti",
   href: "/sait-za-kashta-za-gosti",
@@ -16,7 +19,7 @@ export const saitZaKashta_za_gosti: IndustryPageContent = {
     { src: "/images/portfolio/casa laguna готов сайт за къща за гости.webp", alt: "Проект Casa Laguna" },
     { src: "/images/portfolio/bela dvor готов сайт за къща за гости.webp", alt: "Проект Bela Dvor" }
   ],
-  intro: "Placeholder.",
+  intro: "Вашата къща за гости заслужава професионално онлайн присъствие.",
   specificFeatures: {
     title: "Специфични функции за къща за гости",
     description: "Всичко, за да се почувстват гостите ви като у дома си.",
@@ -27,8 +30,8 @@ export const saitZaKashta_za_gosti: IndustryPageContent = {
       { title: "Локация", text: "Указания как да стигнат гостите до вас.", icon: "Map" }
     ]
   },
-  sections: [{ h2: "Удобства", paragraphs: ["Placeholder."] }],
-  benefits: [{ title: "Видимост", text: "Лесно намиране." }],
-  faq: [{ q: "Има ли карта?", a: "Да." }],
+  sections: [{ h2: "Удобства", paragraphs: ["Тук ще бъде добавен подробен текст за предимствата на вашата къща за гости."] }],
+  benefits: [{ title: "Видимост", text: "Лесно намиране от нови туристи." }],
+  faq: [{ q: "Има ли карта?", a: "Да, включваме Google Maps локация." }],
   relatedIndustries: ["sait-za-hotel"]
 };
