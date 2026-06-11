@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { navigationLinks, headerCTA } from '@/content/navigation';
-import { siteConfig } from '@/content/site';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
