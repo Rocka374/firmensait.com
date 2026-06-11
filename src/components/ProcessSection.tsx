@@ -13,7 +13,7 @@ export default function ProcessSection() {
           {/* Desktop Connecting Line */}
           <div className="hidden lg:block absolute top-[55px] left-[8%] right-[8%] h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent z-0" />
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-14 lg:gap-6 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-14 lg:gap-6 relative z-10">
             {process.steps.map((step, idx) => {
               const Icon = (Icons as any)[step.icon] || Icons.Check;
               return (
