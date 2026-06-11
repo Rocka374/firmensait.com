@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { siteConfig } from '@/content/site';
-import { navigationLinks } from '@/content/navigation';
 import { footerContent } from '@/content/footer';
 import { industries } from '@/content/industries';
 import EmailLink from './EmailLink';
@@ -10,7 +9,7 @@ export default function Footer() {
     <footer className="bg-white border-t border-border/30 pt-24 pb-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 mb-20">
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-5">
             <Link href="/" className="text-3xl font-bold text-foreground mb-8 block tracking-tight">
               Firmensait<span className="text-primary">.com</span>
             </Link>
@@ -25,20 +24,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="lg:col-span-2">
-            <h4 className="font-black text-[10px] uppercase tracking-[0.2em] text-secondary/40 mb-8">Навигация</h4>
-            <ul className="space-y-4">
-              <li><Link href="/" className="text-foreground font-bold hover:text-primary transition-colors text-sm">Начало</Link></li>
-              <li><Link href="/kontakti" className="text-foreground font-bold hover:text-primary transition-colors text-sm">Контакти</Link></li>
-              {navigationLinks.slice(0, 4).map((link) => (
-                <li key={link.title}>
-                  <a href={link.href} className="text-foreground font-bold hover:text-primary transition-colors text-sm">{link.title}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-7">
             <h4 className="font-black text-[10px] uppercase tracking-[0.2em] text-secondary/40 mb-8">Портфолио по браншове</h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
               {industries.map((item) => {
