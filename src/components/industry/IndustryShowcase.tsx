@@ -14,7 +14,7 @@ export default function IndustryShowcase({ images, title, subtitle }: IndustrySh
     <section id="primerna-vizia" className="py-24 md:py-40 bg-white overflow-hidden">
       <div className="container mx-auto px-4 mb-16">
         <SectionHeader 
-          title={`Примерна визия за ${title.replace("Сайт за ", "")}`}
+          title={`Уеб проекти за ${title.replace("Сайт за ", "")}`}
           subtitle={subtitle || defaultSubtitle}
           className="max-w-3xl"
         />
