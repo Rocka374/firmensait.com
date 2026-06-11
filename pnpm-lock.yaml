@@ -131,6 +131,9 @@ importers:
       react-hook-form:
         specifier: ^7.78.0
         version: 7.78.0(react@19.2.3)
+      react-obfuscate:
+        specifier: ^3.7.0
+        version: 3.7.0(prop-types@15.8.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       react-resizable-panels:
         specifier: ^2.1.0
         version: 2.1.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -1743,6 +1746,14 @@ packages:
 
   react-is@18.3.1:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
+
+  react-obfuscate@3.7.0:
+    resolution: {integrity: sha512-y/sd0W8VuzoH6kGXjwdFCvCRxqBeffyaxrqyfWjACY8Ejl9sGaJbRf1iJXHYkQU4Va81G2triRkgHhsfNIx5FQ==}
+    engines: {node: '>= 0.10.0'}
+    peerDependencies:
+      prop-types: '>= 15'
+      react: '>= 16.8'
+      react-dom: '>= 16.8'
 
   react-remove-scroll-bar@2.3.8:
     resolution: {integrity: sha512-9r+yi9+mgU33AKcj6IbT9oRCO78WriSj6t/cF8DWBZJ9aOGPOTEDvdUDz1FwKim7QXWwmHqtdHnRJfhAxEG46Q==}
@@ -3464,6 +3475,12 @@ snapshots:
   react-is@16.13.1: {}
 
   react-is@18.3.1: {}
+
+  react-obfuscate@3.7.0(prop-types@15.8.1)(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+    dependencies:
+      prop-types: 15.8.1
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
 
   react-remove-scroll-bar@2.3.8(@types/react@19.2.8)(react@19.2.3):
     dependencies:

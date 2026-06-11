@@ -3,6 +3,7 @@ import { siteConfig } from '@/content/site';
 import { navigationLinks } from '@/content/navigation';
 import { footerContent } from '@/content/footer';
 import { industries } from '@/content/industries';
+import EmailLink from './EmailLink';
 
 export default function Footer() {
   return (
@@ -18,9 +19,9 @@ export default function Footer() {
             </p>
             <div className="flex flex-col gap-2">
               <span className="text-[10px] font-black uppercase tracking-widest text-secondary/40 mb-1">Свържете се с нас</span>
-              <a href={`mailto:${siteConfig.links.email}`} className="text-xl font-bold text-foreground hover:text-primary transition-colors">
-                {siteConfig.links.email}
-              </a>
+              <div className="text-xl font-bold text-foreground">
+                <EmailLink email={siteConfig.links.email} />
+              </div>
             </div>
           </div>
 
