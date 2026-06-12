@@ -1,7 +1,7 @@
 // Site configuration and metadata
 export const siteConfig = {
   name: "Firmensait.com",
-  title: "Професионален фирмен сайт за 350 евро | Firmensait.com",
+  title: "Професионален фирмен сайт за 350 евро | Изработка на фирмен сайт",
   description: "Изработка на професионален фирмен сайт за малък бизнес и услуги на цена 350 евро. Отделни страници за услуги, модерен дизайн, мобилна версия, SEO структура и без месечна такса за хостинг.",
   url: "https://firmensait.com",
   ogImage: "/images/common/og-image.jpg",
