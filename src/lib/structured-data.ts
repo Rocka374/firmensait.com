@@ -47,10 +47,25 @@ export function getFAQSchema() {
 }
 
 /**
+ * Генерира Service name без дублиране на 'Изработка на'
+ */
+function getNormalizedServiceName(title: string): string {
+  if (title.toLowerCase().startsWith('изработка на')) {
+    return title;
+  }
+  if (title.toLowerCase().startsWith('сайт за')) {
+    return `Изработка на ${title.toLowerCase()}`;
+  }
+  return `Изработка на сайт за ${title.toLowerCase()}`;
+}
+
+/**
  * Генерира Service schema за конкретна браншова страница
  */
 export function getIndustryServiceSchema(industry: IndustryPageContent) {
-  const serviceName = `Изработка на ${industry.title.toLowerCase()}`;
+  const serviceName = getNormalizedServiceName(industry.title);
+  const pageUrl = `${siteConfig.url}/${industry.slug}`;
+  
   return {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -66,13 +81,13 @@ export function getIndustryServiceSchema(industry: IndustryPageContent) {
       "name": "Bulgaria"
     },
     "serviceType": "Изработка на фирмен сайт",
-    "url": `${siteConfig.url}/${industry.slug}`,
+    "url": pageUrl,
     "offers": {
       "@type": "Offer",
       "price": "350",
       "priceCurrency": "EUR",
       "availability": "https://schema.org/InStock",
-      "url": `${siteConfig.url}/${industry.slug}`
+      "url": pageUrl
     }
   };
 }
@@ -81,7 +96,9 @@ export function getIndustryServiceSchema(industry: IndustryPageContent) {
  * Генерира Breadcrumb schema за конкретна браншова страница
  */
 export function getIndustryBreadcrumbSchema(industry: IndustryPageContent) {
-  const serviceName = `Изработка на ${industry.title.toLowerCase()}`;
+  const serviceName = getNormalizedServiceName(industry.title);
+  const pageUrl = `${siteConfig.url}/${industry.slug}`;
+
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -96,7 +113,7 @@ export function getIndustryBreadcrumbSchema(industry: IndustryPageContent) {
         "@type": "ListItem",
         "position": 2,
         "name": serviceName,
-        "item": `${siteConfig.url}/${industry.slug}`
+        "item": pageUrl
       }
     ]
   };
