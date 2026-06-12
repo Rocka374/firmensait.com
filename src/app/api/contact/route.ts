@@ -8,12 +8,11 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { name, email, industry, message, turnstileToken } = body;
 
-    // Използваме BREVO_API_KEY като парола и BREVO_SMTP_USER като логин (ако е наличен)
     const smtpPass = process.env.BREVO_API_KEY;
-    const smtpUser = process.env.BREVO_SMTP_USER || "office@firmensait.com";
+    const smtpUser = process.env.BREVO_SMTP_USER || "ae7217001@smtp-brevo.com";
 
     if (!smtpPass) {
-      return NextResponse.json({ error: 'Липсва SMTP парола' }, { status: 500 });
+      return NextResponse.json({ error: 'Липсва SMTP парола (BREVO_API_KEY)' }, { status: 500 });
     }
 
     if (!turnstileToken) {
@@ -30,8 +29,10 @@ export async function POST(request: Request) {
       },
     });
 
+    // Важно: 'from' трябва да бъде потвърден имейл в Brevo (Sender)
+    // Използваме office@firmensait.com, който е вашият бизнес имейл
     await transporter.sendMail({
-      from: `"Firmensait.com Form" <${smtpUser}>`,
+      from: `"Firmensait.com Form" <office@firmensait.com>`,
       to: "websika.com@gmail.com",
       subject: `Ново запитване от ${name} (${industry})`,
       replyTo: email,
