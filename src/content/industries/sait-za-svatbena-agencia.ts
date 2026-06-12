@@ -7,7 +7,7 @@ export const saitZaSvatbenaAgencia: IndustryPageContent = {
   menuLabel: "Сватбена агенция",
   icon: "Heart",
   shortDescription: "Вълшебна визия за вашите празнични услуги.",
-  metaTitle: "Сайт за сватбена агенция | Изработка на сайт за wedding planner",
+  metaTitle: "Изработка на сайт за сватбена агенция | Firmensait.com",
   metaDescription: "Изработка на професионален сайт за сватбена агенция, организатор на сватби или wedding planner услуги. Елегантен дизайн, портфолио, мобилна версия, SEO структура и готовност до 10 дни.",
   h1: "Изработка на сайт за сватбена агенция",
   subtitle: "Професионална изработка на сайт за сватбена агенция, организатор на събития или wedding planner услуги.",
