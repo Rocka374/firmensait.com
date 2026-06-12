@@ -104,7 +104,7 @@ export default function IndustryPortfolioCarousel({ images }: Props) {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.03 }}
               transition={{ duration: 0.5, ease: "circOut" }}
-              className="relative w-full h-full rounded-[2.5rem] md:rounded-[4rem] overflow-hidden bg-white border border-border/40 shadow-[0_40px_100px_rgba(184,145,79,0.1)]"
+              className="relative w-full h-full rounded-[2.5rem] md:rounded-[4rem] overflow-hidden bg-white border border-border/50 shadow-[0_50px_120px_-20px_rgba(184,145,79,0.22),0_20px_40px_-20px_rgba(0,0,0,0.1)]"
               onMouseEnter={() => { isHovered.current = true; }}
               onMouseLeave={() => { isHovered.current = false; scheduleResume(2000); }}
             >
