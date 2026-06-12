@@ -20,6 +20,16 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/kontakti/page.js"
+    ],
+    "/obshti-uslovia/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/obshti-uslovia/page.js"
+    ],
+    "/politika-za-poveritelnost/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/politika-za-poveritelnost/page.js"
     ]
   }
 }

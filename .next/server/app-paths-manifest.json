@@ -1,5 +1,8 @@
 {
-  "/[slug]/page": "app/[slug]/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/page": "app/page.js",
   "/kontakti/page": "app/kontakti/page.js",
-  "/page": "app/page.js"
+  "/[slug]/page": "app/[slug]/page.js",
+  "/obshti-uslovia/page": "app/obshti-uslovia/page.js",
+  "/politika-za-poveritelnost/page": "app/politika-za-poveritelnost/page.js"
 }
