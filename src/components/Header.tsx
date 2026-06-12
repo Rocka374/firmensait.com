@@ -253,7 +253,7 @@ export default function Header() {
                 <div className="flex flex-col items-start text-left">
                   <span className="text-lg font-bold">Портфолио по браншове</span>
                   <span className={cn("text-[10px] uppercase font-black tracking-widest mt-0.5 opacity-70", isMobilePortfolioOpen ? "text-white" : "text-primary")}>
-                    20 примерни уеб визии
+                    Над 80 реализирани проекта
                   </span>
                 </div>
                 <ChevronDown size={22} className={cn("transition-transform duration-300", isMobilePortfolioOpen && "rotate-180")} />
