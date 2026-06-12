@@ -103,7 +103,7 @@ export default function PortfolioPreview() {
       </div>
 
       <div className="relative w-full max-w-[1600px] mx-auto px-4">
-        {/* Carousel Scene */}
+        {/* Carousel Scene - Restricted with overflow-hidden on container */}
         <div className="perspective-1000 relative h-[280px] sm:h-[400px] md:h-[680px] flex items-center justify-center">
           
           {/* Previous Card (Left) */}
@@ -133,7 +133,7 @@ export default function PortfolioPreview() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 1.02, y: -10 }}
                 transition={{ duration: 0.4, ease: "circOut" }}
-                className="relative w-full h-full rounded-[1.5rem] md:rounded-[3.5rem] overflow-hidden bg-white border border-border/60 shadow-[0_40px_120px_-20px_rgba(184,145,79,0.2),0_20px_40px_-20px_rgba(0,0,0,0.1)] group"
+                className="relative w-full h-full rounded-[1.5rem] md:rounded-[3.5rem] overflow-hidden bg-white border border-border/50 shadow-[0_30px_60px_rgba(184,145,79,0.12)] group"
                 onMouseEnter={() => { isHovered.current = true; }}
                 onMouseLeave={() => { isHovered.current = false; scheduleResume(2000); }}
               >
@@ -161,7 +161,7 @@ export default function PortfolioPreview() {
                   </div>
                 </div>
                 
-                {/* Scroll Indicator */}
+                {/* Scroll Indicator - Pulse Hint */}
                 <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 pointer-events-none">
                   <div className="flex flex-col items-center gap-2 animate-pulse">
                     <div className="bg-primary/90 backdrop-blur-md text-white text-[10px] md:text-xs font-black uppercase tracking-[0.2em] px-4 py-2 rounded-full shadow-lg border border-white/20 flex items-center gap-2">
