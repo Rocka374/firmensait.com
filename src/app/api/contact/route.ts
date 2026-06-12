@@ -7,6 +7,16 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { name, email, industry, message, turnstileToken } = body;
 
+    const brevoApiKey = process.env.BREVO_API_KEY;
+
+    if (!brevoApiKey) {
+      console.error("Missing BREVO_API_KEY environment variable");
+      return NextResponse.json(
+        { error: 'Email service is not configured' }, 
+        { status: 500 }
+      );
+    }
+
     if (!turnstileToken) {
       return NextResponse.json({ error: 'Missing security token' }, { status: 400 });
     }
@@ -16,7 +26,7 @@ export async function POST(request: Request) {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'api-key': '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',
+        'api-key': brevoApiKey,
       },
       body: JSON.stringify({
         sender: { name: "Firmensait.com Form", email: "office@firmensait.com" },
