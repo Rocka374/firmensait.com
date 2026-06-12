@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     const brevoApiKey = process.env.BREVO_API_KEY;
 
     if (!brevoApiKey) {
-      console.error("Missing BREVO_API_KEY environment variable");
+      console.error("ГРЕШКА: Липсва BREVO_API_KEY в Environment Variables.");
       return NextResponse.json(
         { error: 'Email service is not configured' }, 
         { status: 500 }
@@ -21,6 +21,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Missing security token' }, { status: 400 });
     }
 
+    // Изпращане към Brevo
     const response = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: {
@@ -47,11 +48,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: true });
     } else {
       const errorData = await response.json();
-      console.error('Brevo API error:', errorData);
+      console.error('Brevo API грешка:', JSON.stringify(errorData));
       return NextResponse.json({ error: 'Failed to send email' }, { status: 500 });
     }
   } catch (error) {
-    console.error('Contact API error:', error);
+    console.error('Contact API критична грешка:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
