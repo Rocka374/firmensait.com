@@ -2,23 +2,29 @@ import SectionHeader from "./SectionHeader";
 import { homeContent } from "@/content/home";
 import { ChevronRight, Info } from "lucide-react";
 import Button from "./Button";
+import Link from "next/link";
+import { industries as industriesData } from "@/content/industries";
 
 export default function IndustryGrid() {
   const { industries } = homeContent;
+  
   return (
     <section id="branshove" className="py-24 md:py-36 relative bg-[#FAF8F4]">
       <div className="container mx-auto px-4 relative z-10">
         <SectionHeader title={industries.title} subtitle={industries.subtitle} />
         
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5 mb-12 max-w-6xl mx-auto">
-          {industries.items.map((item, idx) => (
-            <div 
-              key={idx} 
+          {industriesData.map((item, idx) => (
+            <Link 
+              key={item.slug || idx} 
+              href={item.href}
               className="bg-white border border-border/40 rounded-xl p-4 md:p-5 flex items-center justify-between group cursor-pointer transition-all duration-300 hover:border-primary/40 hover:shadow-[0_10px_30px_rgba(184,145,79,0.05)]"
             >
-              <span className="font-bold text-foreground/80 text-xs md:text-sm">{item}</span>
+              <span className="font-bold text-foreground/80 text-xs md:text-sm group-hover:text-primary transition-colors">
+                {item.title}
+              </span>
               <ChevronRight size={14} className="text-primary/40 group-hover:text-primary group-hover:translate-x-1 transition-all" />
-            </div>
+            </Link>
           ))}
         </div>
 
