@@ -34,7 +34,7 @@ export const footerContent = {
     "Виж всички браншове",
   ],
   bottomLinks: [
-    { title: "Общи условия", href: "#" },
-    { title: "Политика за поверителност", href: "#" },
+    { title: "Общи условия", href: "/obshti-uslovia" },
+    { title: "Политика за поверителност", href: "/politika-za-poveritelnost" },
   ]
 };
