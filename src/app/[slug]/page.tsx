@@ -14,6 +14,11 @@ import IndustryProcess from "@/components/industry/IndustryProcess";
 import IndustryFinalCTA from "@/components/industry/IndustryFinalCTA";
 import IndustryPricing from "@/components/industry/IndustryPricing";
 import SectionDivider from "@/components/SectionDivider";
+import { 
+  getIndustryServiceSchema, 
+  getIndustryBreadcrumbSchema, 
+  getIndustryFAQSchema 
+} from "@/lib/structured-data";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -54,8 +59,22 @@ export default async function IndustryPage({ params }: PageProps) {
     notFound();
   }
 
+  // Генериране на структурирани данни за SEO
+  const schemas = [
+    getIndustryServiceSchema(industry),
+    getIndustryBreadcrumbSchema(industry),
+    getIndustryFAQSchema(industry)
+  ].filter(Boolean);
+
+  const jsonLdContent = JSON.stringify(schemas).replace(/</g, '\\u003c');
+
   return (
     <main className="bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdContent }}
+      />
+      
       {/* 1. Hero */}
       <IndustryHero data={industry} />
       
