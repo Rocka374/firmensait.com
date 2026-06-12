@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import SectionHeader from "@/components/SectionHeader";
-import { Mail, Send, CheckCircle2 } from "lucide-react";
+import { Mail, Send, CheckCircle2, AlertCircle } from "lucide-react";
 import Button from "@/components/Button";
 import EmailLink from "@/components/EmailLink";
 import { Turnstile } from "@marsidev/react-turnstile";
@@ -13,12 +13,14 @@ export default function ContactPage() {
   const [token, setToken] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!token) return;
 
     setIsSubmitting(true);
+    setErrorMessage(null);
     const formData = new FormData(e.currentTarget);
     
     const data = {
@@ -36,13 +38,18 @@ export default function ContactPage() {
         body: JSON.stringify(data),
       });
 
+      const result = await response.json();
+
       if (response.ok) {
         setIsSuccess(true);
         showSuccess("Съобщението е изпратено успешно!");
       } else {
-        showError("Възникна грешка при изпращането. Моля, опитайте отново.");
+        const msg = result.error || "Възникна грешка при изпращането.";
+        setErrorMessage(msg);
+        showError(msg);
       }
     } catch (error) {
+      setErrorMessage("Възникна техническа грешка.");
       showError("Възникна техническа грешка.");
     } finally {
       setIsSubmitting(false);
@@ -99,12 +106,19 @@ export default function ContactPage() {
                  <p className="text-secondary/70 text-lg max-w-sm">
                    Вашето запитване беше изпратено успешно. Ще се свържем с вас възможно най-скоро.
                  </p>
-                 <Button variant="outline" onClick={() => setIsSuccess(false)}>
+                 <Button variant="outline" onClick={() => { setIsSuccess(false); setErrorMessage(null); }}>
                    Изпрати ново съобщение
                  </Button>
                </div>
              ) : (
                <form className="space-y-6" onSubmit={handleSubmit}>
+                {errorMessage && (
+                  <div className="bg-red-50 border border-red-200 text-red-700 p-4 rounded-2xl flex items-center gap-3 text-sm font-medium">
+                    <AlertCircle size={20} className="shrink-0" />
+                    {errorMessage}
+                  </div>
+                )}
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                    <div className="space-y-2">
                       <label className="text-xs font-black uppercase tracking-widest text-secondary/50 px-2">Вашето име</label>

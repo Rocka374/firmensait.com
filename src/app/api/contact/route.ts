@@ -10,15 +10,14 @@ export async function POST(request: Request) {
     const brevoApiKey = process.env.BREVO_API_KEY;
 
     if (!brevoApiKey) {
-      console.error("ГРЕШКА: Липсва BREVO_API_KEY в Environment Variables.");
       return NextResponse.json(
-        { error: 'Email service is not configured' }, 
+        { error: 'Липсва API ключ в системните променливи (BREVO_API_KEY)' }, 
         { status: 500 }
       );
     }
 
     if (!turnstileToken) {
-      return NextResponse.json({ error: 'Missing security token' }, { status: 400 });
+      return NextResponse.json({ error: 'Липсва Turnstile токен' }, { status: 400 });
     }
 
     // Изпращане към Brevo
@@ -44,15 +43,20 @@ export async function POST(request: Request) {
       }),
     });
 
+    const responseData = await response.json();
+
     if (response.ok) {
       return NextResponse.json({ success: true });
     } else {
-      const errorData = await response.json();
-      console.error('Brevo API грешка:', JSON.stringify(errorData));
-      return NextResponse.json({ error: 'Failed to send email' }, { status: 500 });
+      console.error('Brevo API грешка:', responseData);
+      // Връщаме конкретната грешка от Brevo към клиента за по-лесно дебъгване
+      return NextResponse.json({ 
+        error: `Brevo грешка: ${responseData.message || 'Неизвестна грешка'}`,
+        code: responseData.code 
+      }, { status: response.status });
     }
-  } catch (error) {
+  } catch (error: any) {
     console.error('Contact API критична грешка:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return NextResponse.json({ error: `Критична грешка: ${error.message}` }, { status: 500 });
   }
 }
