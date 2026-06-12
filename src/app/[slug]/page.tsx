@@ -46,6 +46,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: industry.metaTitle,
       description: industry.metaDescription,
       url: `/${industry.slug}`,
+      type: "website",
       images: [{ url: industry.heroImage.src }],
     },
   };
