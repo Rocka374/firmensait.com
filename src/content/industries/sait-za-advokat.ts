@@ -1,15 +1,15 @@
 import { IndustryPageContent } from "./types";
 
 export const saitZaAdvokat: IndustryPageContent = {
-  title: "Сайт за адвокат",
+  title: "Изработка на сайт за адвокат",
   slug: "sait-za-advokat",
   href: "/sait-za-advokat",
   menuLabel: "Адвокат",
   icon: "Scale",
   shortDescription: "Авторитетно онлайн присъствие за вашата кантора.",
-  metaTitle: "Изработка на сайт за адвокат | Firmensait.com",
+  metaTitle: "Изработка на сайт за адвокат | Адвокатска кантора",
   metaDescription: "Изработка на професионален сайт за адвокат, адвокатска кантора или правни услуги. Модерен дизайн, представяне на правни области, мобилна версия, SEO структура и готовност до 10 дни.",
-  h1: "Сайт за адвокат",
+  h1: "Изработка на сайт за адвокат",
   subtitle: "Професионална изработка на сайт за адвокат, адвокатска кантора или правна практика.",
   heroImage: { src: "/images/portfolio/сайт за адвокат.webp", alt: "Професионален сайт за адвокат" },
   portfolioImages: [
