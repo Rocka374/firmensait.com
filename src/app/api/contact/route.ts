@@ -8,33 +8,30 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { name, email, industry, message, turnstileToken } = body;
 
-    const smtpKey = process.env.BREVO_API_KEY;
+    // Използваме BREVO_API_KEY като парола и BREVO_SMTP_USER като логин (ако е наличен)
+    const smtpPass = process.env.BREVO_API_KEY;
+    const smtpUser = process.env.BREVO_SMTP_USER || "office@firmensait.com";
 
-    if (!smtpKey) {
-      return NextResponse.json(
-        { error: 'Липсва SMTP ключ (BREVO_API_KEY)' }, 
-        { status: 500 }
-      );
+    if (!smtpPass) {
+      return NextResponse.json({ error: 'Липсва SMTP парола' }, { status: 500 });
     }
 
     if (!turnstileToken) {
       return NextResponse.json({ error: 'Липсва защитен токен' }, { status: 400 });
     }
 
-    // Конфигурация на SMTP транспорта
     const transporter = nodemailer.createTransport({
       host: "smtp-relay.brevo.com",
       port: 587,
-      secure: false, // true за 465, false за 587
+      secure: false,
       auth: {
-        user: "office@firmensait.com", // Вашият Brevo SMTP логин (обикновено имейлът на акаунта)
-        pass: smtpKey, // Вашият Brevo SMTP ключ (xsmtpsib-...)
+        user: smtpUser,
+        pass: smtpPass,
       },
     });
 
-    // Изпращане на имейла
     await transporter.sendMail({
-      from: `"Firmensait.com Form" <office@firmensait.com>`,
+      from: `"Firmensait.com Form" <${smtpUser}>`,
       to: "websika.com@gmail.com",
       subject: `Ново запитване от ${name} (${industry})`,
       replyTo: email,
@@ -54,7 +51,6 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: true });
   } catch (error: any) {
     console.error('SMTP грешка:', error);
-    // Връщаме съобщението за грешка към клиента за диагностика
     return NextResponse.json({ error: `SMTP грешка: ${error.message}` }, { status: 500 });
   }
 }
