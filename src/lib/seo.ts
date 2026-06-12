@@ -9,6 +9,15 @@ export function constructMetadata(): Metadata {
     alternates: {
       canonical: '/',
     },
+    icons: {
+      icon: [
+        { url: '/favicon.ico' },
+        { url: '/favicon.png', type: 'image/png' },
+      ],
+      apple: [
+        { url: '/favicon.png' },
+      ],
+    },
     openGraph: {
       title: siteConfig.title,
       description: siteConfig.description,
