@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, ChevronDown, ArrowRight, Home, Mail, Check, LucideIcon } from 'lucide-react';
+import React, { useState, useEffect, useRef, ElementType } from 'react';
+import { Menu, X, ChevronDown, ArrowRight, Home, Mail, Check } from 'lucide-react';
 import * as Icons from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
@@ -9,11 +9,10 @@ import { industries } from '@/content/industries';
 
 /**
  * Helper to safely retrieve Lucide icons from string keys.
- * Typed as LucideIcon to allow size/strokeWidth props.
  */
-const getIcon = (iconName: string): LucideIcon => {
-  const IconComponent = (Icons as any)[iconName];
-  return (IconComponent as LucideIcon) || Check;
+const getIcon = (iconName: string): ElementType => {
+  const IconComponent = (Icons as Record<string, ElementType>)[iconName];
+  return IconComponent || Check;
 };
 
 export default function Header() {
@@ -143,7 +142,7 @@ export default function Header() {
                               onClick={closeAll}
                             >
                               <div className="w-9 h-9 shrink-0 rounded-xl bg-primary/[0.08] flex items-center justify-center text-primary transition-all duration-200 group-hover:bg-primary group-hover:text-white">
-                                <IconComponent size={16} strokeWidth={2.5} />
+                                <IconComponent size={16} />
                               </div>
                               <div className="min-w-0 flex-1 overflow-hidden">
                                 <span className="block text-[12.5px] font-bold leading-snug text-foreground/80 group-hover:text-primary transition-colors break-words">
@@ -272,7 +271,7 @@ export default function Header() {
                     >
                       <div className="flex items-center gap-4 min-w-0 flex-1">
                         <div className="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center text-primary shrink-0">
-                          <IconComp size={18} strokeWidth={2.5} />
+                          <IconComp size={18} />
                         </div>
                         <span className="font-bold text-sm text-foreground/80 leading-tight break-words min-w-0">
                           {item.title}
