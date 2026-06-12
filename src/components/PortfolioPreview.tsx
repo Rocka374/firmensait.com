@@ -153,8 +153,12 @@ export default function PortfolioPreview() {
                       width={1200}
                       height={4000}
                       className="w-full h-auto block"
-                      loading="lazy"
-                      sizes="(max-width: 768px) 90vw, 1050px"
+                      // Първото изображение в списъка (което се вижда при зареждане) е priority
+                      priority={currentIndex === 0}
+                      loading={currentIndex === 0 ? undefined : "lazy"}
+                      fetchPriority={currentIndex === 0 ? "high" : "auto"}
+                      // Оптимизиран sizes: на мобилни е около 80-85% от екрана
+                      sizes="(max-width: 768px) 85vw, 1050px"
                     />
                   </div>
                 </div>

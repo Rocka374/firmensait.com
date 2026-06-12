@@ -136,9 +136,10 @@ export default function Hero() {
                   alt={hero.heroImageAlt}
                   fill
                   priority
+                  fetchPriority="high"
                   className="object-contain"
-                  // Оптимизиран sizes за LCP
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 700px"
+                  // Оптимизиран sizes: на мобилни е около 85% от екрана, на десктоп е наполовина (max 700px)
+                  sizes="(max-width: 768px) 85vw, (max-width: 1200px) 50vw, 700px"
                 />
               </div>
             </div>
