@@ -9,6 +9,7 @@ interface ButtonProps {
   size?: "md" | "lg" | "xl";
   disabled?: boolean;
   type?: "button" | "submit" | "reset";
+  onClick?: (event: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void;
 }
 
 export default function Button({ 
@@ -18,7 +19,8 @@ export default function Button({
   className, 
   size = "md",
   disabled,
-  type = "button"
+  type = "button",
+  onClick
 }: ButtonProps) {
   const baseStyles = "inline-flex items-center justify-center font-bold rounded-full transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] shadow-sm cursor-pointer";
   
@@ -48,14 +50,14 @@ export default function Button({
 
     if (isExternal || isAnchor) {
       return (
-        <a href={href} className={combinedClasses}>
+        <a href={href} className={combinedClasses} onClick={onClick}>
           {children}
         </a>
       );
     }
 
     return (
-      <Link href={href} className={combinedClasses}>
+      <Link href={href} className={combinedClasses} onClick={onClick}>
         {children}
       </Link>
     );
@@ -66,6 +68,7 @@ export default function Button({
       type={type} 
       className={combinedClasses} 
       disabled={disabled}
+      onClick={onClick}
     >
       {children}
     </button>
