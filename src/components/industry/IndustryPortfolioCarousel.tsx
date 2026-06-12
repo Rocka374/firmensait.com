@@ -135,10 +135,13 @@ export default function IndustryPortfolioCarousel({ images }: Props) {
                 />
               </div>
 
-              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 pointer-events-none animate-bounce">
-                <div className="bg-primary/90 backdrop-blur-md text-white text-[10px] font-black uppercase tracking-[0.2em] px-5 py-2.5 rounded-full shadow-2xl border border-white/20 flex items-center gap-2">
-                  <MousePointer2 size={14} className="rotate-90" />
-                  Scroll
+              {/* Centered Scroll Hint */}
+              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40 pointer-events-none">
+                <div className="flex flex-col items-center gap-2 animate-pulse">
+                  <div className="bg-primary/90 backdrop-blur-md text-white text-[10px] md:text-xs font-black uppercase tracking-[0.2em] px-5 py-2.5 rounded-full shadow-2xl border border-white/20 flex items-center gap-2">
+                    <MousePointer2 size={14} className="rotate-90" />
+                    Scroll
+                  </div>
                 </div>
               </div>
 
