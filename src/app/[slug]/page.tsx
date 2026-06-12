@@ -14,8 +14,8 @@ import IndustryFinalCTA from "@/components/industry/IndustryFinalCTA";
 import IndustryPricing from "@/components/industry/IndustryPricing";
 import SectionDivider from "@/components/SectionDivider";
 
-interface Props {
-  params: { slug: string };
+interface PageProps {
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -24,8 +24,10 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: Props) {
-  const industry = industriesBySlug[params.slug];
+export async function generateMetadata({ params }: PageProps) {
+  const { slug } = await params;
+  const industry = industriesBySlug[slug];
+  
   if (!industry) return {};
 
   return {
@@ -43,8 +45,9 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-export default function IndustryPage({ params }: Props) {
-  const industry = industriesBySlug[params.slug];
+export default async function IndustryPage({ params }: PageProps) {
+  const { slug } = await params;
+  const industry = industriesBySlug[slug];
 
   if (!industry) {
     notFound();
@@ -88,7 +91,7 @@ export default function IndustryPage({ params }: Props) {
         </>
       )}
 
-      {/* 7. Pricing Section - NEW */}
+      {/* 7. Pricing Section */}
       <IndustryPricing industryTitle={industry.title} />
 
       <SectionDivider variant="gold" />
