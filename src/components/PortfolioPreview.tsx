@@ -108,21 +108,21 @@ export default function PortfolioPreview() {
           <motion.div 
             key={`left-${getProjectIndex(-1)}`}
             initial={{ opacity: 0, x: -100, scale: 0.7 }}
-            animate={{ opacity: 0.4, x: "-55%", scale: 0.8, rotateY: -15, rotateZ: -2 }}
+            animate={{ opacity: 0.3, x: "-58%", scale: 0.72, rotateY: -22, rotateZ: -2 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="absolute hidden lg:block w-[750px] aspect-[16/10] rounded-[2.5rem] overflow-hidden border border-border/40 bg-white blur-[2px] z-10 pointer-events-none shadow-2xl"
+            className="absolute hidden lg:block w-[850px] aspect-[16/10] rounded-[2.5rem] overflow-hidden border border-border/40 bg-white blur-[2px] z-10 pointer-events-none shadow-2xl"
           >
              <Image 
               src={prevProjectData.image} 
               alt="Предишен проект" 
               fill 
               className="object-cover object-top"
-              sizes="400px" // Малък размер, защото е страничен и blur-нат
+              sizes="400px"
               loading="lazy"
             />
           </motion.div>
 
-          <div className="relative w-full max-w-[950px] h-full z-30">
+          <div className="relative w-full max-w-[1050px] h-full z-30">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
@@ -153,8 +153,8 @@ export default function PortfolioPreview() {
                       width={1200}
                       height={4000}
                       className="w-full h-auto block"
-                      loading="lazy" // Премахнато priority, под fold-а е
-                      sizes="(max-width: 768px) 90vw, 950px" // Оптимизиран size според контейнера
+                      loading="lazy"
+                      sizes="(max-width: 768px) 90vw, 1050px"
                     />
                   </div>
                 </div>
@@ -191,7 +191,7 @@ export default function PortfolioPreview() {
           <motion.div 
             key={`right-${getProjectIndex(1)}`}
             initial={{ opacity: 0, x: 100, scale: 0.7 }}
-            animate={{ opacity: 0.4, x: "55%", scale: 0.8, rotateY: 15, rotateZ: 2 }}
+            animate={{ opacity: 0.3, x: "58%", scale: 0.72, rotateY: 22, rotateZ: 2 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="absolute hidden lg:block w-[750px] aspect-[16/10] rounded-[2.5rem] overflow-hidden border border-border/40 bg-white blur-[2px] z-10 pointer-events-none shadow-2xl"
           >
