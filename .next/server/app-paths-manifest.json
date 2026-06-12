@@ -2,6 +2,6 @@
   "/page": "app/page.js",
   "/[slug]/page": "app/[slug]/page.js",
   "/kontakti/page": "app/kontakti/page.js",
-  "/politika-za-poveritelnost/page": "app/politika-za-poveritelnost/page.js",
-  "/obshti-uslovia/page": "app/obshti-uslovia/page.js"
+  "/obshti-uslovia/page": "app/obshti-uslovia/page.js",
+  "/politika-za-poveritelnost/page": "app/politika-za-poveritelnost/page.js"
 }

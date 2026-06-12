@@ -11,6 +11,7 @@ import IndustrySpecificFeatures from "@/components/industry/IndustrySpecificFeat
 import IndustrySEO from "@/components/industry/IndustrySEO";
 import IndustryProcess from "@/components/industry/IndustryProcess";
 import IndustryFinalCTA from "@/components/industry/IndustryFinalCTA";
+import IndustryPricing from "@/components/industry/IndustryPricing";
 import SectionDivider from "@/components/SectionDivider";
 
 interface Props {
@@ -87,25 +88,30 @@ export default function IndustryPage({ params }: Props) {
         </>
       )}
 
-      {/* 7. Main SEO Text Section */}
+      {/* 7. Pricing Section - NEW */}
+      <IndustryPricing industryTitle={industry.title} />
+
+      <SectionDivider variant="gold" />
+
+      {/* 8. Main SEO Text Section */}
       <IndustryContent title={industry.title} sections={industry.sections} />
       
       <SectionDivider variant="gold" />
 
-      {/* 8. SEO Foundation */}
+      {/* 9. SEO Foundation */}
       <IndustrySEO data={industry.seoFoundation} />
       
       <SectionDivider variant="gold" />
 
-      {/* 9. Process */}
+      {/* 10. Process */}
       <IndustryProcess data={industry.processSteps} />
       
       <SectionDivider />
       
-      {/* 10. FAQ */}
+      {/* 11. FAQ */}
       <IndustryFAQ items={industry.faq} />
       
-      {/* 11. Final CTA */}
+      {/* 12. Final CTA */}
       <IndustryFinalCTA />
     </main>
   );
