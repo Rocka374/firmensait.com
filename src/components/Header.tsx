@@ -100,7 +100,7 @@ export default function Header() {
 
               {/* Mega Menu Dropdown */}
               <div className={cn(
-                "fixed top-[84px] left-1/2 -translate-x-1/2 w-full max-w-[1120px] z-[120] transition-all duration-300 ease-out pointer-events-none opacity-0 translate-y-3",
+                "fixed top-[84px] left-1/2 -translate-x-1/2 w-full max-w-[1200px] z-[120] transition-all duration-300 ease-out pointer-events-none opacity-0 translate-y-3",
                 isMegaMenuOpen && "opacity-100 translate-y-0 pointer-events-auto"
               )}>
                 <div className="mx-4 bg-[#FFFCF7] rounded-[2.25rem] border border-border/60 shadow-[0_30px_90px_rgba(23,23,23,0.12)] overflow-hidden">
@@ -130,22 +130,24 @@ export default function Header() {
                     </div>
 
                     <div className="flex-1 p-8 overflow-y-auto max-h-[70vh]">
-                      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
+                      <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
                         {industries.map((item) => {
                           const Icon = (Icons as any)[item.icon] || Icons.Check;
                           return (
                             <Link 
                               key={item.slug} 
                               href={item.href}
-                              className="group flex items-center gap-3 p-3 rounded-2xl border border-transparent hover:bg-primary/[0.06] hover:border-primary/15 transition-all duration-200"
+                              className="group flex items-center gap-3 min-w-0 rounded-2xl border border-transparent bg-transparent p-3.5 min-h-[60px] transition-all duration-200 hover:bg-primary/[0.06] hover:border-primary/20 hover:shadow-sm hover:-translate-y-0.5"
                               onClick={closeAll}
                             >
-                              <div className="w-9 h-9 shrink-0 rounded-xl bg-primary/[0.08] flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
-                                <Icon size={16} strokeWidth={2.5} />
+                              <div className="w-10 h-10 shrink-0 rounded-xl bg-primary/[0.08] flex items-center justify-center text-primary transition-all duration-200 group-hover:bg-primary group-hover:text-white">
+                                <Icon size={18} strokeWidth={2.5} />
                               </div>
-                              <span className="text-[13px] font-bold text-foreground/80 group-hover:text-primary transition-colors leading-tight">
-                                {item.menuLabel}
-                              </span>
+                              <div className="min-w-0 flex-1 overflow-hidden">
+                                <span className="block text-[13px] font-bold leading-snug text-foreground/80 group-hover:text-primary transition-colors break-words">
+                                  {item.menuLabel}
+                                </span>
+                              </div>
                             </Link>
                           );
                         })}
