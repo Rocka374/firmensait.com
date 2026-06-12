@@ -130,7 +130,10 @@ export default function IndustryPortfolioCarousel({ images }: Props) {
                   width={1200}
                   height={3000}
                   className="w-full h-auto block"
-                  loading="lazy"
+                  // Първото изображение в списъка (индекс 0) трябва да е priority
+                  priority={currentIndex === 0}
+                  loading={currentIndex === 0 ? undefined : "lazy"}
+                  fetchPriority={currentIndex === 0 ? "high" : "auto"}
                   sizes="(max-width: 768px) 90vw, 1050px"
                 />
               </div>

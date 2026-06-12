@@ -69,9 +69,10 @@ export default function IndustryHero({ data }: { data: IndustryPageContent }) {
                   alt={data.heroImage.alt}
                   fill
                   priority
+                  fetchPriority="high"
                   className="object-contain"
-                  // Оптимизиран sizes за Hero в браншова страница
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                  // Оптимизиран sizes: 90vw за мобилни вместо 100vw спестява ресурси
+                  sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw, 600px"
                 />
               </div>
             </motion.div>
