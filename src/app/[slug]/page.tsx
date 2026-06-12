@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 import { industries, industriesBySlug } from "@/content/industries";
 import IndustryHero from "@/components/industry/IndustryHero";
 import IndustryIntro from "@/components/industry/IndustryIntro";
@@ -24,9 +25,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: PageProps) {
-  const { slug } = await params;
-  const industry = industriesBySlug[slug];
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const resolvedParams = await params;
+  const industry = industriesBySlug[resolvedParams.slug];
   
   if (!industry) return {};
 
@@ -46,8 +47,8 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function IndustryPage({ params }: PageProps) {
-  const { slug } = await params;
-  const industry = industriesBySlug[slug];
+  const resolvedParams = await params;
+  const industry = industriesBySlug[resolvedParams.slug];
 
   if (!industry) {
     notFound();

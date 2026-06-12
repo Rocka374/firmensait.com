@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useRef, ElementType } from 'react';
-import { Menu, X, ChevronDown, ArrowRight, Home, Mail, Check } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Menu, X, ChevronDown, ArrowRight, Home, Mail, Check, LucideIcon } from 'lucide-react';
 import * as Icons from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
@@ -9,10 +9,11 @@ import { industries } from '@/content/industries';
 
 /**
  * Helper to safely retrieve Lucide icons from string keys.
+ * Typed as LucideIcon to allow size/strokeWidth props.
  */
-const getIcon = (iconName: string): ElementType => {
-  const IconComponent = (Icons as Record<string, ElementType>)[iconName];
-  return IconComponent || Check;
+const getIcon = (iconName: string): LucideIcon => {
+  const IconComponent = (Icons as any)[iconName];
+  return (IconComponent as LucideIcon) || Check;
 };
 
 export default function Header() {
