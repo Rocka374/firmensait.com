@@ -1,3 +1,4 @@
+// Site configuration and metadata
 export const siteConfig = {
   name: "Firmensait.com",
   title: "Професионален фирмен сайт за 350 евро | Изработка на фирмен сайт",
