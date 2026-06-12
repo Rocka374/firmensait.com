@@ -11,7 +11,8 @@ import { industries } from '@/content/industries';
  * Helper to safely retrieve Lucide icons from string keys.
  */
 const getIcon = (iconName: string): ElementType => {
-  const IconComponent = (Icons as Record<string, ElementType>)[iconName];
+  // Using 'any' allows dynamic access to the icons module without complex type overlaps
+  const IconComponent = (Icons as any)[iconName];
   return IconComponent || Check;
 };
 
