@@ -89,7 +89,7 @@ export default function Header() {
                 className={cn(
                   "flex items-center gap-1.5 px-6 h-11 rounded-full text-sm font-bold transition-all duration-300 border",
                   isMegaMenuOpen 
-                    ? "bg-primary/10 text-primary border-primary/20 shadow-sm" 
+                    ? "bg-primary/10 text-primary border-primary/25 shadow-sm" 
                     : "text-foreground/70 hover:text-primary hover:bg-primary/5 border-transparent"
                 )}
                 onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
@@ -100,27 +100,28 @@ export default function Header() {
 
               {/* Mega Menu Dropdown */}
               <div className={cn(
-                "fixed top-[84px] left-1/2 -translate-x-1/2 w-full max-w-[1200px] z-[120] transition-all duration-300 ease-out pointer-events-none opacity-0 translate-y-3",
+                "fixed top-[84px] left-1/2 -translate-x-1/2 w-full max-w-[1120px] z-[120] transition-all duration-300 ease-out pointer-events-none opacity-0 translate-y-3",
                 isMegaMenuOpen && "opacity-100 translate-y-0 pointer-events-auto"
               )}>
-                <div className="mx-4 bg-[#FFFCF7] rounded-[2.25rem] border border-border/60 shadow-[0_30px_90px_rgba(23,23,23,0.12)] overflow-hidden">
-                  <div className="flex flex-col lg:flex-row min-h-[460px]">
-                    <div className="lg:w-[340px] bg-primary/[0.03] p-10 flex flex-col border-r border-border/40">
+                <div className="mx-4 bg-[#FFFCF7] rounded-[2rem] border border-border/60 shadow-[0_30px_90px_rgba(23,23,23,0.12)] overflow-hidden">
+                  <div className="flex flex-col lg:flex-row min-h-[400px]">
+                    {/* Left Compact Column */}
+                    <div className="lg:w-[320px] bg-primary/[0.03] p-8 flex flex-col border-r border-border/40">
                       <div className="flex-1">
                         <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-black uppercase tracking-[0.2em] mb-6">
                           Разгледайте
                         </span>
-                        <h3 className="text-3xl font-bold text-foreground leading-tight mb-5 tracking-tight">
+                        <h3 className="text-2xl font-bold text-foreground leading-tight mb-4 tracking-tight">
                           Портфолио по браншове
                         </h3>
-                        <p className="text-secondary/70 text-base leading-relaxed font-medium">
+                        <p className="text-secondary/70 text-sm leading-relaxed font-medium">
                           Изберете примерна уеб визия според типа бизнес.
                         </p>
                       </div>
-                      <div className="mt-12 p-6 bg-white border border-primary/10 rounded-2xl shadow-sm">
+                      <div className="mt-8 p-5 bg-white border border-primary/10 rounded-2xl shadow-sm">
                         <Link 
                           href="/kontakti" 
-                          className="inline-flex items-center gap-2 text-primary font-black text-xs uppercase tracking-widest group/cta hover:text-primary-dark transition-colors"
+                          className="inline-flex items-center gap-2 text-primary font-black text-[11px] uppercase tracking-widest group/cta hover:text-primary-dark transition-colors"
                           onClick={closeAll}
                         >
                           Попитайте за вашия бизнес
@@ -129,22 +130,23 @@ export default function Header() {
                       </div>
                     </div>
 
-                    <div className="flex-1 p-8 overflow-y-auto max-h-[70vh]">
-                      <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
+                    {/* Right Compact Grid (4 Columns) */}
+                    <div className="flex-1 p-7 overflow-y-auto max-h-[70vh]">
+                      <div className="grid grid-cols-4 gap-2.5">
                         {industries.map((item) => {
                           const Icon = (Icons as any)[item.icon] || Icons.Check;
                           return (
                             <Link 
                               key={item.slug} 
                               href={item.href}
-                              className="group flex items-center gap-3 min-w-0 rounded-2xl border border-transparent bg-transparent p-3.5 min-h-[60px] transition-all duration-200 hover:bg-primary/[0.06] hover:border-primary/20 hover:shadow-sm hover:-translate-y-0.5"
+                              className="group flex items-center gap-3 min-w-0 overflow-hidden rounded-2xl border border-transparent p-3 min-h-[54px] transition-all duration-200 hover:bg-primary/[0.07] hover:border-primary/20 hover:shadow-[0_8px_24px_rgba(184,145,79,0.10)]"
                               onClick={closeAll}
                             >
-                              <div className="w-10 h-10 shrink-0 rounded-xl bg-primary/[0.08] flex items-center justify-center text-primary transition-all duration-200 group-hover:bg-primary group-hover:text-white">
-                                <Icon size={18} strokeWidth={2.5} />
+                              <div className="w-9 h-9 shrink-0 rounded-xl bg-primary/[0.08] flex items-center justify-center text-primary transition-all duration-200 group-hover:bg-primary group-hover:text-white">
+                                <Icon size={16} strokeWidth={2.5} />
                               </div>
                               <div className="min-w-0 flex-1 overflow-hidden">
-                                <span className="block text-[13px] font-bold leading-snug text-foreground/80 group-hover:text-primary transition-colors break-words">
+                                <span className="block text-[12.5px] font-bold leading-snug text-foreground/80 group-hover:text-primary transition-colors break-words">
                                   {item.menuLabel}
                                 </span>
                               </div>
@@ -189,7 +191,7 @@ export default function Header() {
       {/* Fullscreen Mobile Drawer */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-[200] bg-[#FAF8F4] md:hidden flex flex-col overflow-y-auto overscroll-contain">
-          {/* Drawer Top Bar - Using h-80 for more vertical space and perfect centering */}
+          {/* Drawer Top Bar */}
           <div className="sticky top-0 z-[210] h-[80px] min-h-[80px] flex items-center justify-between px-4 bg-[#FAF8F4]/95 backdrop-blur-md border-b border-border/30">
             <Link href="/" className="flex items-center" onClick={closeAll}>
               <span className="text-xl font-bold text-foreground tracking-tighter flex items-baseline">
