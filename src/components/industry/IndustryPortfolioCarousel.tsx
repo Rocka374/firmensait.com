@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, MousePointer2 } from "lucide-react";
@@ -11,11 +11,75 @@ interface Props {
 
 export default function IndustryPortfolioCarousel({ images }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  
+  // Референции за управление на скролирането
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollDirection = useRef(1);
+  const isHovered = useRef(false);
+  const userPaused = useRef(false);
+  const isProgrammaticScroll = useRef(false);
+  const resumeTimer = useRef<NodeJS.Timeout | null>(null);
+  const requestRef = useRef<number | null>(null);
 
   const next = () => setCurrentIndex((prev) => (prev + 1) % images.length);
   const prev = () => setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
 
   const getIndex = (offset: number) => (currentIndex + offset + images.length) % images.length;
+
+  const clearTimers = () => {
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    if (requestRef.current) cancelAnimationFrame(requestRef.current);
+  };
+
+  const scheduleResume = (delay = 3000) => {
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    resumeTimer.current = setTimeout(() => {
+      userPaused.current = false;
+    }, delay);
+  };
+
+  const pauseForUserInteraction = () => {
+    userPaused.current = true;
+    scheduleResume(5000);
+  };
+
+  const animate = useCallback(() => {
+    if (scrollRef.current && !isHovered.current && !userPaused.current) {
+      const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
+      const maxScroll = scrollHeight - clientHeight;
+
+      if (maxScroll > 0) {
+        if (scrollTop >= maxScroll - 1) {
+          scrollDirection.current = -1;
+        } else if (scrollTop <= 0) {
+          scrollDirection.current = 1;
+        }
+
+        const speed = 0.6;
+        const newScrollTop = scrollTop + (speed * scrollDirection.current);
+
+        isProgrammaticScroll.current = true;
+        scrollRef.current.scrollTop = newScrollTop;
+        
+        requestAnimationFrame(() => {
+          isProgrammaticScroll.current = false;
+        });
+      }
+    }
+    requestRef.current = requestAnimationFrame(animate);
+  }, []);
+
+  useEffect(() => {
+    clearTimers();
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = 0;
+    }
+    scrollDirection.current = 1;
+    userPaused.current = false;
+    requestRef.current = requestAnimationFrame(animate);
+    
+    return () => clearTimers();
+  }, [currentIndex, animate]);
 
   return (
     <div className="relative w-full max-w-[1600px] mx-auto">
@@ -41,8 +105,21 @@ export default function IndustryPortfolioCarousel({ images }: Props) {
               exit={{ opacity: 0, scale: 1.03 }}
               transition={{ duration: 0.5, ease: "circOut" }}
               className="relative w-full h-full rounded-[2.5rem] md:rounded-[4rem] overflow-hidden bg-white border border-border/40 shadow-[0_40px_100px_rgba(184,145,79,0.1)]"
+              onMouseEnter={() => { isHovered.current = true; }}
+              onMouseLeave={() => { isHovered.current = false; scheduleResume(2000); }}
             >
-              <div className="relative w-full h-full overflow-y-auto no-scrollbar scroll-smooth overscroll-contain">
+              <div 
+                ref={scrollRef}
+                onScroll={() => {
+                  if (!isProgrammaticScroll.current) {
+                    pauseForUserInteraction();
+                  }
+                }}
+                onWheel={pauseForUserInteraction}
+                onTouchStart={pauseForUserInteraction}
+                onPointerDown={pauseForUserInteraction}
+                className="relative w-full h-full overflow-y-auto no-scrollbar bg-muted/10 overscroll-contain"
+              >
                  <Image
                   src={images[currentIndex].src}
                   alt={images[currentIndex].alt}
@@ -61,10 +138,10 @@ export default function IndustryPortfolioCarousel({ images }: Props) {
               </div>
 
               <div className="absolute inset-x-6 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none opacity-0 group-hover:opacity-100 transition-all duration-300">
-                <button onClick={prev} className="w-14 h-14 rounded-full bg-white/95 backdrop-blur-md shadow-2xl flex items-center justify-center text-primary pointer-events-auto hover:bg-primary hover:text-white transition-all active:scale-90 border border-border/30">
+                <button onClick={(e) => { e.stopPropagation(); prev(); }} className="w-14 h-14 rounded-full bg-white/95 backdrop-blur-md shadow-2xl flex items-center justify-center text-primary pointer-events-auto hover:bg-primary hover:text-white transition-all active:scale-90 border border-border/30">
                   <ChevronLeft size={28} />
                 </button>
-                <button onClick={next} className="w-14 h-14 rounded-full bg-white/95 backdrop-blur-md shadow-2xl flex items-center justify-center text-primary pointer-events-auto hover:bg-primary hover:text-white transition-all active:scale-90 border border-border/30">
+                <button onClick={(e) => { e.stopPropagation(); next(); }} className="w-14 h-14 rounded-full bg-white/95 backdrop-blur-md shadow-2xl flex items-center justify-center text-primary pointer-events-auto hover:bg-primary hover:text-white transition-all active:scale-90 border border-border/30">
                   <ChevronRight size={28} />
                 </button>
               </div>
