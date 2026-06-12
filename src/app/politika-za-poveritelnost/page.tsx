@@ -35,7 +35,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-2xl font-bold text-foreground">3. Използване на 'Бисквитки' (Cookies)</h2>
+            <h2 className="text-2xl font-bold text-foreground">3. Използване на „Бисквитки“ (Cookies)</h2>
             <p>
               Нашият сайт използва минимално количество технически бисквитки, необходими за правилното функциониране на платформата и подобряване на потребителското преживяване.
             </p>

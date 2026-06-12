@@ -12,7 +12,7 @@ export default function IndustryIntro({ text }: { text: string }) {
             За страницата
           </div>
           <p className="text-xl md:text-3xl text-foreground/80 font-bold leading-relaxed tracking-tight italic">
-            "{text === "Placeholder текст." ? placeholder : text}"
+            „{text === "Placeholder текст." ? placeholder : text}“
           </p>
         </div>
       </div>
