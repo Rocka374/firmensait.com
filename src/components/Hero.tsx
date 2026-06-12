@@ -94,16 +94,12 @@ export default function Hero() {
 
   return (
     <section className="relative pt-28 pb-20 md:pt-48 md:pb-48 overflow-hidden bg-background max-w-full">
-      {/* Background Gradients - Restricted to prevent overflow */}
       <div className="absolute top-[-10%] right-[-5%] w-[60%] h-[60%] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[5%] left-[-5%] w-[40%] h-[40%] bg-accent/20 rounded-full blur-[100px] pointer-events-none" />
-      
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent pointer-events-none z-0" />
 
       <div className="container mx-auto px-4 max-w-[1400px] relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 mb-20 md:mb-28">
-          
-          {/* Left Content */}
           <div className="w-full flex-1 lg:flex-[0.9] text-center lg:text-left relative z-20">
             <h1 className="text-4xl md:text-6xl lg:text-[5rem] font-bold text-foreground leading-[1.05] mb-8 tracking-tight break-words">
               {renderTitle()}
@@ -111,7 +107,6 @@ export default function Hero() {
             <p className="text-lg md:text-xl lg:text-2xl text-secondary/80 mb-10 md:mb-12 leading-relaxed max-w-3xl mx-auto lg:mx-0 font-medium">
               {hero.subtitle}
             </p>
-            
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
               <Button variant="primary" size="lg" href="#kontakti" className="w-full sm:w-auto px-12 py-5 shadow-xl shadow-primary/20">
                 {hero.primaryCTA}
@@ -122,19 +117,15 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Visual Showcase - Clipped to prevent horizontal overflow */}
           <div className="flex-1 lg:flex-[1.1] w-full relative max-w-[850px] lg:max-w-none mx-auto py-10 lg:py-0 z-10 overflow-hidden lg:overflow-visible">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(184,145,79,0.12)_0%,_transparent_70%)] pointer-events-none transform scale-150" />
-
             <div className="relative z-10 w-full aspect-[16/11]">
               <FloatingBadge icon={Tag} className="top-[5%] right-[-2%]" delay={0.2}>
                 Цена 350 евро
               </FloatingBadge>
-              
               <FloatingBadge icon={Clock} className="top-[40%] left-[-8%]" delay={0.4}>
                 Готов до 10 дни
               </FloatingBadge>
-              
               <FloatingBadge icon={CloudOff} className="bottom-[5%] right-[10%]" delay={0.6}>
                 Без месечен хостинг
               </FloatingBadge>
@@ -146,15 +137,14 @@ export default function Hero() {
                   fill
                   priority
                   className="object-contain"
-                  sizes="(max-width: 1024px) 100vw, 80vw"
-                  onError={(e) => { (e.target as any).style.display = 'none'; }}
+                  // Оптимизиран sizes за LCP
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 700px"
                 />
               </div>
             </div>
           </div>
         </div>
 
-        {/* Mobile View Badge Grid */}
         <div className="flex flex-col md:hidden gap-4 mb-8">
           {[...primaryBadges, ...secondaryBadges].map((badge, idx) => (
             <HeroBadge key={idx} icon={badge.icon}>
@@ -163,7 +153,6 @@ export default function Hero() {
           ))}
         </div>
 
-        {/* Desktop View Secondary Badges Grid */}
         <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6">
           {secondaryBadges.map((badge, idx) => (
             <HeroBadge key={idx} icon={badge.icon}>

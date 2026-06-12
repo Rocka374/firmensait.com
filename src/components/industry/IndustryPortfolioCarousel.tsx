@@ -12,7 +12,6 @@ interface Props {
 export default function IndustryPortfolioCarousel({ images }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   
-  // Референции за управление на скролирането
   const scrollRef = useRef<HTMLDivElement>(null);
   const scrollDirection = useRef(1);
   const isHovered = useRef(false);
@@ -85,17 +84,22 @@ export default function IndustryPortfolioCarousel({ images }: Props) {
     <div className="relative w-full max-w-[1600px] mx-auto">
       <div className="perspective-1000 relative h-[320px] sm:h-[500px] md:h-[750px] flex items-center justify-center overflow-hidden py-10">
         
-        {/* Previous Card */}
         <motion.div 
           key={`left-${getIndex(-1)}`}
           animate={{ opacity: 0.3, x: "-58%", scale: 0.72, rotateY: -22, rotateZ: -2 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="absolute hidden lg:block w-[850px] aspect-[16/10] rounded-[3rem] overflow-hidden border border-border/30 bg-white blur-[1px] z-10 pointer-events-none shadow-2xl"
         >
-           <Image src={images[getIndex(-1)].src} alt="Previous" fill className="object-cover object-top" sizes="800px" />
+           <Image 
+             src={images[getIndex(-1)].src} 
+             alt="Previous" 
+             fill 
+             className="object-cover object-top" 
+             sizes="400px" 
+             loading="lazy"
+           />
         </motion.div>
 
-        {/* Active Card */}
         <div className="relative w-full max-w-[1050px] h-full z-30 group px-4">
           <AnimatePresence mode="wait">
             <motion.div
@@ -126,7 +130,8 @@ export default function IndustryPortfolioCarousel({ images }: Props) {
                   width={1200}
                   height={3000}
                   className="w-full h-auto block"
-                  priority
+                  loading="lazy"
+                  sizes="(max-width: 768px) 90vw, 1050px"
                 />
               </div>
 
@@ -138,10 +143,18 @@ export default function IndustryPortfolioCarousel({ images }: Props) {
               </div>
 
               <div className="absolute inset-x-6 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none opacity-0 group-hover:opacity-100 transition-all duration-300">
-                <button onClick={(e) => { e.stopPropagation(); prev(); }} className="w-14 h-14 rounded-full bg-white/95 backdrop-blur-md shadow-2xl flex items-center justify-center text-primary pointer-events-auto hover:bg-primary hover:text-white transition-all active:scale-90 border border-border/30">
+                <button 
+                  onClick={(e) => { e.stopPropagation(); prev(); }} 
+                  aria-label="Предишен проект"
+                  className="w-14 h-14 rounded-full bg-white/95 backdrop-blur-md shadow-2xl flex items-center justify-center text-primary pointer-events-auto hover:bg-primary hover:text-white transition-all active:scale-90 border border-border/30"
+                >
                   <ChevronLeft size={28} />
                 </button>
-                <button onClick={(e) => { e.stopPropagation(); next(); }} className="w-14 h-14 rounded-full bg-white/95 backdrop-blur-md shadow-2xl flex items-center justify-center text-primary pointer-events-auto hover:bg-primary hover:text-white transition-all active:scale-90 border border-border/30">
+                <button 
+                  onClick={(e) => { e.stopPropagation(); next(); }} 
+                  aria-label="Следващ проект"
+                  className="w-14 h-14 rounded-full bg-white/95 backdrop-blur-md shadow-2xl flex items-center justify-center text-primary pointer-events-auto hover:bg-primary hover:text-white transition-all active:scale-90 border border-border/30"
+                >
                   <ChevronRight size={28} />
                 </button>
               </div>
@@ -149,20 +162,30 @@ export default function IndustryPortfolioCarousel({ images }: Props) {
           </AnimatePresence>
         </div>
 
-        {/* Next Card */}
         <motion.div 
           key={`right-${getIndex(1)}`}
           animate={{ opacity: 0.3, x: "58%", scale: 0.72, rotateY: 22, rotateZ: 2 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="absolute hidden lg:block w-[850px] aspect-[16/10] rounded-[3rem] overflow-hidden border border-border/30 bg-white blur-[1px] z-10 pointer-events-none shadow-2xl"
         >
-           <Image src={images[getIndex(1)].src} alt="Next" fill className="object-cover object-top" sizes="800px" />
+           <Image 
+             src={images[getIndex(1)].src} 
+             alt="Next" 
+             fill 
+             className="object-cover object-top" 
+             sizes="400px" 
+             loading="lazy" 
+           />
         </motion.div>
       </div>
 
       <div className="mt-12 flex flex-col items-center">
         <div className="flex items-center gap-6">
-           <button onClick={prev} className="p-4 rounded-full border border-border/50 hover:bg-white hover:border-primary/30 transition-all active:scale-90">
+           <button 
+             onClick={prev} 
+             aria-label="Предишен проект"
+             className="p-4 rounded-full border border-border/50 hover:bg-white hover:border-primary/30 transition-all active:scale-90"
+           >
              <ChevronLeft size={20} className="text-secondary" />
            </button>
            <div className="flex items-center gap-4 font-black text-xs text-primary tracking-[0.2em]">
@@ -170,7 +193,11 @@ export default function IndustryPortfolioCarousel({ images }: Props) {
              <span className="w-10 h-px bg-primary/20" />
              <span className="text-secondary/30">{images.length.toString().padStart(2, '0')}</span>
            </div>
-           <button onClick={next} className="p-4 rounded-full border border-border/50 hover:bg-white hover:border-primary/30 transition-all active:scale-90">
+           <button 
+             onClick={next} 
+             aria-label="Следващ проект"
+             className="p-4 rounded-full border border-border/50 hover:bg-white hover:border-primary/30 transition-all active:scale-90"
+           >
              <ChevronRight size={20} className="text-secondary" />
            </button>
         </div>

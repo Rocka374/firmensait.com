@@ -5,7 +5,6 @@ import { IndustryPageContent } from "@/content/industries/types";
 import Button from "@/components/Button";
 import { Tag, Smartphone, Search, CloudOff } from "lucide-react";
 import { motion } from "framer-motion";
-import * as Icons from "lucide-react";
 
 export default function IndustryHero({ data }: { data: IndustryPageContent }) {
   const trustItems = [
@@ -17,7 +16,6 @@ export default function IndustryHero({ data }: { data: IndustryPageContent }) {
 
   return (
     <section className="relative pt-32 pb-24 md:pt-48 md:pb-40 overflow-hidden bg-white">
-      {/* Premium radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-primary/[0.04] rounded-full blur-[130px] pointer-events-none" />
       
       <div className="container mx-auto px-4 max-w-[1440px] relative z-10">
@@ -72,7 +70,8 @@ export default function IndustryHero({ data }: { data: IndustryPageContent }) {
                   fill
                   priority
                   className="object-contain"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  // Оптимизиран sizes за Hero в браншова страница
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                 />
               </div>
             </motion.div>

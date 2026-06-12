@@ -11,7 +11,6 @@ import { industries } from '@/content/industries';
  * Helper to safely retrieve Lucide icons from string keys.
  */
 const getIcon = (iconName: string): ElementType => {
-  // Using 'any' allows dynamic access to the icons module without complex type overlaps
   const IconComponent = (Icons as any)[iconName];
   return IconComponent || Check;
 };
@@ -96,6 +95,7 @@ export default function Header() {
                     : "text-foreground/70 hover:text-primary hover:bg-primary/5 border-transparent"
                 )}
                 onClick={() => setIsMegaMenuOpen(!isMegaMenuOpen)}
+                aria-label="Отвори портфолио меню"
               >
                 Портфолио
                 <ChevronDown size={14} className={cn("transition-transform duration-300", isMegaMenuOpen && "rotate-180")} />
@@ -247,6 +247,7 @@ export default function Header() {
                     : "bg-white text-foreground border-border/40"
                 )}
                 onClick={() => setIsMobilePortfolioOpen(!isMobilePortfolioOpen)}
+                aria-label="Превключи портфолио"
               >
                 <div className="flex flex-col items-start text-left">
                   <span className="text-lg font-bold">Портфолио по браншове</span>

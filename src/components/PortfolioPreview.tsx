@@ -103,10 +103,8 @@ export default function PortfolioPreview() {
       </div>
 
       <div className="relative w-full max-w-[1600px] mx-auto px-4">
-        {/* Carousel Scene - Restricted with overflow-hidden on container */}
         <div className="perspective-1000 relative h-[280px] sm:h-[400px] md:h-[680px] flex items-center justify-center">
           
-          {/* Previous Card (Left) */}
           <motion.div 
             key={`left-${getProjectIndex(-1)}`}
             initial={{ opacity: 0, x: -100, scale: 0.7 }}
@@ -119,12 +117,11 @@ export default function PortfolioPreview() {
               alt="Предишен проект" 
               fill 
               className="object-cover object-top"
-              sizes="800px"
+              sizes="400px" // Малък размер, защото е страничен и blur-нат
               loading="lazy"
             />
           </motion.div>
 
-          {/* Active Card (Center) */}
           <div className="relative w-full max-w-[950px] h-full z-30">
             <AnimatePresence mode="wait">
               <motion.div
@@ -156,12 +153,12 @@ export default function PortfolioPreview() {
                       width={1200}
                       height={4000}
                       className="w-full h-auto block"
-                      priority={true}
+                      loading="lazy" // Премахнато priority, под fold-а е
+                      sizes="(max-width: 768px) 90vw, 950px" // Оптимизиран size според контейнера
                     />
                   </div>
                 </div>
                 
-                {/* Scroll Indicator - Pulse Hint */}
                 <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 pointer-events-none">
                   <div className="flex flex-col items-center gap-2 animate-pulse">
                     <div className="bg-primary/90 backdrop-blur-md text-white text-[10px] md:text-xs font-black uppercase tracking-[0.2em] px-4 py-2 rounded-full shadow-lg border border-white/20 flex items-center gap-2">
@@ -174,12 +171,14 @@ export default function PortfolioPreview() {
                 <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 hidden md:flex justify-between pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <button 
                     onClick={(e) => { e.stopPropagation(); prevProject(); }}
+                    aria-label="Предишен проект"
                     className="w-12 h-12 rounded-full bg-white/90 backdrop-blur-md shadow-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all pointer-events-auto active:scale-90"
                   >
                     <ChevronLeft size={24} />
                   </button>
                   <button 
                     onClick={(e) => { e.stopPropagation(); nextProject(); }}
+                    aria-label="Следващ проект"
                     className="w-12 h-12 rounded-full bg-white/90 backdrop-blur-md shadow-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all pointer-events-auto active:scale-90"
                   >
                     <ChevronRight size={24} />
@@ -189,7 +188,6 @@ export default function PortfolioPreview() {
             </AnimatePresence>
           </div>
 
-          {/* Next Card (Right) */}
           <motion.div 
             key={`right-${getProjectIndex(1)}`}
             initial={{ opacity: 0, x: 100, scale: 0.7 }}
@@ -202,13 +200,12 @@ export default function PortfolioPreview() {
               alt="Следващ проект" 
               fill 
               className="object-cover object-top"
-              sizes="800px"
+              sizes="400px"
               loading="lazy"
             />
           </motion.div>
         </div>
 
-        {/* Text Info & Controls */}
         <div className="mt-8 md:mt-24 text-center max-w-2xl mx-auto px-4">
           <AnimatePresence mode="wait">
             <motion.div 
@@ -238,7 +235,11 @@ export default function PortfolioPreview() {
                 </Button>
 
                 <div className="flex items-center gap-5">
-                  <button onClick={prevProject} className="p-3 rounded-full border border-border hover:bg-white transition-all active:scale-90">
+                  <button 
+                    onClick={prevProject} 
+                    aria-label="Предишен проект"
+                    className="p-3 rounded-full border border-border hover:bg-white transition-all active:scale-90"
+                  >
                     <ChevronLeft size={20} className="text-secondary" />
                   </button>
                   <div className="flex items-center gap-3 font-black text-sm text-primary tracking-widest">
@@ -246,7 +247,11 @@ export default function PortfolioPreview() {
                     <span className="w-6 h-px bg-primary/20" />
                     <span className="text-secondary/30">{portfolio.projects.length.toString().padStart(2, '0')}</span>
                   </div>
-                  <button onClick={nextProject} className="p-3 rounded-full border border-border hover:bg-white transition-all active:scale-90">
+                  <button 
+                    onClick={nextProject} 
+                    aria-label="Следващ проект"
+                    className="p-3 rounded-full border border-border hover:bg-white transition-all active:scale-90"
+                  >
                     <ChevronRight size={20} className="text-secondary" />
                   </button>
                 </div>
